@@ -1,10 +1,11 @@
 /* global describe beforeEach it */
 
-import {expect} from 'chai'
+/* import {expect} from 'chai'
 import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {Books} from './books'
+import {Books} from './index'
+import { equal } from 'assert';
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
@@ -45,6 +46,7 @@ describe('Books', () => {
   })
 
   it('renders array of book list', () => {
-      expect(books.find())
+      expect(books.find('li').key()).to.be.equal(5543)
   })
 })
+ */

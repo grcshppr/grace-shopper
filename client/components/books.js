@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
     fetchAllBooksFromServer
-} from '../reducers'
+} from '../store/books'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
@@ -13,8 +13,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        list = state.books.list,
-        isFetching = state.books.isFetching
+        list: state.books.list,
+        isFetching: state.books.isFetching
     }
 }
 
@@ -25,24 +25,25 @@ class Books extends Component {
 
     render () {
         const books = this.props.list
+        console.log(books)
         const isFetching = this.props.isFetching
         if(isFetching) {
             return<h1>Loading</h1>
         }
         return (
-            <div>
+            <ul>
                 {
                     books.map(book => {
                         return (
-                            <div key={book.id}>
+                            <li key={book.id}>
                                 <Link to={`book/${book.id}`}>{book.name}</Link>
-                                <p>{book.price}</p>
+                                <p>${book.price}</p>
                                 <img src={book.imageUrl} />
-                            </div>
+                            </li>
                         )
                     })
                 }
-            </div>
+            </ul>
         )
     }
 }
