@@ -15,6 +15,8 @@ describe('User model', () => {
 
       beforeEach(async () => {
         cody = await User.create({
+          firstName: 'Cody',
+          lastName: 'LastName',
           email: 'cody@puppybook.com',
           password: 'bones'
         })
@@ -29,4 +31,20 @@ describe('User model', () => {
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
+
+  describe('attributes definition', () => {
+    let cody
+    beforeEach(async () => {
+      cody = await User.create({
+        email: 'cody@puppybook.com',
+        password: 'bones',
+        firstName: 'Cody',
+        lastName: 'LastName'
+      })
+    })
+    it('includes `email`, `firstName`, and `lastName`', () => {
+      expect(cody.firstName).to.equal('Cody')
+      expect(cody.lastName).to.equal('LastName')
+    })
+  })
 }) // end describe('User model')
