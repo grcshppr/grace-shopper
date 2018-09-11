@@ -129,11 +129,7 @@ async function seed() {
     }),
     Book.create({
       name: 'Moby Dick',
-      genres: [
-        'Novel',
-        'Adventure',
-        'Epic'
-      ],
+      genres: ['Novel', 'Adventure', 'Epic'],
       author: 'Herman Melville',
       price: '22.50',
       quantity: 4,
@@ -142,11 +138,7 @@ async function seed() {
     }),
     Book.create({
       name: 'Moby Dick',
-      genres: [
-        'Novel',
-        'Adventure',
-        'Epic'
-      ],
+      genres: ['Novel', 'Adventure', 'Epic'],
       author: 'Herman Melville',
       price: '12.11',
       quantity: 3,
@@ -390,10 +382,7 @@ async function seed() {
     }),
     Book.create({
       name: 'Pride and Prejudice',
-      genres: [
-        'Novel',
-        'Romance'
-      ],
+      genres: ['Novel', 'Romance'],
       author: 'Jane Austen',
       price: '8.73',
       quantity: 15,
@@ -402,10 +391,7 @@ async function seed() {
     }),
     Book.create({
       name: 'Pride and Prejudice',
-      genres: [
-        'Novel',
-        'Romance'
-      ],
+      genres: ['Novel', 'Romance'],
       author: 'Jane Austen',
       price: '3.95',
       quantity: 20,
@@ -504,11 +490,7 @@ async function seed() {
     }),
     Book.create({
       name: '1984',
-      genres: [
-        'Novel',
-        'Science Fiction',
-        'Modernist'
-      ],
+      genres: ['Novel', 'Science Fiction', 'Modernist'],
       author: 'J. D. Salinger',
       price: '13.49',
       quantity: 7,
@@ -517,11 +499,7 @@ async function seed() {
     }),
     Book.create({
       name: '1984',
-      genres: [
-        'Novel',
-        'Science Fiction',
-        'Modernist'
-      ],
+      genres: ['Novel', 'Science Fiction', 'Modernist'],
       author: 'J. D. Salinger',
       price: '9.00',
       quantity: 4,
@@ -603,7 +581,7 @@ async function seed() {
       quantity: 16,
       editionType: 'paperback',
       description: `The Return of the King is the third and final volume of J. R. R. Tolkien's The Lord of the Rings, following The Fellowship of the Ring and The Two Towers. The story begins in the kingdom of Gondor, which is soon to be attacked by the Dark Lord Sauron.`
-    }),
+    })
   ])
 
   console.log(`seeded ${books.length} books`)
