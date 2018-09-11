@@ -62,7 +62,7 @@ async function seed() {
       name: 'Don Quixote',
       genres: ['Novel'],
       author: 'Miguel de Cervantes',
-      price: '28,95',
+      price: '28.95',
       quantity: '3',
       editionType: 'hardcover',
       description: `Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper. He has become obsessed with books of chivalry, and believes their every word to be true, despite the fact that many of the events in them are clearly impossible. Quixano eventually appears to other people to have lost his mind from little sleep and food and because of so much reading.`
@@ -321,7 +321,7 @@ async function seed() {
       author: 'Homer',
       price: '14.53',
       quantity: '11',
-      editionType: 'papoerback',
+      editionType: 'paperback',
       description: `The Iliad is an epic poem in dactylic hexameters, traditionally attributed to Homer. Set in the Trojan War, the ten-year siege of Ilium by a coalition of Greek states, it tells of the battles and events during the weeks of a quarrel between King Agamemnon and the warrior Achilles. Although the story covers only a few weeks in the final year of the war, the Iliad mentions or alludes to many of the Greek legends about the siege. Along with the Odyssey, also attributed to Homer, the Iliad is among the oldest extant works of Western literature, and its written version is usually dated to around the eighth century BC. The Iliad contains approximately 15,700 lines, and is written in a literary amalgam of several Greek dialects. The authorship of the poem is disputed.`
     }),
     Book.create({
@@ -504,7 +504,7 @@ async function seed() {
       author: 'J. D. Salinger',
       price: '13.49',
       quantity: '7',
-      editionType: 'paperback',
+      editionType: 'hardcover',
       description: `The story follows the life of one seemingly insignificant man, Winston Smith, a civil servant assigned the task of perpetuating the regime's propaganda by falsifying records and political literature so that it appears that the government is always correct in what it says. Smith grows disillusioned with his meager existence and so begins a rebellion against the system that leads to his arrest, torture, and conversion.`
     }),
     Book.create({
