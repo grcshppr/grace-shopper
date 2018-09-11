@@ -92,7 +92,7 @@ async function seed() {
     }),
     Book.create({
       name: 'Ulysses',
-      genres: ['Novel', 'Fiction'],
+      genres: ['Novel', 'Modernist'],
       author: 'James Joyce',
       price: '16.37',
       quantity: 3,
@@ -101,7 +101,7 @@ async function seed() {
     }),
     Book.create({
       name: 'Ulysses',
-      genres: ['Novel', 'Fiction'],
+      genres: ['Novel', 'Modernist'],
       author: 'James Joyce',
       price: '6.28',
       quantity: 4,
