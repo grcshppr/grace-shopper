@@ -11,28 +11,28 @@ async function seed() {
   const users = await Promise.all([
     User.create({
       email: 'abby.wigdale@gmail.com',
-      password: '',
+      password: 'password',
       firstName: 'Abby',
       lastName: 'Wigdale',
       isAdmin: 'true'
     }),
     User.create({
       email: 'kevingislason@gmail.com',
-      password: '',
+      password: 'password',
       firstName: 'Kevin',
       lastName: 'Gislason',
       isAdmin: 'true'
     }),
     User.create({
       email: 'tomasgnr@gmail.com',
-      password: '',
+      password: 'password',
       firstName: 'Tomas',
       lastName: 'Mariani',
       isAdmin: 'true'
     }),
     User.create({
       email: 'tony@boetto.com',
-      password: '',
+      password: 'password',
       firstName: 'Tony',
       lastName: 'Boetto',
       isAdmin: 'true'
@@ -47,7 +47,6 @@ async function seed() {
       price: '19.99',
       quantity: '5',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `Swann's Way, the first part of A la recherche de temps perdu, Marcel Proust's seven-part cycle, was published in 1913. In it, Proust introduces the themes that run through the entire work. The narrator recalls his childhood, aided by the famous madeleine; and describes M. Swann's passion for Odette. The work is incomparable. Edmund Wilson said "[Proust] has supplied for the first time in literature an equivalent in the full scale for the new theory of modern physics."`
     }),
     Book.create({
@@ -57,7 +56,6 @@ async function seed() {
       price: '14.06',
       quantity: '5',
       editionType: 'paperback',
-      imageUrl: '',
       description: `Swann's Way, the first part of A la recherche de temps perdu, Marcel Proust's seven-part cycle, was published in 1913. In it, Proust introduces the themes that run through the entire work. The narrator recalls his childhood, aided by the famous madeleine; and describes M. Swann's passion for Odette. The work is incomparable. Edmund Wilson said "[Proust] has supplied for the first time in literature an equivalent in the full scale for the new theory of modern physics."`
     }),
     Book.create({
@@ -67,8 +65,7 @@ async function seed() {
       price: '28,95',
       quantity: '3',
       editionType: 'hardcover',
-      imageUrl: '',
-      description: 'Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper. He has become obsessed with books of chivalry, and believes their every word to be true, despite the fact that many of the events in them are clearly impossible. Quixano eventually appears to other people to have lost his mind from little sleep and food and because of so much reading.'
+      description: `Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper. He has become obsessed with books of chivalry, and believes their every word to be true, despite the fact that many of the events in them are clearly impossible. Quixano eventually appears to other people to have lost his mind from little sleep and food and because of so much reading.`
     }),
     Book.create({
       name: 'Don Quixote',
@@ -77,8 +74,7 @@ async function seed() {
       price: '11.55',
       quantity: '1',
       editionType: 'paperback',
-      imageUrl: '',
-      description: 'Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper. He has become obsessed with books of chivalry, and believes their every word to be true, despite the fact that many of the events in them are clearly impossible. Quixano eventually appears to other people to have lost his mind from little sleep and food and because of so much reading.'
+      description: `Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper. He has become obsessed with books of chivalry, and believes their every word to be true, despite the fact that many of the events in them are clearly impossible. Quixano eventually appears to other people to have lost his mind from little sleep and food and because of so much reading.`
     }),
     Book.create({
       name: 'Ulysses',
@@ -87,7 +83,6 @@ async function seed() {
       price: '16.37',
       quantity: '3',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `Ulysses chronicles the passage of Leopold Bloom through Dublin during an ordinary day, June 16, 1904. The title parallels and alludes to Odysseus (Latinised into Ulysses), the hero of Homer's Odyssey (e.g., the correspondences between Leopold Bloom and Odysseus, Molly Bloom and Penelope, and Stephen Dedalus and Telemachus). Joyce fans worldwide now celebrate June 16 as Bloomsday.`
     }),
     Book.create({
@@ -97,7 +92,6 @@ async function seed() {
       price: '6.28',
       quantity: '4',
       editionType: 'paperback',
-      imageUrl: '',
       description: `Ulysses chronicles the passage of Leopold Bloom through Dublin during an ordinary day, June 16, 1904. The title parallels and alludes to Odysseus (Latinised into Ulysses), the hero of Homer's Odyssey (e.g., the correspondences between Leopold Bloom and Odysseus, Molly Bloom and Penelope, and Stephen Dedalus and Telemachus). Joyce fans worldwide now celebrate June 16 as Bloomsday.`
     }),
     Book.create({
@@ -107,8 +101,7 @@ async function seed() {
       price: '14.95',
       quantity: '8',
       editionType: 'hardcover',
-      imageUrl: '',
-      description: 'The novel chronicles an era that Fitzgerald himself dubbed the "Jazz Age". Following the shock and chaos of World War I, American society enjoyed unprecedented levels of prosperity during the "roaring" 1920s as the economy soared. At the same time, Prohibition, the ban on the sale and manufacture of alcohol as mandated by the Eighteenth Amendment, made millionaires out of bootleggers and led to an increase in organized crime, for example the Jewish mafia. Although Fitzgerald, like Nick Carraway in his novel, idolized the riches and glamor of the age, he was uncomfortable with the unrestrained materialism and the lack of morality that went with it, a kind of decadence.'
+      description: `The novel chronicles an era that Fitzgerald himself dubbed the "Jazz Age". Following the shock and chaos of World War I, American society enjoyed unprecedented levels of prosperity during the "roaring" 1920s as the economy soared. At the same time, Prohibition, the ban on the sale and manufacture of alcohol as mandated by the Eighteenth Amendment, made millionaires out of bootleggers and led to an increase in organized crime, for example the Jewish mafia. Although Fitzgerald, like Nick Carraway in his novel, idolized the riches and glamor of the age, he was uncomfortable with the unrestrained materialism and the lack of morality that went with it, a kind of decadence.`
     }),
     Book.create({
       name: 'The Great Gatsby',
@@ -117,27 +110,37 @@ async function seed() {
       price: '10.29',
       quantity: '5',
       editionType: 'paperback',
-      imageUrl: '',
-      description: 'The novel chronicles an era that Fitzgerald himself dubbed the "Jazz Age". Following the shock and chaos of World War I, American society enjoyed unprecedented levels of prosperity during the "roaring" 1920s as the economy soared. At the same time, Prohibition, the ban on the sale and manufacture of alcohol as mandated by the Eighteenth Amendment, made millionaires out of bootleggers and led to an increase in organized crime, for example the Jewish mafia. Although Fitzgerald, like Nick Carraway in his novel, idolized the riches and glamor of the age, he was uncomfortable with the unrestrained materialism and the lack of morality that went with it, a kind of decadence.'
+      description:
+        'The novel chronicles an era that Fitzgerald himself dubbed the "Jazz Age". Following the shock and chaos of World War I, American society enjoyed unprecedented levels of prosperity during the "roaring" 1920s as the economy soared. At the same time, Prohibition, the ban on the sale and manufacture of alcohol as mandated by the Eighteenth Amendment, made millionaires out of bootleggers and led to an increase in organized crime, for example the Jewish mafia. Although Fitzgerald, like Nick Carraway in his novel, idolized the riches and glamor of the age, he was uncomfortable with the unrestrained materialism and the lack of morality that went with it, a kind of decadence.'
     }),
     Book.create({
       name: 'Moby Dick',
-      genres: ['Novel', 'Adventure Fiction', 'Epic', 'Nautical Fiction', 'Encyclopedic Novel'],
+      genres: [
+        'Novel',
+        'Adventure Fiction',
+        'Epic',
+        'Nautical Fiction',
+        'Encyclopedic Novel'
+      ],
       author: 'Herman Melville',
       price: '22.50',
       quantity: '4',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `First published in 1851, Melville's masterpiece is, in Elizabeth Hardwick's words, "the greatest novel in American literature." The saga of Captain Ahab and his monomaniacal pursuit of the white whale remains a peerless adventure story but one full of mythic grandeur, poetic majesty, and symbolic power. Filtered through the consciousness of the novel's narrator, Ishmael, Moby-Dick draws us into a universe full of fascinating characters and stories, from the noble cannibal Queequeg to the natural history of whales, while reaching existential depths that excite debate and contemplation to this day.`
     }),
     Book.create({
       name: 'Moby Dick',
-      genres: ['Novel', 'Adventure Fiction', 'Epic', 'Nautical Fiction', 'Encyclopedic Novel'],
+      genres: [
+        'Novel',
+        'Adventure Fiction',
+        'Epic',
+        'Nautical Fiction',
+        'Encyclopedic Novel'
+      ],
       author: 'Herman Melville',
       price: '12.11',
       quantity: '3',
       editionType: 'paperback',
-      imageUrl: '',
       description: `First published in 1851, Melville's masterpiece is, in Elizabeth Hardwick's words, "the greatest novel in American literature." The saga of Captain Ahab and his monomaniacal pursuit of the white whale remains a peerless adventure story but one full of mythic grandeur, poetic majesty, and symbolic power. Filtered through the consciousness of the novel's narrator, Ishmael, Moby-Dick draws us into a universe full of fascinating characters and stories, from the noble cannibal Queequeg to the natural history of whales, while reaching existential depths that excite debate and contemplation to this day.`
     }),
     Book.create({
@@ -147,7 +150,6 @@ async function seed() {
       price: '9.11',
       quantity: '2',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The Tragedy of Hamlet, Prince of Denmark, or more simply Hamlet, is a tragedy by William Shakespeare, believed to have been written between 1599 and 1601. The play, set in Denmark, recounts how Prince Hamlet exacts revenge on his uncle Claudius, who has murdered Hamlet's father, the King, and then taken the throne and married Gertrude, Hamlet's mother. The play vividly charts the course of real and feigned madness—from overwhelming grief to seething rage—and explores themes of treachery, revenge, incest, and moral corruption.`
     }),
     Book.create({
@@ -157,7 +159,6 @@ async function seed() {
       price: '5.87',
       quantity: '2',
       editionType: 'paperback',
-      imageUrl: '',
       description: `The Tragedy of Hamlet, Prince of Denmark, or more simply Hamlet, is a tragedy by William Shakespeare, believed to have been written between 1599 and 1601. The play, set in Denmark, recounts how Prince Hamlet exacts revenge on his uncle Claudius, who has murdered Hamlet's father, the King, and then taken the throne and married Gertrude, Hamlet's mother. The play vividly charts the course of real and feigned madness—from overwhelming grief to seething rage—and explores themes of treachery, revenge, incest, and moral corruption.`
     }),
     Book.create({
@@ -167,7 +168,6 @@ async function seed() {
       price: '19.54',
       quantity: '0',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `Epic in scale, War and Peace delineates in graphic detail events leading up to Napoleon's invasion of Russia, and the impact of the Napoleonic era on Tsarist society, as seen through the eyes of five Russian aristocratic families.`
     }),
     Book.create({
@@ -177,7 +177,6 @@ async function seed() {
       price: '19.06',
       quantity: '1',
       editionType: 'paperback',
-      imageUrl: '',
       description: `Epic in scale, War and Peace delineates in graphic detail events leading up to Napoleon's invasion of Russia, and the impact of the Napoleonic era on Tsarist society, as seen through the eyes of five Russian aristocratic families.`
     }),
     Book.create({
@@ -187,7 +186,6 @@ async function seed() {
       price: '12.99',
       quantity: '3',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The Odyssey is one of two major ancient Greek epic poems attributed to Homer. It is, in part, a sequel to the Iliad, the other work traditionally ascribed to Homer. The poem is fundamental to the modern Western canon. Indeed it is the second—the Iliad being the first—extant work of Western literature. It was probably composed near the end of the eighth century BC, somewhere in Ionia, the Greek-speaking coastal region of what is now Turkey. The poem mainly centers on the Greek hero Odysseus (or Ulysses, as he was known in Roman myths) and his long journey home following the fall of Troy. It takes Odysseus ten years to reach Ithaca after the ten-year Trojan War. In his absence, it is assumed he has died, and his wife Penelope and son Telemachus must deal with a group of unruly suitors, the Mnesteres or Proci, competing for Penelope's hand in marriage.`
     }),
     Book.create({
@@ -197,7 +195,6 @@ async function seed() {
       price: '4.99',
       quantity: '8',
       editionType: 'paperback',
-      imageUrl: '',
       description: `The Odyssey is one of two major ancient Greek epic poems attributed to Homer. It is, in part, a sequel to the Iliad, the other work traditionally ascribed to Homer. The poem is fundamental to the modern Western canon. Indeed it is the second—the Iliad being the first—extant work of Western literature. It was probably composed near the end of the eighth century BC, somewhere in Ionia, the Greek-speaking coastal region of what is now Turkey. The poem mainly centers on the Greek hero Odysseus (or Ulysses, as he was known in Roman myths) and his long journey home following the fall of Troy. It takes Odysseus ten years to reach Ithaca after the ten-year Trojan War. In his absence, it is assumed he has died, and his wife Penelope and son Telemachus must deal with a group of unruly suitors, the Mnesteres or Proci, competing for Penelope's hand in marriage.`
     }),
     Book.create({
@@ -207,7 +204,6 @@ async function seed() {
       price: '19.37',
       quantity: '4',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `One of the 20th century's enduring works, One Hundred Years of Solitude is a widely beloved and acclaimed novel known throughout the world, and the ultimate achievement in a Nobel Prize–winning career. The novel tells the story of the rise and fall of the mythical town of Macondo through the history of the Buendía family. It is a rich and brilliant chronicle of life and death, and the tragicomedy of humankind. In the noble, ridiculous, beautiful, and tawdry story of the Buendía family, one sees all of humanity, just as in the history, myths, growth, and decay of Macondo, one sees all of Latin America. Love and lust, war and revolution, riches and poverty, youth and senility — the variety of life, the endlessness of death, the search for peace and truth — these universal themes dominate the novel. Whether he is describing an affair of passion or the voracity of capitalism and the corruption of government, Gabriel García Márquez always writes with the simplicity, ease, andpurity that are the mark of a master. Alternately reverential and comical, One Hundred Years of Solitude weaves the political, personal, and spiritual to bring a new consciousness to storytelling. Translated into dozens of languages, this stunning work is no less than an accounting of the history of the human race.`
     }),
     Book.create({
@@ -217,7 +213,6 @@ async function seed() {
       price: '13.96',
       quantity: '10',
       editionType: 'paperback',
-      imageUrl: '',
       description: `One of the 20th century's enduring works, One Hundred Years of Solitude is a widely beloved and acclaimed novel known throughout the world, and the ultimate achievement in a Nobel Prize–winning career. The novel tells the story of the rise and fall of the mythical town of Macondo through the history of the Buendía family. It is a rich and brilliant chronicle of life and death, and the tragicomedy of humankind. In the noble, ridiculous, beautiful, and tawdry story of the Buendía family, one sees all of humanity, just as in the history, myths, growth, and decay of Macondo, one sees all of Latin America. Love and lust, war and revolution, riches and poverty, youth and senility — the variety of life, the endlessness of death, the search for peace and truth — these universal themes dominate the novel. Whether he is describing an affair of passion or the voracity of capitalism and the corruption of government, Gabriel García Márquez always writes with the simplicity, ease, andpurity that are the mark of a master. Alternately reverential and comical, One Hundred Years of Solitude weaves the political, personal, and spiritual to bring a new consciousness to storytelling. Translated into dozens of languages, this stunning work is no less than an accounting of the history of the human race.`
     }),
     Book.create({
@@ -237,7 +232,6 @@ async function seed() {
       price: '16.60',
       quantity: '0',
       editionType: 'paperback',
-      imageUrl: '',
       description: `Belonging in the immortal company of the great works of literature, Dante Alighieri's poetic masterpiece, The Divine Comedy, is a moving human drama, an unforgettable visionary journey through the infinite torment of Hell, up the arduous slopes of Purgatory, and on to the glorious realm of Paradise — the sphere of universal harmony and eternal salvation.`
     }),
     Book.create({
@@ -247,7 +241,6 @@ async function seed() {
       price: '19.20',
       quantity: '0',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `Dostoevsky's last and greatest novel, The Karamazov Brothers, is both a brilliantly told crime story and a passionate philosophical debate. The dissolute landowner Fyodor Pavlovich Karamazov is murdered; his sons — the atheist intellectual Ivan, the hot-blooded Dmitry, and the saintly novice Alyosha — are all at some level involved. Bound up with this intense family drama is Dostoevsky's exploration of many deeply felt ideas about the existence of God, the question of human freedom, the collective nature of guilt, the disastrous consequences of rationalism. The novel is also richly comic: the Russian Orthodox Church, the legal system, and even the author's most cherished causes and beliefs are presented with a note of irreverence, so that orthodoxy and radicalism, sanity and madness, love and hatred, right and wrong are no longer mutually exclusive. Rebecca West considered it "the allegory for the world's maturity, but with children to the fore." This new translation does full justice to Dostoevsky's genius, particularly in the use of the spoken word, which ranges over every mode of human expression.`
     }),
     Book.create({
@@ -257,7 +250,6 @@ async function seed() {
       price: '6.93',
       quantity: '6',
       editionType: 'paperback',
-      imageUrl: '',
       description: `Dostoevsky's last and greatest novel, The Karamazov Brothers, is both a brilliantly told crime story and a passionate philosophical debate. The dissolute landowner Fyodor Pavlovich Karamazov is murdered; his sons — the atheist intellectual Ivan, the hot-blooded Dmitry, and the saintly novice Alyosha — are all at some level involved. Bound up with this intense family drama is Dostoevsky's exploration of many deeply felt ideas about the existence of God, the question of human freedom, the collective nature of guilt, the disastrous consequences of rationalism. The novel is also richly comic: the Russian Orthodox Church, the legal system, and even the author's most cherished causes and beliefs are presented with a note of irreverence, so that orthodoxy and radicalism, sanity and madness, love and hatred, right and wrong are no longer mutually exclusive. Rebecca West considered it "the allegory for the world's maturity, but with children to the fore." This new translation does full justice to Dostoevsky's genius, particularly in the use of the spoken word, which ranges over every mode of human expression.`
     }),
     Book.create({
@@ -267,7 +259,6 @@ async function seed() {
       price: '22.00',
       quantity: '5',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `For daring to peer into the heart of an adulteress and enumerate its contents with profound dispassion, the author of Madame Bovary was tried for "offenses against morality and religion." What shocks us today about Flaubert's devastatingly realized tale of a young woman destroyed by the reckless pursuit of her romantic dreams is its pure artistry: the poise of its narrative structure, the opulence of its prose (marvelously captured in the English translation of Francis Steegmuller), and its creation of a world whose minor figures are as vital as its doomed heroine. In reading Madame Bovary, one experiences a work that remains genuinely revolutionary almost a century and a half after its creation.`
     }),
     Book.create({
@@ -277,7 +268,6 @@ async function seed() {
       price: '5.99',
       quantity: '10',
       editionType: 'paperback',
-      imageUrl: '',
       description: `For daring to peer into the heart of an adulteress and enumerate its contents with profound dispassion, the author of Madame Bovary was tried for "offenses against morality and religion." What shocks us today about Flaubert's devastatingly realized tale of a young woman destroyed by the reckless pursuit of her romantic dreams is its pure artistry: the poise of its narrative structure, the opulence of its prose (marvelously captured in the English translation of Francis Steegmuller), and its creation of a world whose minor figures are as vital as its doomed heroine. In reading Madame Bovary, one experiences a work that remains genuinely revolutionary almost a century and a half after its creation.`
     }),
     Book.create({
@@ -287,7 +277,6 @@ async function seed() {
       price: '12.50',
       quantity: '0',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `Revered by all of the town's children and dreaded by all of its mothers, Huckleberry Finn is indisputably the most appealing child-hero in American literature. Unlike the tall-tale, idyllic world of Tom Sawyer, The Adventures of Huckleberry Finn is firmly grounded in early reality. From the abusive drunkard who serves as Huckleberry's father, to Huck's first tentative grappling with issues of personal liberty and the unknown, Huckleberry Finn endeavors to delve quite a bit deeper into the complexities — both joyful and tragic of life`
     }),
     Book.create({
@@ -297,7 +286,6 @@ async function seed() {
       price: '8.99',
       quantity: '4',
       editionType: 'paperback',
-      imageUrl: '',
       description: `Revered by all of the town's children and dreaded by all of its mothers, Huckleberry Finn is indisputably the most appealing child-hero in American literature. Unlike the tall-tale, idyllic world of Tom Sawyer, The Adventures of Huckleberry Finn is firmly grounded in early reality. From the abusive drunkard who serves as Huckleberry's father, to Huck's first tentative grappling with issues of personal liberty and the unknown, Huckleberry Finn endeavors to delve quite a bit deeper into the complexities — both joyful and tragic of life`
     }),
     Book.create({
@@ -307,7 +295,6 @@ async function seed() {
       price: '19.76',
       quantity: '3',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The book is internationally famous for its innovative style and infamous for its controversial subject: the protagonist and unreliable narrator, middle aged Humbert Humbert, becomes obsessed and sexually involved with a twelve-year-old girl named Dolores Haze.`
     }),
     Book.create({
@@ -317,7 +304,6 @@ async function seed() {
       price: '9.99',
       quantity: '9',
       editionType: 'paperback',
-      imageUrl: '',
       description: `The book is internationally famous for its innovative style and infamous for its controversial subject: the protagonist and unreliable narrator, middle aged Humbert Humbert, becomes obsessed and sexually involved with a twelve-year-old girl named Dolores Haze.`
     }),
     Book.create({
@@ -327,7 +313,6 @@ async function seed() {
       price: '16.32',
       quantity: '1',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The Iliad is an epic poem in dactylic hexameters, traditionally attributed to Homer. Set in the Trojan War, the ten-year siege of Ilium by a coalition of Greek states, it tells of the battles and events during the weeks of a quarrel between King Agamemnon and the warrior Achilles. Although the story covers only a few weeks in the final year of the war, the Iliad mentions or alludes to many of the Greek legends about the siege. Along with the Odyssey, also attributed to Homer, the Iliad is among the oldest extant works of Western literature, and its written version is usually dated to around the eighth century BC. The Iliad contains approximately 15,700 lines, and is written in a literary amalgam of several Greek dialects. The authorship of the poem is disputed.`
     }),
     Book.create({
@@ -337,7 +322,6 @@ async function seed() {
       price: '14.53',
       quantity: '11',
       editionType: 'papoerback',
-      imageUrl: '',
       description: `The Iliad is an epic poem in dactylic hexameters, traditionally attributed to Homer. Set in the Trojan War, the ten-year siege of Ilium by a coalition of Greek states, it tells of the battles and events during the weeks of a quarrel between King Agamemnon and the warrior Achilles. Although the story covers only a few weeks in the final year of the war, the Iliad mentions or alludes to many of the Greek legends about the siege. Along with the Odyssey, also attributed to Homer, the Iliad is among the oldest extant works of Western literature, and its written version is usually dated to around the eighth century BC. The Iliad contains approximately 15,700 lines, and is written in a literary amalgam of several Greek dialects. The authorship of the poem is disputed.`
     }),
     Book.create({
@@ -347,7 +331,6 @@ async function seed() {
       price: '25.11',
       quantity: '5',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `It is a murder story, told from a murder;s point of view, that implicates even the most innocent reader in its enormities. It is a cat-and-mouse game between a tormented young killer and a cheerfully implacable detective. It is a preternaturally acute investigation of the forces that impel a man toward sin, suffering, and grace. Ever since its publication in 1866 Crime and Punishment has intrigued readers and sorely tested translators, the best of whom seemed to capture one facet of Dostoevsky's masterpiece while missing the rest.`
     }),
     Book.create({
@@ -357,7 +340,6 @@ async function seed() {
       price: '7.00',
       quantity: '5',
       editionType: 'paperback',
-      imageUrl: '',
       description: `It is a murder story, told from a murder;s point of view, that implicates even the most innocent reader in its enormities. It is a cat-and-mouse game between a tormented young killer and a cheerfully implacable detective. It is a preternaturally acute investigation of the forces that impel a man toward sin, suffering, and grace. Ever since its publication in 1866 Crime and Punishment has intrigued readers and sorely tested translators, the best of whom seemed to capture one facet of Dostoevsky's masterpiece while missing the rest.`
     }),
     Book.create({
@@ -367,7 +349,6 @@ async function seed() {
       price: '19.60',
       quantity: '11',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `In 1862 Charles Lutwidge Dodgson, a shy Oxford mathematician with a stammer, created a story about a little girl tumbling down a rabbit hole. Thus began the immortal adventures of Alice, perhaps the most popular heroine in English literature. Countless scholars have tried to define the charm of the Alice books–with those wonderfully eccentric characters the Queen of Hearts, Tweedledum, and Tweedledee, the Cheshire Cat, Mock Turtle, the Mad Hatter et al.–by proclaiming that they really comprise a satire on language, a political allegory, a parody of Victorian children’s literature, even a reflection of contemporary ecclesiastical history. Perhaps, as Dodgson might have said, Alice is no more than a dream, a fairy tale about the trials and tribulations of growing up–or down, or all turned round–as seen through the expert eyes of a child.`
     }),
     Book.create({
@@ -377,7 +358,6 @@ async function seed() {
       price: '3.69',
       quantity: '12',
       editionType: 'paperback',
-      imageUrl: '',
       description: `In 1862 Charles Lutwidge Dodgson, a shy Oxford mathematician with a stammer, created a story about a little girl tumbling down a rabbit hole. Thus began the immortal adventures of Alice, perhaps the most popular heroine in English literature. Countless scholars have tried to define the charm of the Alice books–with those wonderfully eccentric characters the Queen of Hearts, Tweedledum, and Tweedledee, the Cheshire Cat, Mock Turtle, the Mad Hatter et al.–by proclaiming that they really comprise a satire on language, a political allegory, a parody of Victorian children’s literature, even a reflection of contemporary ecclesiastical history. Perhaps, as Dodgson might have said, Alice is no more than a dream, a fairy tale about the trials and tribulations of growing up–or down, or all turned round–as seen through the expert eyes of a child.`
     }),
     Book.create({
@@ -387,7 +367,6 @@ async function seed() {
       price: '10.29',
       quantity: '3',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The narrative is non-linear, involving several flashbacks, and two primary narrators: Mr. Lockwood and Ellen "Nelly" Dean. The novel opens in 1801, with Mr. Lockwood arriving at Thrushcross Grange, a grand house on the Yorkshire moors that he is renting from the surly Heathcliff, who lives at nearby Wuthering Heights. Lockwood is treated rudely, and coldly by the brooding, unsociable Heathcliff, and is forced to stay at Wuthering Heights for a night because one of the savage dogs of the Heights attacks him, and the weather turns against him. The housekeeper cautiously takes him to a chamber to sleep through the night and warns him to not speak to Heathcliff about where he is sleeping, for he would get in deep trouble.`
     }),
     Book.create({
@@ -397,27 +376,36 @@ async function seed() {
       price: '4.50',
       quantity: '2',
       editionType: 'paperback',
-      imageUrl: '',
       description: `The narrative is non-linear, involving several flashbacks, and two primary narrators: Mr. Lockwood and Ellen "Nelly" Dean. The novel opens in 1801, with Mr. Lockwood arriving at Thrushcross Grange, a grand house on the Yorkshire moors that he is renting from the surly Heathcliff, who lives at nearby Wuthering Heights. Lockwood is treated rudely, and coldly by the brooding, unsociable Heathcliff, and is forced to stay at Wuthering Heights for a night because one of the savage dogs of the Heights attacks him, and the weather turns against him. The housekeeper cautiously takes him to a chamber to sleep through the night and warns him to not speak to Heathcliff about where he is sleeping, for he would get in deep trouble.`
     }),
     Book.create({
       name: 'Pride and Prejudice',
-      genres: ['Novel', 'Satire', 'Fiction', 'Romance Novel', 'Novel of Manners'],
+      genres: [
+        'Novel',
+        'Satire',
+        'Fiction',
+        'Romance Novel',
+        'Novel of Manners'
+      ],
       author: 'Jane Austen',
       price: '8.73',
       quantity: '15',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The book is narrated in free indirect speech following the main character Elizabeth Bennet as she deals with matters of upbringing, marriage, moral rightness and education in her aristocratic society. Though the book's setting is uniquely turn of the 19th century, it remains a fascination of modern readership, continuing to remain at the top of lists titled "most loved books of all time", and receiving considerable attention from literary critics. This modern interest has resulted in a number of dramatic adaptations and a plethora of books developing Austen's memorable characters further.`
     }),
     Book.create({
       name: 'Pride and Prejudice',
-      genres: ['Novel', 'Satire', 'Fiction', 'Romance Novel', 'Novel of Manners'],
+      genres: [
+        'Novel',
+        'Satire',
+        'Fiction',
+        'Romance Novel',
+        'Novel of Manners'
+      ],
       author: 'Jane Austen',
       price: '3.95',
       quantity: '20',
       editionType: 'paperback',
-      imageUrl: '',
       description: `The book is narrated in free indirect speech following the main character Elizabeth Bennet as she deals with matters of upbringing, marriage, moral rightness and education in her aristocratic society. Though the book's setting is uniquely turn of the 19th century, it remains a fascination of modern readership, continuing to remain at the top of lists titled "most loved books of all time", and receiving considerable attention from literary critics. This modern interest has resulted in a number of dramatic adaptations and a plethora of books developing Austen's memorable characters further.`
     }),
     Book.create({
@@ -427,7 +415,6 @@ async function seed() {
       price: '20.34',
       quantity: '6',
       editionType: 'hardcover',
-      imageUrl: '',
       description: `The Catcher in the Rye is a 1945 novel by J. D. Salinger. Originally published for adults, the novel has become a common part of high school and college curricula throughout the English-speaking world; it has also been translated into almost all of the world's major languages. Around 250,000 copies are sold each year, with total sales of more than sixty-five million. The novel's antihero, Holden Caulfield, has become an icon for teenage rebellion.`
     }),
     Book.create({
@@ -437,9 +424,98 @@ async function seed() {
       price: '8.99',
       quantity: '18',
       editionType: 'paperback',
-      imageUrl: '',
       description: `The Catcher in the Rye is a 1945 novel by J. D. Salinger. Originally published for adults, the novel has become a common part of high school and college curricula throughout the English-speaking world; it has also been translated into almost all of the world's major languages. Around 250,000 copies are sold each year, with total sales of more than sixty-five million. The novel's antihero, Holden Caulfield, has become an icon for teenage rebellion.`
-    })
+    }),
+    Book.create({
+      name: 'The Sound and the Fury',
+      genres: ['Southern Gothic', 'Modern Literature'],
+      author: 'William Faulkner',
+      price: '17.66',
+      quantity: '4',
+      editionType: 'hardcover',
+      description: `The Sound and the Fury is set in the fictional Yoknapatawpha County. The novel centers on the Compson family, former Southern aristocrats who are struggling to deal with the dissolution of their family and its reputation. The novel is separated into four distinct sections.`
+    }),
+    Book.create({
+      name: 'The Sound and the Fury',
+      genres: ['Southern Gothic', 'Modern Literature'],
+      author: 'William Faulkner',
+      price: '10.20',
+      quantity: '3',
+      editionType: 'paperback',
+      description: `The Sound and the Fury is set in the fictional Yoknapatawpha County. The novel centers on the Compson family, former Southern aristocrats who are struggling to deal with the dissolution of their family and its reputation. The novel is separated into four distinct sections.`
+    }),
+    Book.create({
+      name: 'To the Lighthouse',
+      genres: ['Novel', 'Modern Literature'],
+      author: 'Virginia Woolf',
+      price: '14.95',
+      quantity: '6',
+      editionType: 'hardcover',
+      description: `A landmark novel of high modernism, the text, centering on the Ramsay family and their visits to the Isle of Skye in Scotland between 1910 and 1920, skillfully manipulates temporality and psychological exploration. The novel includes little dialogue and almost no action; most of it is written as thoughts and observations. The novel recalls the power of childhood emotions and highlights the impermanence of adult relationships. Among the book's many tropes and themes are those of loss, subjectivity, and the problem of perception.`
+    }),
+    Book.create({
+      name: 'To the Lighthouse',
+      genres: ['Novel', 'Modern Literature'],
+      author: 'Virginia Woolf',
+      price: '6.15',
+      quantity: '4',
+      editionType: 'paperback',
+      description: `A landmark novel of high modernism, the text, centering on the Ramsay family and their visits to the Isle of Skye in Scotland between 1910 and 1920, skillfully manipulates temporality and psychological exploration. The novel includes little dialogue and almost no action; most of it is written as thoughts and observations. The novel recalls the power of childhood emotions and highlights the impermanence of adult relationships. Among the book's many tropes and themes are those of loss, subjectivity, and the problem of perception.`
+    }),
+    Book.create({
+      name: 'Heart of Darkness',
+      genres: ['Novel'],
+      author: 'Joseph Conrad',
+      price: '9.49',
+      quantity: '1',
+      editionType: 'hardcover',
+      description: `The story details an incident when Marlow, an Englishman, took a foreign assignment from a Belgian trading company as a ferry-boat captain in Africa. Although Conrad does not specify the name of the river, at this time Congo Free State, the location of the large and important Congo River, was a private colony of Belgium's King Leopold II. Marlow is employed to transport ivory downriver; however, his more pressing assignment is to return Kurtz, another ivory trader, to civilization in a cover up. Kurtz has a reputation throughout the region.`
+    }),
+    Book.create({
+      name: 'Heart of Darkness',
+      genres: ['Novel'],
+      author: 'Joseph Conrad',
+      price: '6.99',
+      quantity: '2',
+      editionType: 'paperback',
+      description: `The story details an incident when Marlow, an Englishman, took a foreign assignment from a Belgian trading company as a ferry-boat captain in Africa. Although Conrad does not specify the name of the river, at this time Congo Free State, the location of the large and important Congo River, was a private colony of Belgium's King Leopold II. Marlow is employed to transport ivory downriver; however, his more pressing assignment is to return Kurtz, another ivory trader, to civilization in a cover up. Kurtz has a reputation throughout the region.`
+    }),
+    Book.create({
+      name: 'Anna Karenina',
+      genres: ['Literary Realism'],
+      author: 'Leo Tolstoy',
+      price: '17.68',
+      quantity: '3',
+      editionType: 'hardcover',
+      description: `Anna Karenina tells of the doomed love affair between the sensuous and rebellious Anna and the dashing officer, Count Vronsky. Tragedy unfolds as Anna rejects her passionless marriage and must endure the hypocrisies of society. Set against a vast and richly textured canvas of nineteenth-century Russia, the novel's seven major characters create a dynamic imbalance, playing out the contrasts of city and country life and all the variations on love and family happiness. While previous versions have softened the robust, and sometimes shocking, quality of Tolstoy's writing, Pevear and Volokhonsky have produced a translation true to his powerful voice. This award-winning team's authoritative edition also includes an illuminating introduction and explanatory notes. Beautiful, vigorous, and eminently readable, this Anna Karenina will be the definitive text for generations to come.`
+    }),
+    Book.create({
+      name: 'Anna Karenina',
+      genres: ['Literary Realism'],
+      author: 'Leo Tolstoy',
+      price: '3.95',
+      quantity: '16',
+      editionType: 'paperback',
+      description: `Anna Karenina tells of the doomed love affair between the sensuous and rebellious Anna and the dashing officer, Count Vronsky. Tragedy unfolds as Anna rejects her passionless marriage and must endure the hypocrisies of society. Set against a vast and richly textured canvas of nineteenth-century Russia, the novel's seven major characters create a dynamic imbalance, playing out the contrasts of city and country life and all the variations on love and family happiness. While previous versions have softened the robust, and sometimes shocking, quality of Tolstoy's writing, Pevear and Volokhonsky have produced a translation true to his powerful voice. This award-winning team's authoritative edition also includes an illuminating introduction and explanatory notes. Beautiful, vigorous, and eminently readable, this Anna Karenina will be the definitive text for generations to come.`
+    }),
+    Book.create({
+      name: '1984',
+      genres: ['Utopian and Dystopian Fiction', 'Social Science Fiction', 'Political Fiction'],
+      author: 'J. D. Salinger',
+      price: '13.49',
+      quantity: '7',
+      editionType: 'paperback',
+      description: `The story follows the life of one seemingly insignificant man, Winston Smith, a civil servant assigned the task of perpetuating the regime's propaganda by falsifying records and political literature so that it appears that the government is always correct in what it says. Smith grows disillusioned with his meager existence and so begins a rebellion against the system that leads to his arrest, torture, and conversion.`
+    }),
+    Book.create({
+      name: '1984',
+      genres: ['Utopian and Dystopian Fiction', 'Social Science Fiction', 'Political Fiction'],
+      author: 'J. D. Salinger',
+      price: '9.00',
+      quantity: '4',
+      editionType: 'paperback',
+      description: `The story follows the life of one seemingly insignificant man, Winston Smith, a civil servant assigned the task of perpetuating the regime's propaganda by falsifying records and political literature so that it appears that the government is always correct in what it says. Smith grows disillusioned with his meager existence and so begins a rebellion against the system that leads to his arrest, torture, and conversion.`
+    }),
   ])
 
   console.log(`seeded ${books.length} books`)
