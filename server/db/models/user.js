@@ -26,6 +26,23 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  imgUrl: {
+    //add default value image
+    defaultValue: 'img/user.jpg',
+    type: Sequelize.STRING
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
