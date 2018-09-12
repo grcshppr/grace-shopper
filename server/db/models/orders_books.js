@@ -9,14 +9,19 @@ const OrderBook = db.define('order_book', {
     autoIncrement: true
   },
   price: {
-    type: Sequelize.DECIMAL
+    type: Sequelize.INTEGER
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
   }
 })
 
-OrderBook.hook('afterCreate', async (orderBook, options) => {
-  let bookId = orderBook.getDataValue('bookId')
-  const {data} = await Book.findById(bookId)
-  orderBook.setDataValue('price', data.price)
+OrderBook.beforeCreate(async (orderBook, options) => {
+  let bookId = orderBook.bookId
+  const response = await Book.findById(bookId)
+  const setPrice = response.dataValues.price
+  orderBook.price = setPrice
 })
 
 module.exports = OrderBook
