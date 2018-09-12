@@ -21,12 +21,7 @@ describe('Review routes', () => {
       content: 'It was pretty good, if not the greatest book ever written',
       stars: 4
     }
-    // const reviewData3 = {
-    //   title: 'I sort of liked it',
-    //   content:
-    //     'It was about average. I read it while waiting for another book in the mail.',
-    //   stars: 3
-    // }
+
     const bookData = {
       id: 1,
       name: 'Generic Book',
@@ -35,7 +30,6 @@ describe('Review routes', () => {
       description: 'A generic, uninteresting book for testing purposes'
     }
 
-    // let review1, review2, book1, book2
     beforeEach(async () => {
       const review1 = await Review.create(reviewData1)
       const review2 = await Review.create(reviewData2)
