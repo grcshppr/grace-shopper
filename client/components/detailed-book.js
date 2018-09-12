@@ -11,23 +11,34 @@ export class DetailedBook extends Component {
   }
   render() {
     //We get bookId from url bar and then use it to find the book from props
+    let selectedBook
     let selectedBookId = Number(this.props.match.params.id)
-    const selectedBook = this.props.books.find(
-      book => book.id === selectedBookId
-    )
+    if (this.props.books) {
+      selectedBook = this.props.books.list.find(
+        book => book.id === selectedBookId
+      )
+    }
     const reviews = this.props.reviews
 
     return (
       <div>
-        <h2>{selectedBook.name}</h2>
-        <h4>{`by ${selectedBook.author}`}</h4>
-        <img src={selectedBook.imgUrl} />
-        <h5>{`$${selectedBook.price}`}</h5>
-        {!selectedBook.availibility && <h5>Out of stock</h5>}
-        <h6>{`Format: ${selectedBook.editionType}`}</h6>
-        <h6>{`Publiser: ${selectedBook.publisher}`}</h6>
-        {/* Render Reviews func component, if reviews for selected book exist */}
-        {reviews && <Reviews selectedBook={selectedBook} reviews={reviews} />}
+        {selectedBook && (
+          <div>
+            <h2>{selectedBook.name}</h2>
+            <h4>{`by ${selectedBook.author}`}</h4>
+            <img src={selectedBook.imgUrl} />
+            <h5>{`$${selectedBook.price}`}</h5>
+            {!selectedBook.quantity && <h5>Out of stock</h5>}
+            <h6>{`Format: ${selectedBook.editionType}`}</h6>
+            {selectedBook.publisher && (
+              <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
+            )}
+            {/* Render Reviews func component, if reviews for selected book exist */}
+            {reviews && (
+              <Reviews selectedBook={selectedBook} reviews={reviews} />
+            )}
+          </div>
+        )}
       </div>
     )
   }

@@ -5,43 +5,56 @@ import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {DetailedBook} from './detailed-book.js'
+import sinon from 'sinon'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
 describe('DetailedBook', () => {
   let wrapper
+  let fakeComponentDidMount
 
   beforeEach(() => {
-    const books = [
-      {
-        id: 1,
-        name: "You Don't Know JS",
-        author: 'Kyle Simpson',
-        price: 20.0,
-        imgUrl: '/img/book.jpg',
-        availability: true,
-        editionType: 'paperback',
-        publisher: "O'Reilly Media"
-      },
-      {
-        // Shouldn't render
-        id: 2,
-        name: 'Some Other Book',
-        author: 'Kevin Gislason',
-        price: 10.0,
-        imgUrl: '/img/book.jpg',
-        availability: true,
-        editionType: 'hardcover',
-        publisher: 'Random House'
-      }
-    ]
+    fakeComponentDidMount = sinon.stub(
+      DetailedBook.prototype,
+      'componentDidMount'
+    )
+    fakeComponentDidMount.callsFake(function() {})
+    const books = {
+      list: [
+        {
+          id: 1,
+          name: "You Don't Know JS",
+          author: 'Kyle Simpson',
+          price: 20.0,
+          imgUrl: '/img/book.jpg',
+          availability: true,
+          editionType: 'paperback',
+          publisher: "O'Reilly Media"
+        },
+        {
+          // Shouldn't render
+          id: 2,
+          name: 'Some Other Book',
+          author: 'Kevin Gislason',
+          price: 10.0,
+          imgUrl: '/img/book.jpg',
+          availability: true,
+          editionType: 'hardcover',
+          publisher: 'Random House'
+        }
+      ]
+    }
     wrapper = shallow(
       <DetailedBook
         books={books}
         match={{params: {id: 1}, isExact: true, path: '', url: ''}}
       />
     )
+  })
+
+  afterEach(function() {
+    fakeComponentDidMount.restore()
   })
 
   it('renders the book name in an h2', () => {
