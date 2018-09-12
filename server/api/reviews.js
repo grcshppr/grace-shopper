@@ -25,8 +25,8 @@ router.get('/:id', async (req, res, next) => {
 router.get('/book/:bookId', async (req, res, next) => {
   try {
     const bookId = req.params.bookId
-    const reviewsforBook = await Review.findAll({where: {bookId}})
-    reviewsforBook ? res.status(200).json(reviewsforBook) : res.sendStatus(404)
+    const reviewsforBook = await Review.findAll({where: {bookId: bookId}})
+    reviewsforBook ? res.status(200).send(reviewsforBook) : res.sendStatus(404)
   } catch (err) {
     next(err)
   }
