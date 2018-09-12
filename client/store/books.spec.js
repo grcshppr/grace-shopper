@@ -1,12 +1,12 @@
 /* global describe beforeEach afterEach it */
 
 import {expect} from 'chai'
-import {fetchAllBooksFromServer, GOT_ALL_BOOKS, REQUEST_ALL_BOOKS} from './books'
+import {fetchAllBooksFromServer, GOT_ALL_BOOKS, REQUEST_ALL_BOOKS, GOT_ALL_GENRES} from './books'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import history from '../history'
+
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
@@ -31,7 +31,7 @@ describe('thunk creators', () => {
   })
 
   describe('fetchAllBooksFromServer', () => {
-    it('eventually dispatches the GOT_ALL_BOOKS action', async () => {
+    it('dispatches REQUEST_ALL_BOOKS, GOT_ALL_BOOKS, GOT_ALL_GENRES', async () => {
 
       const fakeData = [
         {
@@ -66,6 +66,7 @@ describe('thunk creators', () => {
       expect(actions[0].type).to.be.equal(REQUEST_ALL_BOOKS)
       expect(actions[1].type).to.be.equal(GOT_ALL_BOOKS)
       expect(actions[1].list).to.be.deep.equal(fakeData)
+      expect(actions[2].type).to.be.equal(GOT_ALL_GENRES)
     })
   })
 })
