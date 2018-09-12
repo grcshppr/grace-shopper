@@ -5,7 +5,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.findAll()
-    res.json(reviews)
+    reviews ? res.status(200).json(reviews) : res.sendStatus(404)
   } catch (err) {
     next(err)
   }
@@ -15,7 +15,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const reviewId = req.params.id
     const review = await Review.findById(reviewId)
-    res.json(review)
+    review ? res.status(200).json(review) : res.sendStatus(404)
   } catch (err) {
     next(err)
   }
@@ -26,7 +26,7 @@ router.get('/book/:bookId', async (req, res, next) => {
   try {
     const bookId = req.params.bookId
     const reviewsforBook = await Review.findAll({where: {bookId}})
-    res.json(reviewsforBook)
+    reviewsforBook ? res.status(200).json(reviewsforBook) : res.sendStatus(404)
   } catch (err) {
     next(err)
   }
