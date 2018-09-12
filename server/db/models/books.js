@@ -6,11 +6,11 @@ const Book = db.define('book', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
+      notEmpty: true
     }
   },
   genres: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.ARRAY(Sequelize.STRING)
   },
   author: {
     type: Sequelize.STRING,
@@ -20,10 +20,10 @@ const Book = db.define('book', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      min: 0,
+      min: 0
     }
   },
   quantity: {
@@ -51,16 +51,16 @@ const Book = db.define('book', {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      notEmpty: true,
+      notEmpty: true
     }
   },
   availability: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.BOOLEAN
   }
 })
 
 Book.hook('afterSave', (book, options) => {
-  if(book.quantity === 0){
+  if (book.quantity === 0) {
     book.availability = false
   }
 })
