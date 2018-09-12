@@ -33,7 +33,6 @@ export class DetailedBook extends Component {
             {selectedBook.publisher && (
               <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
             )}
-            {/* Render Reviews func component, if reviews for selected book exist */}
             {reviews && (
               <Reviews selectedBook={selectedBook} reviews={reviews} />
             )}

@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {getReviewsForBook} from './review'
+import {fetchReviewsForBook} from './review'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -13,7 +13,7 @@ describe('thunk creators', () => {
   let store
   let mockAxios
 
-  const initialState = {reviews: []}
+  const initialState = []
 
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
@@ -42,8 +42,8 @@ describe('thunk creators', () => {
             'I can\t believe I wasted my hard-earned money on this dreck!'
         }
       ]
-      mockAxios.onGet('api/review/book/1').replyOnce(200, fakeReviews)
-      await store.dispatch(getReviewsForBook(1))
+      mockAxios.onGet('api/reviews/book/1').replyOnce(200, fakeReviews)
+      await store.dispatch(fetchReviewsForBook(1))
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GOT_REVIEWS_FOR_BOOK')
       expect(actions[0].reviews).to.be.deep.equal(fakeReviews)
