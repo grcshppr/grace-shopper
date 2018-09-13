@@ -14,13 +14,13 @@ const AuthForm = props => {
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
-            <small>Email</small>
+            <h6>Email</h6>
           </label>
           <input name="email" type="text" />
         </div>
         <div>
           <label htmlFor="password">
-            <small>Password</small>
+            <h6>Password</h6>
           </label>
           <input name="password" type="password" />
         </div>

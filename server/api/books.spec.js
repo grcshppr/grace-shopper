@@ -3,13 +3,15 @@ const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
 const Book = db.model('book')
+const User = db.model('user')
 
 describe('Book routes', () => {
   const testGenres = ['Fantasy']
+  // let authenticatedUser
+  // let normalUser
   beforeEach(() => {
     return db.sync({force: true})
   })
-
   describe('/api/books/', () => {
     const bookData = [
       {
@@ -41,7 +43,6 @@ describe('Book routes', () => {
     beforeEach(() => {
       return Book.bulkCreate(bookData)
     })
-
     it('GET /api/books', async () => {
       const res = await request(app)
         .get('/api/books')
@@ -78,5 +79,56 @@ describe('Book routes', () => {
         `Harry Potter’s summer has included the worst birthday ever, doomy warnings from a house-elf called Dobby, and rescue from the Dursleys by his friend Ron Weasley in a magical flying car! Back at Hogwarts School of Witchcraft and Wizardry for his second year, Harry hears strange whispers echo through empty corridors – and then the attacks start. Students are found as though turned to stone … Dobby’s sinister predictions seem to be coming true.`
       )
     })
-  }) // end describe('/api/users')
+    // beforeEach(async () => {
+    //   authenticatedUser = await User.create({
+    //     email: 'abby@abby.com',
+    //     password: 'password',
+    //     firstName: 'Abby',
+    //     lastName: 'Wiggy',
+    //     isAdmin: true
+    //   })
+    //   normalUser = await User.create({
+    //     email: 'abby@abby.com',
+    //     password: 'password',
+    //     firstName: 'Abby',
+    //     lastName: 'Wiggy',
+    //     isAdmin: false
+    //   })
+    // })
+    describe('AUTHENTICATION /api/books', () => {
+      const authenticatedUser = {
+        email: 'abby.wigdale@gmail.com',
+        password: 'password',
+        firstName: 'abby',
+        lastName: 'Wiggy',
+        isAdmin: true
+      }
+      // const normalUser = {
+      //   email: 'abby@abby.com',
+      //   password: 'password',
+      //   firstName: 'Abby',
+      //   lastName: 'Wiggy',
+      //   isAdmin: false
+      // }
+      const agent = request(app)
+      before(() => {
+        agent
+          .post('/login')
+          .send(authenticatedUser)
+          .end()
+      })
+      it('should create a new book if user is admin', () => {
+        agent.post('/api/books').expect(201)
+      })
+      // it('should not allow non-admin users to create book', () => {
+      //   normalUser.post('/api/books').expect(401)
+      // })
+      it('should update a new book if user is admin', () => {
+        agent.post('/api/books').expect(201)
+      })
+      // it('should not allow non-admin users to update book', () => {
+      //   normalUser.post('/api/books').expect(401)
+      // })
+    })
+  }) // end describe('/api/books')
 }) // end describe('User routes')

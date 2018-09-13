@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Field, reduxForm} from 'redux-form'
 import {createBook, fetchAllBooksFromServer, editBook} from '../store/books'
+import {Form, Container} from 'semantic-ui-react'
 
 class AdminPage extends Component {
   componentDidMount() {
@@ -10,7 +11,6 @@ class AdminPage extends Component {
   handleSubmit(event) {
     event.preventDefault()
     if (this.props.adminForm.values.selectedBook) {
-      console.log('did i get here?')
       this.props.editBook(this.props.adminForm.values)
     } else {
       this.props.createBook(this.props.adminForm.values)
@@ -22,19 +22,21 @@ class AdminPage extends Component {
     if (isFetching) {
       return <h1>Loading</h1>
     }
+    if (!this.props.user.isAdmin)
+      return <h1>sorry can't access this page :( ADMINS ONLY</h1>
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <div>
-          <h2>Update/Add a book here:</h2>
-        </div>
-        <div>
-          <h4>book to update:</h4>
-          <Field name="selectedBook" component="select">
-            <option />
-            {books.map(book => <option>{book.name}</option>)}
-          </Field>
-        </div>
-        <div>
+      <Container>
+        <Form onSubmit={this.handleSubmit.bind(this)}>
+          <div>
+            <h2>Update/Add a book here:</h2>
+          </div>
+          <div>
+            <h4>book to update:</h4>
+            <Field name="selectedBook" component="select">
+              <option />
+              {books.map(book => <option>{book.name}</option>)}
+            </Field>
+          </div>
           <h6>Name:</h6>
           <Field
             name="name"
@@ -42,8 +44,7 @@ class AdminPage extends Component {
             type="text"
             placeholder="Title"
           />
-        </div>
-        <div>
+
           <h6>Genres:</h6>
           <Field
             name="genres"
@@ -51,8 +52,7 @@ class AdminPage extends Component {
             type="text"
             placeholder="Genres"
           />
-        </div>
-        <div>
+
           <h6>Author:</h6>
           <Field
             name="author"
@@ -60,8 +60,7 @@ class AdminPage extends Component {
             type="text"
             placeholder="Author"
           />
-        </div>
-        <div>
+
           <h6>Price:</h6>
           <Field
             name="price"
@@ -69,8 +68,7 @@ class AdminPage extends Component {
             type="number"
             placeholder="Price"
           />
-        </div>
-        <div>
+
           <h6>Quantity:</h6>
           <Field
             name="quantity"
@@ -78,16 +76,14 @@ class AdminPage extends Component {
             type="number"
             placeholder="Quantity"
           />
-        </div>
-        <div>
+
           <h6>Edition Type:</h6>
           <Field name="editionType" component="select">
             <option />
             <option>hardcover</option>
             <option>paperback</option>
           </Field>
-        </div>
-        <div>
+
           <h6>Description:</h6>
           <Field
             name="description"
@@ -95,11 +91,12 @@ class AdminPage extends Component {
             type="text"
             placeholder="Description"
           />
-        </div>
-        <button type="submit" label="submit">
-          Submit
-        </button>
-      </form>
+
+          <button type="submit" label="submit">
+            Submit
+          </button>
+        </Form>
+      </Container>
     )
   }
 }
@@ -107,7 +104,8 @@ class AdminPage extends Component {
 const mapStateToProps = state => ({
   list: state.books.list,
   adminForm: state.form.adminForm,
-  isFetching: state.books.isFetching
+  isFetching: state.books.isFetching,
+  user: state.user
 })
 const mapDispatchToProps = dispatch => ({
   createBook: book => dispatch(createBook(book)),

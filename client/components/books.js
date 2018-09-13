@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {fetchAllBooksFromServer} from '../store/books'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {Grid, GridColumn, Image, Container} from 'semantic-ui-react'
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -51,27 +52,30 @@ class Books extends Component {
     }
     return (
       <div>
-        <select onChange={this.handleFilter}>
-          <option value="all">All</option>
-          {genres.map((genre, id) => (
-            <option value={genre} key={id}>
-              {genre}
-            </option>
-          ))}
-        </select>
-        <ul>
+        <Container relaxed="very">
+          <h4>Filter:</h4>
+          <select onChange={this.handleFilter}>
+            <option value="all">All</option>
+            {genres.map((genre, id) => (
+              <option value={genre} key={id}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </Container>
+        <Grid container relaxed="very" text-align="left" columns={4}>
           {books.map(book => {
             return (
-              <li key={book.id}>
+              <GridColumn>
                 <Link to={`book/${book.id}`}>{book.name}</Link>
                 <p>${book.price}</p>
                 <p>{book.editionType}</p>
-                <img src={book.imgUrl} />
+                <Image src={book.imgUrl} />
                 <button>add to cart</button>
-              </li>
+              </GridColumn>
             )
           })}
-        </ul>
+        </Grid>
       </div>
     )
   }

@@ -49,15 +49,6 @@ const Book = db.define('book', {
     validate: {
       notEmpty: true
     }
-  },
-  availability: {
-    type: Sequelize.BOOLEAN
-  }
-})
-
-Book.hook('afterSave', (book, options) => {
-  if (book.quantity === 0) {
-    book.availability = false
   }
 })
 
