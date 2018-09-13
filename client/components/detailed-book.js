@@ -27,7 +27,12 @@ export class DetailedBook extends Component {
             <h2>{selectedBook.name}</h2>
             <h4>{`by ${selectedBook.author}`}</h4>
             <img src={selectedBook.imgUrl} />
-            <h5>{`$${selectedBook.price}`}</h5>
+            <h5>
+              {/* Book price is an integer in db, so we need to reformat it as a price */}
+              {`$${selectedBook.price
+                .toString()
+                .slice(0, -2)}.${selectedBook.price.toString().slice(-2)}`}
+            </h5>
             {!selectedBook.quantity && <h5>Out of stock</h5>}
             <h6>{`Format: ${selectedBook.editionType}`}</h6>
             {selectedBook.publisher && (

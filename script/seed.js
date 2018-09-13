@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Book, Order, OrderBook} = require('../server/db/models')
+const {User, Book, Order, OrderBook, Review} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -657,15 +657,178 @@ async function seed() {
     OrderBook.create({
       orderId: orders[0].dataValues.id,
       bookId: books[4].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[1].dataValues.id,
+      bookId: books[7].dataValues.id,
+      quantity: 2
+    }),
+    OrderBook.create({
+      orderId: orders[1].dataValues.id,
+      bookId: books[8].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[2].dataValues.id,
+      bookId: books[13].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[2].dataValues.id,
+      bookId: books[20].dataValues.id,
+      quantity: 3
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[4].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[14].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[7].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[11].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[9].dataValues.id,
+      quantity: 2
+    }),
+    OrderBook.create({
+      orderId: orders[4].dataValues.id,
+      bookId: books[6].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[4].dataValues.id,
+      bookId: books[5].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[5].dataValues.id,
+      bookId: books[5].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[5].dataValues.id,
+      bookId: books[10].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[16].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[3].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[12].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[13].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[14].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[18].dataValues.id,
+      quantity: 2
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[13].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[10].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[14].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[11].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[10].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[4].dataValues.id
     })
   ])
 
   // console.log(users[0].dataValues)
   // console.log(books[0].dataValues)
+  const reviews = await Promise.all([
+    Review.create({
+      title: 'having read it, I see why Proust has the reputation he has ...',
+      content:
+        'A long slog. But well worth it. Actually one looooong novel spread over 7 books and it would have been longer had Proust lived longer. Beautifully told and nuanced view of fin-de-siecle Paris and France in general and of the mind and spirit of the narrator',
+      stars: 5,
+      bookId: 1,
+      userId: 5
+    }),
+    Review.create({
+      title: 'PRETENTIOUS and BORING!',
+      content:
+        'Proust just uses big words needlessly to show off. If I could, I would rate this negative twenty stars. It was that bad',
+      stars: 1,
+      bookId: 1,
+      userId: 6
+    }),
+    Review.create({
+      title: 'Don Quixote is a Good Book',
+      content:
+        "The book looks good. It comes with a dust cover on it; this cover feels glossy and thick. It's shiny, too. I can see my fingerprints when holding it up to the light. ",
+      stars: 4,
+      bookId: 3,
+      userId: 5
+    }),
+    Review.create({
+      title: 'Encyclopedic and Heartfelt',
+      content:
+        "Ulysses is a novel that takes place in a single day, and yet somehow seems to encompass the whole world. It's strange and difficult and sometimes frustrating, and to be honest I wouldn't recommend it to those who don't like their books to be a puzzle or who get frustrated when they don't understand what is going on. But if you do like a challenge, then I think you'll find that every frustration in Ulysses is paid back a thousand times over in beauty and enjoyment. I promise that you won't catch everything on your first read-through; I know I didn't. But that did not take away from my enjoyment of the novel in the slightest. I know I'll come back to it some day, maybe a chapter at a time here or there, and that no matter when or how often I return it will always have something new to offer me.",
+      stars: 5,
+      bookId: 6,
+      userId: 6
+    }),
+    Review.create({
+      title: 'Where are the annotations?',
+      content:
+        'Ulusses itself is a five-star novel, but an annotated edition is essential.',
+      stars: 3,
+      bookId: 6,
+      userId: 5
+    }),
+    Review.create({
+      title: 'The Great Gatsby is beautiful, romantic, tragic',
+      content:
+        " I don't know how I made it through high school without reading this classic, but I'm so glad I get to come back to books like this and read them as an adult. I'm sure I would have learned stuff in high school, but I feel like I'm getting more appreciation out of books like this as I get older.",
+      stars: 5,
+      bookId: 7,
+      userId: 6
+    })
+  ])
+
   console.log(`seeded ${books.length} books`)
   console.log(`Books seeded successfully`)
   console.log(`seeded ${users.length} users`)
   console.log(`Users seeded successfully`)
+  console.log(`seeded ${reviews.length} reviews`)
+  console.log(`Users seeded successfully`)
+  console.log(`seeded ${orders.length} orders`)
+  console.log(`Orders seeded successfully`)
+  console.log(`seeded ${orderHistory.length} OrderBook entries`)
+  console.log(`OrderHistory seeded successfully`)
+  console.log(`seeded ${reviews.length} reviews`)
+  console.log(`Reviews seeded successfully`)
 }
 
 // We've separated the `seed` function from the `runSeed` function.

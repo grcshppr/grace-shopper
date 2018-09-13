@@ -28,7 +28,7 @@ class Books extends Component {
     this.props.fetchAllBooksFromServer()
   }
 
-  handleFilter = (event) => {
+  handleFilter = event => {
     this.setState({
       selectedGenre: event.target.value
     })
@@ -51,20 +51,25 @@ class Books extends Component {
     }
     return (
       <div>
-          <select onChange={this.handleFilter}>
-            <option value="all">All</option>
-            {genres.map((genre, id) => (
-              <option value={genre} key={id}>
-                {genre}
-              </option>
-            ))}
-          </select>
+        <select onChange={this.handleFilter}>
+          <option value="all">All</option>
+          {genres.map((genre, id) => (
+            <option value={genre} key={id}>
+              {genre}
+            </option>
+          ))}
+        </select>
         <ul>
           {books.map(book => {
             return (
               <li key={book.id}>
                 <Link to={`book/${book.id}`}>{book.name}</Link>
-                <p>${book.price}</p>
+                {/* Book price is an integer in db, so we need to reformat it as a price */}
+                <p>
+                  ${`${book.price
+                    .toString()
+                    .slice(0, -2)}.${book.price.toString().slice(-2)}`}
+                </p>
                 <p>{book.editionType}</p>
                 <img src={book.imageUrl} />
               </li>

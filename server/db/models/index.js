@@ -34,6 +34,10 @@ Review.belongsTo(Book)
 Book.belongsToMany(Order, {through: OrderBook})
 Order.belongsToMany(Book, {through: OrderBook})
 
+//Order-Test
+Order.hasMany(OrderBook)
+OrderBook.belongsTo(Order)
+
 module.exports = {
   User,
   Book,
