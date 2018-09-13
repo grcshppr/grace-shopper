@@ -1,16 +1,19 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchReviewsForBook} from '../store/review.js'
+import {fetchReviewsForBook} from '../store/reviews.js'
 import Reviews from './reviews'
+import {withRouter} from 'react-router-dom'
 
 export class DetailedBook extends Component {
   async componentDidMount() {
     //Fetch reviews from API for the single selected book
+    console.log('componentDidMount')
     let selectedBookId = Number(this.props.match.params.id)
     await this.props.fetchReviewsForBook(selectedBookId)
   }
   render() {
     //We get bookId from url bar and then use it to find the book from props
+    console.log('props', this.props)
     let selectedBook
     let selectedBookId = Number(this.props.match.params.id)
     if (this.props.books) {
@@ -19,6 +22,7 @@ export class DetailedBook extends Component {
       )
     }
     const reviews = this.props.reviews
+    console.log('reviews', reviews)
 
     return (
       <div>
@@ -61,4 +65,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailedBook)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DetailedBook)
+)
