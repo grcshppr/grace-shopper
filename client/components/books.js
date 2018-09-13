@@ -64,6 +64,7 @@ class Books extends Component {
             return (
               <li key={book.id}>
                 <Link to={`book/${book.id}`}>{book.name}</Link>
+                <p>by {book.author}</p>
                 {/* Book price is an integer in db, so we need to reformat it as a price */}
                 <p>
                   ${`${book.price
