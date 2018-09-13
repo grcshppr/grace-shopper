@@ -18,7 +18,7 @@ describe('Book routes', () => {
         name: `Harry Potter and the Philosopher's Stone`,
         genres: testGenres,
         author: 'J.K. Rowling',
-        price: 14.99,
+        price: 1499,
         quantity: 15,
         editionType: 'hardcover',
         publisher: 'Bloomsbury',
@@ -30,7 +30,7 @@ describe('Book routes', () => {
         name: 'Harry Potter and the Chamber of Secrets',
         genres: testGenres,
         author: 'J.K. Rowling',
-        price: 16.99,
+        price: 1699,
         quantity: 30,
         editionType: 'paperback',
         publisher: 'Bloomsbury',
@@ -53,7 +53,7 @@ describe('Book routes', () => {
       )
       expect(res.body[0].genres).to.deep.equal(testGenres)
       expect(res.body[0].author).to.be.equal('J.K. Rowling')
-      expect(res.body[0].price).to.be.equal('14.99')
+      expect(res.body[0].price).to.be.equal(1499)
       expect(res.body[0].quantity).to.be.equal(15)
       expect(res.body[0].editionType).to.be.equal('hardcover')
       expect(res.body[0].publisher).to.be.equal('Bloomsbury')
@@ -68,7 +68,7 @@ describe('Book routes', () => {
       )
       expect(res.body[1].genres).to.deep.equal(testGenres)
       expect(res.body[1].author).to.be.equal('J.K. Rowling')
-      expect(res.body[1].price).to.be.equal('16.99')
+      expect(res.body[1].price).to.be.equal(1699)
       expect(res.body[1].quantity).to.be.equal(30)
       expect(res.body[1].editionType).to.be.equal('paperback')
       expect(res.body[1].publisher).to.be.equal('Bloomsbury')

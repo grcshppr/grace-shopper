@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: sans-serif;
 }
 
@@ -18,11 +18,17 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+} */
+
+/* img {
+  height: 200px;
+} */
+
+.container {
+  margin: 20px;
 }
 
-img {
-  height: 200px;
-}
-ul {
-  list-style: none;
+.navbar {
+  background: rgb(138, 137, 137, 0.5);
+  height: 7vh;
 }

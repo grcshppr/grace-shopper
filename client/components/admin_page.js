@@ -16,6 +16,14 @@ class AdminPage extends Component {
       this.props.createBook(this.props.adminForm.values)
     }
   }
+
+  getBookInfo(event) {
+    const bookInfo = this.props.list.filter(
+      book => book.id == event.target.value
+    )
+    this.props.initialize(bookInfo[0])
+  }
+
   render() {
     const books = this.props.list
     const isFetching = this.props.isFetching
@@ -26,16 +34,24 @@ class AdminPage extends Component {
       return <h1>sorry can't access this page :( ADMINS ONLY</h1>
     return (
       <Container>
+        <h1>ADMIN PAGE</h1>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <div>
-            <h2>Update/Add a book here:</h2>
+            <h4>Update/Add a book here:</h4>
           </div>
           <div>
-            <h4>book to update:</h4>
-            <Field name="selectedBook" component="select">
-              <option />
-              {books.map(book => <option>{book.name}</option>)}
-            </Field>
+            <select
+              name="selectedBook"
+              component="select"
+              onChange={this.getBookInfo.bind(this)}
+            >
+              <option placeholder="Book to Update" />
+              {books.map(book => (
+                <option key={book.id} value={book.id}>
+                  {book.name}
+                </option>
+              ))}
+            </select>
           </div>
           <h6>Name:</h6>
           <Field

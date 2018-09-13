@@ -20,7 +20,7 @@ const Book = db.define('book', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       min: 0
@@ -49,6 +49,15 @@ const Book = db.define('book', {
     validate: {
       notEmpty: true
     }
+  },
+  availability: {
+    type: Sequelize.BOOLEAN
+  }
+})
+
+Book.hook('afterSave', (book, options) => {
+  if (book.quantity === 0) {
+    book.availability = false
   }
 })
 

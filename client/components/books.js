@@ -2,7 +2,14 @@ import React, {Component} from 'react'
 import {fetchAllBooksFromServer} from '../store/books'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Grid, GridColumn, Image, Container} from 'semantic-ui-react'
+import {
+  Grid,
+  GridColumn,
+  Image,
+  Container,
+  Button,
+  Divider
+} from 'semantic-ui-react'
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -51,32 +58,38 @@ class Books extends Component {
       return <h1>Loading</h1>
     }
     return (
-      <div>
-        <Container relaxed="very">
-          <h4>Filter:</h4>
-          <select onChange={this.handleFilter}>
-            <option value="all">All</option>
-            {genres.map((genre, id) => (
-              <option value={genre} key={id}>
-                {genre}
-              </option>
-            ))}
-          </select>
-        </Container>
-        <Grid container relaxed="very" text-align="left" columns={4}>
+      <Container>
+        <h4>Filter:</h4>
+        <select onChange={this.handleFilter}>
+          <option value="all">All</option>
+          {genres.map((genre, id) => (
+            <option value={genre} key={id}>
+              {genre}
+            </option>
+          ))}
+        </select>
+        <Divider section />
+        <Grid relaxed="very" text-align="left" centered>
           {books.map(book => {
             return (
-              <GridColumn>
-                <Link to={`book/${book.id}`}>{book.name}</Link>
-                <p>${book.price}</p>
-                <p>{book.editionType}</p>
-                <Image src={book.imgUrl} />
-                <button>add to cart</button>
+              <GridColumn width={4} className="container">
+                <Container>
+                  <Link to={`book/${book.id}`}>{book.name}</Link>
+                  {/* Book price is an integer in db, so we need to reformat it as a price */}
+                  <p>
+                    ${`${book.price
+                      .toString()
+                      .slice(0, -2)}.${book.price.toString().slice(-2)}`}
+                  </p>
+                  <Image src={book.imgUrl} />
+                  <Button icon="shop" />
+                </Container>
+                <Divider hidden />
               </GridColumn>
             )
           })}
         </Grid>
-      </div>
+      </Container>
     )
   }
 }

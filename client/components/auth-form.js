@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Form, Container, Divider} from 'semantic-ui-react'
 
 /**
  * COMPONENT
@@ -10,27 +11,29 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <Container>
+      <Form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
-            <h6>Email</h6>
+            <h4>Email</h4>
           </label>
           <input name="email" type="text" />
         </div>
         <div>
           <label htmlFor="password">
-            <h6>Password</h6>
+            <h4>Password</h4>
           </label>
           <input name="password" type="password" />
         </div>
+        <Divider hidden />
         <div>
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
+      </Form>
+      <Divider hidden />
       <a href="/auth/google">{displayName} with Google</a>
-    </div>
+    </Container>
   )
 }
 
