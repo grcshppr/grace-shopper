@@ -54,7 +54,6 @@ describe('Review routes', () => {
       const res = await request(app)
         .get('/api/reviews/book/1')
         .expect(200)
-      console.log(res.body)
       expect(res.body).to.be.an('array')
       expect(res.body[0].title).to.be.equal('I loved it')
       expect(res.body[0].bookId).to.be.equal(1)

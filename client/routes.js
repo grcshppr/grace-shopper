@@ -8,7 +8,8 @@ import {
   UserHome,
   AdminPage,
   Books,
-  DetailedBook
+  DetailedBook,
+  Search
 } from './components'
 import {me} from './store'
 
@@ -30,6 +31,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/browse" component={Books} />
         <Route exact path="/book/:id" component={DetailedBook} />
+        <Route path="/search" component={Search} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

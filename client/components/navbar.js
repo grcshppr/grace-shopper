@@ -38,6 +38,9 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
         <Menu.Item as={Link} name="login" to="/login">
           Login
         </Menu.Item>
+        <Menu.Item as={Link} name="search" to="/search">
+          Search
+        </Menu.Item>
       </Menu.Menu>
     )}
   </Menu>

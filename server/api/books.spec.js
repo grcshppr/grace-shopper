@@ -7,8 +7,7 @@ const User = db.model('user')
 
 describe('Book routes', () => {
   const testGenres = ['Fantasy']
-  // let authenticatedUser
-  // let normalUser
+
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -79,22 +78,7 @@ describe('Book routes', () => {
         `Harry Potter’s summer has included the worst birthday ever, doomy warnings from a house-elf called Dobby, and rescue from the Dursleys by his friend Ron Weasley in a magical flying car! Back at Hogwarts School of Witchcraft and Wizardry for his second year, Harry hears strange whispers echo through empty corridors – and then the attacks start. Students are found as though turned to stone … Dobby’s sinister predictions seem to be coming true.`
       )
     })
-    // beforeEach(async () => {
-    //   authenticatedUser = await User.create({
-    //     email: 'abby@abby.com',
-    //     password: 'password',
-    //     firstName: 'Abby',
-    //     lastName: 'Wiggy',
-    //     isAdmin: true
-    //   })
-    //   normalUser = await User.create({
-    //     email: 'abby@abby.com',
-    //     password: 'password',
-    //     firstName: 'Abby',
-    //     lastName: 'Wiggy',
-    //     isAdmin: false
-    //   })
-    // })
+    //TESTS FOR AUTHENTICATION NEED FIXING
     describe('AUTHENTICATION /api/books', () => {
       const authenticatedUser = {
         email: 'abby.wigdale@gmail.com',
