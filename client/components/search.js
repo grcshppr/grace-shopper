@@ -7,7 +7,8 @@ import {
   Image,
   Container,
   Divider,
-  Button
+  Button,
+  Form
 } from 'semantic-ui-react'
 
 const mapStateToProps = state => {
@@ -49,18 +50,19 @@ class Search extends Component {
 
     return (
       <Container>
-        <h5>Search by Title!!!!</h5>
-        <form onSubmit={this.handleSubmit}>
+        <h3>Search by Title</h3>
+        <Form onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="Title"
             value={this.state.formValue}
             onChange={this.handleChange}
           />
+          <Divider hidden />
           <span>
-            <button type="submit">Search</button>
+            <Button type="submit">Search</Button>
           </span>
-        </form>
+        </Form>
         {/* If you submit a search, component below renders*/}
         {this.state.searchText &&
           //If there are books to display, display them
@@ -74,7 +76,7 @@ class Search extends Component {
                     <GridColumn key={book.id} width={4} className="container">
                       <Container>
                         <Link to={`book/${book.id}`}>{book.name}</Link>
-                        <p>{book.author}</p>
+                        <p>by {book.author}</p>
                         {/* Book price is an integer in db, so we need to reformat it as a price */}
                         <p>
                           ${`${book.price
@@ -82,7 +84,8 @@ class Search extends Component {
                             .slice(0, -2)}.${book.price.toString().slice(-2)}`}
                         </p>
                         <p>{book.editionType}</p>
-                        <Image src={book.imageUrl} />
+                        <Image src={book.imgUrl} />
+                        <Button icon="shop" />
                       </Container>
                       <Divider hidden />
                     </GridColumn>
