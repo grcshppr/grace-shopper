@@ -18,7 +18,7 @@ router.put('/', AdminMW, async (req, res, next) => {
       returning: true,
       where: {name: req.body.name}
     })
-    res.json(updatedBook)
+    res.status(200).json(updatedBook)
   } catch (err) {
     next(err)
   }
