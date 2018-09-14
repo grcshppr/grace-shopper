@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchReviewsForBook} from '../store/reviews.js'
 import Reviews from './reviews'
 import {withRouter} from 'react-router-dom'
+import {Container} from 'semantic-ui-react'
 
 export class DetailedBook extends Component {
   async componentDidMount() {
@@ -23,7 +24,7 @@ export class DetailedBook extends Component {
     return (
       <div>
         {selectedBook && (
-          <div>
+          <Container textAlign="center">
             <h2>{selectedBook.name}</h2>
             <h4>{`by ${selectedBook.author}`}</h4>
             <img src={selectedBook.imgUrl} />
@@ -41,7 +42,7 @@ export class DetailedBook extends Component {
             {reviews && (
               <Reviews selectedBook={selectedBook} reviews={reviews} />
             )}
-          </div>
+          </Container>
         )}
       </div>
     )

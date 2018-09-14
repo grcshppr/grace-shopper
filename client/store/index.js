@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import books from './books'
 import reviews from './reviews'
+import {reducer as formReducer} from 'redux-form'
 
-const reducer = combineReducers({user, books, reviews})
+const reducer = combineReducers({user, books, form: formReducer, reviews})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

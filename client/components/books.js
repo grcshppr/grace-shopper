@@ -1,6 +1,14 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {
+  Grid,
+  GridColumn,
+  Image,
+  Container,
+  Button,
+  Divider
+} from 'semantic-ui-react'
 
 const mapStateToProps = state => {
   return {
@@ -40,7 +48,8 @@ class Books extends Component {
       return <h1>Loading</h1>
     }
     return (
-      <div>
+      <Container>
+        <h4>Filter:</h4>
         <select onChange={this.handleFilter}>
           <option value="all">All</option>
           {genres.map((genre, id) => (
@@ -49,25 +58,29 @@ class Books extends Component {
             </option>
           ))}
         </select>
-        <ul>
+        <Divider section />
+        <Grid relaxed="very" text-align="left" centered>
           {books.map(book => {
             return (
-              <li key={book.id}>
-                <Link to={`book/${book.id}`}>{book.name}</Link>
-                <p>by {book.author}</p>
-                {/* Book price is an integer in db, so we need to reformat it as a price */}
-                <p>
-                  ${`${book.price
-                    .toString()
-                    .slice(0, -2)}.${book.price.toString().slice(-2)}`}
-                </p>
-                <p>{book.editionType}</p>
-                <img src={book.imageUrl} />
-              </li>
+              <GridColumn width={4} className="container">
+                <Container>
+                  <Link to={`book/${book.id}`}>{book.name}</Link>
+                  <p>by {book.author}</p>
+                  {/* Book price is an integer in db, so we need to reformat it as a price */}
+                  <p>
+                    ${`${book.price
+                      .toString()
+                      .slice(0, -2)}.${book.price.toString().slice(-2)}`}
+                  </p>
+                  <Image src={book.imgUrl} />
+                  <Button icon="shop" />
+                </Container>
+                <Divider hidden />
+              </GridColumn>
             )
           })}
-        </ul>
-      </div>
+        </Grid>
+      </Container>
     )
   }
 }
