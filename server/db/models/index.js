@@ -38,6 +38,9 @@ Order.belongsToMany(Book, {through: OrderBook})
 Order.hasMany(OrderBook)
 OrderBook.belongsTo(Order)
 
+Book.hasMany(OrderBook)
+OrderBook.belongsTo(Book)
+
 module.exports = {
   User,
   Book,

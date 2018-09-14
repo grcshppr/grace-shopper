@@ -48,7 +48,6 @@ export const fetchUsersOrdersFromServer = userId => {
     try {
       dispatch(requestUsersOrdersFromServer())
       const usersOrders = await axios.get(`api/users/${userId}/orders`)
-      console.log(usersOrders)
       dispatch(sendUsersOrdersFromServer(usersOrders))
     } catch (error) {
       console.error(error)
@@ -56,12 +55,11 @@ export const fetchUsersOrdersFromServer = userId => {
   }
 }
 
-export const fetchOneOrderFromServer = orderId => {
+export const fetchOneUserOrderFromServer = (userId, orderId) => {
   return async dispatch => {
     try {
       dispatch(requestOneOrderFromServer())
-      const oneOrder = await axios.get(`api/order/${orderId}`)
-      console.log(oneOrder)
+      const oneOrder = await axios.get(`api/users/${userId}/orders/${orderId}`)
       dispatch(sendOneOrderFromServer(oneOrder))
     } catch (error) {
       console.error(error)
