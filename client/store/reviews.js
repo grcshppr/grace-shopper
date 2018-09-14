@@ -30,6 +30,7 @@ export const fetchReviewsForBook = bookId => {
 
 export const createReview = (bookId, review) => {
   return async dispatch => {
+    review.bookId = bookId
     const {data} = await axios.post(`/api/reviews/book/${bookId}`, review)
     dispatch(addReview(data))
   }

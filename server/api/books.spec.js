@@ -39,9 +39,13 @@ describe('Book routes', () => {
         availability: true
       }
     ]
-    beforeEach(() => {
-      return Book.bulkCreate(bookData)
-    })
+    // beforeEach(async () => {
+    //   try {
+    //     return await Book.bulkCreate(bookData)
+    //   } catch (err) {
+    //     throw err
+    //   }
+    // })
     it('GET /api/books', async () => {
       const res = await request(app)
         .get('/api/books')
