@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchReviewsForBook} from '../store/review.js'
+import {fetchReviewsForBook} from '../store/reviews.js'
 import Reviews from './reviews'
+import {withRouter} from 'react-router-dom'
 import {Container} from 'semantic-ui-react'
 
 export class DetailedBook extends Component {
@@ -20,7 +21,6 @@ export class DetailedBook extends Component {
       )
     }
     const reviews = this.props.reviews
-
     return (
       <div>
         {selectedBook && (
@@ -62,4 +62,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailedBook)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DetailedBook)
+)
