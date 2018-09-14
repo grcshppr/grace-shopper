@@ -15,42 +15,42 @@ async function seed() {
       password: 'password',
       firstName: 'Abby',
       lastName: 'Wigdale',
-      isAdmin: 'true'
+      isAdmin: true
     }),
     User.create({
       email: 'kevingislason@gmail.com',
       password: 'password',
       firstName: 'Kevin',
       lastName: 'Gislason',
-      isAdmin: 'true'
+      isAdmin: true
     }),
     User.create({
       email: 'tomasgnr@gmail.com',
       password: 'password',
       firstName: 'Tomas',
       lastName: 'Mariani',
-      isAdmin: 'true'
+      isAdmin: true
     }),
     User.create({
       email: 'tony@boetto.com',
       password: 'password',
       firstName: 'Tony',
       lastName: 'Boetto',
-      isAdmin: 'true'
+      isAdmin: true
     }),
     User.create({
       email: 'johndoe@invalid.com',
       password: 'password',
       firstName: 'John',
       lastName: 'Doe',
-      isAdmin: 'false'
+      isAdmin: false
     }),
     User.create({
       email: 'janedoe@invalid.com',
       password: 'password',
       firstName: 'Jane',
       lastName: 'Doe',
-      isAdmin: 'false'
+      isAdmin: false
     })
   ])
 

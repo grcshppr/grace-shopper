@@ -40,12 +40,8 @@ const Book = db.define('book', {
     type: Sequelize.STRING
   },
   imgUrl: {
-    //add default value
     type: Sequelize.STRING,
-    defaultValue: 'img..'
-  },
-  ISBN: {
-    type: Sequelize.INTEGER
+    defaultValue: 'img/book.jpg'
   },
   description: {
     type: Sequelize.TEXT,
