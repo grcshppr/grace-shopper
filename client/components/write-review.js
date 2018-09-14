@@ -18,7 +18,7 @@ class WriteReview extends Component {
     return (
       <Container textAlign="left" className="formcontainer">
         <h4>Write a review for this book:</h4>
-        <Form onSubmit={this.handleSumbit.bind(this)}>
+        <Form onSubmit={() => this.handleSumbit}>
           <h6>Title:</h6>
           <Field
             name="title"

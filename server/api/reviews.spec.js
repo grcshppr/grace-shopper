@@ -17,7 +17,7 @@ describe('Review routes', () => {
       stars: 5
     }
     const reviewData2 = {
-      title: 'I loved it',
+      title: 'I liked it',
       content: 'It was pretty good, if not the greatest book ever written',
       stars: 4
     }
