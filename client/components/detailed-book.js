@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchReviewsForBook} from '../store/review.js'
 import Reviews from './reviews'
-import {Container} from 'semantic-ui-react'
+import {Container, Image} from 'semantic-ui-react'
 
 export class DetailedBook extends Component {
   async componentDidMount() {
@@ -27,7 +27,7 @@ export class DetailedBook extends Component {
           <Container textAlign="center">
             <h2>{selectedBook.name}</h2>
             <h4>{`by ${selectedBook.author}`}</h4>
-            <img src={selectedBook.imgUrl} />
+            <Image size="medium" src={`/${selectedBook.imgUrl}`} />
             <h5>
               {/* Book price is an integer in db, so we need to reformat it as a price */}
               {`$${selectedBook.price
