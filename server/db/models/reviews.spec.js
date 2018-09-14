@@ -2,9 +2,6 @@ const {expect} = require('chai')
 const db = require('..')
 const Review = db.model('review')
 
-const app = require('../index.js')
-const agent = require('supertest')(app)
-
 describe('Review model', () => {
   // beforeEach(() => {
   //   return db.sync({force: true})
@@ -22,18 +19,6 @@ describe('Review model', () => {
       })
       expect(harryPotterReview).to.be.an('object')
       expect(harryPotterReview.content).to.equal(HPdescription)
-    })
-  })
-  describe('POST `/api/reviews/book/:bookId', () => {
-    it('should create a review', async () => {
-      const response = await agent
-        .post('/reviews/book/5')
-        .send({
-          title: 'Awesome POST-Created Article',
-          stars: 5,
-          content: 'Can you believe I did this in a test?'
-        })
-        .expect(201)
     })
   })
 })
