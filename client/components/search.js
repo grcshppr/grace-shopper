@@ -1,6 +1,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {
+  Grid,
+  GridColumn,
+  Image,
+  Container,
+  Divider,
+  Button
+} from 'semantic-ui-react'
 
 const mapStateToProps = state => {
   return {books: state.books.list}
@@ -40,8 +48,8 @@ class Search extends Component {
     const filteredBooks = this.props.books.filter(filterFunc)
 
     return (
-      <div>
-        <h5>Search by Title</h5>
+      <Container>
+        <h5>Search by Title!!!!</h5>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -57,33 +65,36 @@ class Search extends Component {
         {this.state.searchText &&
           //If there are books to display, display them
           (filteredBooks.length ? (
-            <div>
+            <Container>
               <p>Results for '{this.state.searchText}':</p>
               {/* I'll make a separate React component for a single book soon */}
-              <ul>
+              <Grid relaxed="very" text-align="left" centered>
                 {filteredBooks.map(book => {
                   return (
-                    <li key={book.id}>
-                      <Link to={`book/${book.id}`}>{book.name}</Link>
-                      <p>{book.author}</p>
-                      {/* Book price is an integer in db, so we need to reformat it as a price */}
-                      <p>
-                        ${`${book.price
-                          .toString()
-                          .slice(0, -2)}.${book.price.toString().slice(-2)}`}
-                      </p>
-                      <p>{book.editionType}</p>
-                      <img src={book.imageUrl} />
-                    </li>
+                    <GridColumn key={book.id} width={4} className="container">
+                      <Container>
+                        <Link to={`book/${book.id}`}>{book.name}</Link>
+                        <p>{book.author}</p>
+                        {/* Book price is an integer in db, so we need to reformat it as a price */}
+                        <p>
+                          ${`${book.price
+                            .toString()
+                            .slice(0, -2)}.${book.price.toString().slice(-2)}`}
+                        </p>
+                        <p>{book.editionType}</p>
+                        <Image src={book.imageUrl} />
+                      </Container>
+                      <Divider hidden />
+                    </GridColumn>
                   )
                 })}
-              </ul>
-            </div>
+              </Grid>
+            </Container>
           ) : (
             //If no books to display...
             <p>No results for '{this.state.searchText}'</p>
           ))}
-      </div>
+      </Container>
     )
   }
 }
