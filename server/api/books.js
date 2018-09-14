@@ -4,12 +4,11 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log('hi')
     let books = await Book.findAll()
-    // Sorting by author lastname; it's sadly not possible to do this in the Sequelize querry itself since author lastname isn't its own column
+    // Sorting by author lastname, hardcover before paperback;
+    //It's sadly not possible to do this in the Sequelize querry itself //because author lastname isn't its own column
     books = books.sort((a, b) => {
       let lastNameA = a.author.split(' ').pop()
-      console.log(lastNameA)
       let lastNameB = b.author.split(' ').pop()
       if (lastNameA < lastNameB) return -1
       else if (lastNameB < lastNameA) return 1

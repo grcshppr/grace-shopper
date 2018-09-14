@@ -1,13 +1,6 @@
 import React, {Component} from 'react'
-import {fetchAllBooksFromServer} from '../store/books'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllBooksFromServer: () => dispatch(fetchAllBooksFromServer())
-  }
-}
 
 const mapStateToProps = state => {
   return {
@@ -23,9 +16,6 @@ class Books extends Component {
     this.state = {
       selectedGenre: 'all'
     }
-  }
-  componentDidMount() {
-    this.props.fetchAllBooksFromServer()
   }
 
   handleFilter = event => {
@@ -82,4 +72,4 @@ class Books extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Books)
+export default connect(mapStateToProps)(Books)
