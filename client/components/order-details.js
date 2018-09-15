@@ -15,7 +15,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     order: state.order.oneOrder,
-    isFetching: state.order.isFetching
+    isFetching: state.order.oneOrderIsFetching,
+    user: state.user
   }
 }
 
@@ -28,7 +29,6 @@ class UserOneOrder extends Component {
   render() {
     const order = this.props.order
     const isFetching = this.props.isFetching
-
     if (isFetching) {
       return (
         <Segment>
@@ -36,52 +36,60 @@ class UserOneOrder extends Component {
             <Loader>Loading</Loader>
           </Dimmer>
 
-          <Image src="http://www.clker.com/cliparts/R/w/q/4/j/l/book.svg" />
+          <Image src={'http://www.clker.com/cliparts/R/w/q/4/j/l/book.svg'} />
         </Segment>
       )
     }
-    return (
-      <div>
-        {' '}
-        <Header as="h2" attached="top">
-          Order Placed on {prettyDate(order.date)}
-          <Header.Subheader>
-            Total {prettyDollar(order.totalPrice)}
-          </Header.Subheader>
-          <Header.Subheader>Status: {order.status}</Header.Subheader>
-        </Header>
-        <Item.Group>
-          {order.order_books.map(product => {
-            return (
-              <Item key={product.id}>
-                <Item.Image
-                  size="tiny"
-                  src="http://www.clker.com/cliparts/R/w/q/4/j/l/book.svg"
-                />
-                <Item.Content>
-                  <Item.Header as={Link} to={`/book/${product.book.id}`}>
-                    {product.quantity > 1
-                      ? product.quantity + ' of ' + product.book.name
-                      : product.book.name}
-                  </Item.Header>
-                  <Item.Meta content={prettyDollar(product.price)} />
-                  <Item.Description>
-                    {product.book.description}
-                  </Item.Description>
-                </Item.Content>
-              </Item>
-            )
-          })}
-        </Item.Group>
-        <Header
-          as={Link}
-          to={`/user/${this.props.match.params.accountId}/orders`}
-          attached="bottom"
-        >
-          Back to All Orders
-        </Header>
-      </div>
-    )
+    if (
+      this.props.user.id === Number(this.props.match.params.accountId) ||
+      this.props.user.isAdmin
+    ) {
+      return (
+        <div>
+          {' '}
+          <Header as="h2" attached="top">
+            Order Placed on {prettyDate(order.date)}
+            <Header.Subheader>
+              Total {prettyDollar(order.totalPrice)}
+            </Header.Subheader>
+            <Header.Subheader>Status: {order.status}</Header.Subheader>
+          </Header>
+          <Item.Group>
+            {order.order_books.map(product => {
+              return (
+                <Item key={product.id}>
+                  <Item.Image size="tiny" src={`/${product.book.imgUrl}`} />
+                  <Item.Content>
+                    <Item.Header as={Link} to={`/book/${product.book.id}`}>
+                      {product.quantity > 1
+                        ? product.quantity + ' of ' + product.book.name
+                        : product.book.name}
+                    </Item.Header>
+                    <Item.Meta content={prettyDollar(product.price)} />
+                    <Item.Meta
+                      content={'Edition:  ' + product.book.editionType}
+                    />
+                    <Item.Description>
+                      {product.book.description}
+                    </Item.Description>
+                  </Item.Content>
+                </Item>
+              )
+            })}
+          </Item.Group>
+          <Header
+            as={Link}
+            to={`/user/${this.props.match.params.accountId}/orders`}
+            attached="bottom"
+          >
+            Back to All Orders
+          </Header>
+        </div>
+      )
+    }
+    else {
+      return <h1>Sorry, You Don't Have Access!</h1> 
+    }
   }
 }
 

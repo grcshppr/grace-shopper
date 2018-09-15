@@ -13,7 +13,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     list: state.order.usersOrders,
-    isFetching: state.order.isFetching
+    isFetching: state.order.allOrdersAreFetching,
+    user: state.user
   }
 }
 
@@ -72,35 +73,44 @@ class UsersOrders extends Component {
         </Segment>
       )
     }
-    return (
-      <div>
-        <Header as="h2" attached="top">
-          Your Orders{' '}
-        </Header>
-        <Item.Group link>
-          {list.map(order => {
-            return (
-              <Item
-                key={order.id}
-                as={Link}
-                to={`/user/${order.userId}/orders/${order.id}`}
-              >
-                <Item.Image
-                  size="tiny"
-                  src="http://www.clker.com/cliparts/R/w/q/4/j/l/book.svg"
-                />
-                <Item.Content>
-                  <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
-                  <Item.Description>
-                    Total {prettyDollar(order.totalPrice)}
-                  </Item.Description>
-                </Item.Content>
-              </Item>
-            )
-          })}
-        </Item.Group>
-      </div>
-    )
+    console.log('user object', this.props.user)
+    if (
+      this.props.user.id === Number(this.props.match.params.accountId) ||
+      this.props.user.isAdmin
+    ) {
+      return (
+        <div>
+          <Header as="h2" attached="top">
+            Your Orders{' '}
+          </Header>
+          <Item.Group link>
+            {list.map(order => {
+              return (
+                <Item
+                  key={order.id}
+                  as={Link}
+                  to={`/user/${order.userId}/orders/${order.id}`}
+                >
+                  <Item.Image
+                    size="tiny"
+                    src={`/${order.order_books[0].book.imgUrl}`}
+                  />
+                  <Item.Content>
+                    <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
+                    <Item.Meta content={'Status: ' + order.status} />
+                    <Item.Description>
+                      Total {prettyDollar(order.totalPrice)}
+                    </Item.Description>
+                  </Item.Content>
+                </Item>
+              )
+            })}
+          </Item.Group>
+        </div>
+      )
+    } else {
+      return <h1>Sorry, You Don't Have Access!</h1>
+    }
   }
 }
 

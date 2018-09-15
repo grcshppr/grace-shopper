@@ -21,6 +21,7 @@ router.get('/:userId/orders', async (req, res, next) => {
       where: {
         userId: req.params.userId
       },
+      order: [['date', 'DESC']],
       include: [{model: OrderBook, include: [Book]}]
     })
     res.status(200).json(usersOrders)

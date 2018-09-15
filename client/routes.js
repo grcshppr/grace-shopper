@@ -11,7 +11,7 @@ import {
   DetailedBook,
   Orders,
   UsersOrders,
-  UserOneOrder
+  UserOneOrder,
   Search
 } from './components'
 import {me} from './store'
@@ -34,12 +34,20 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/browse" component={Books} />
         <Route exact path="/book/:id" component={DetailedBook} />
-        <Route exact path="/user/:accountId/orders/" component={UsersOrders} />
-        <Route exact path="/user/:accountId/orders/:orderId" component={UserOneOrder} />
         <Route path="/search" component={Search} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route
+              exact
+              path="/user/:accountId/orders/"
+              component={UsersOrders}
+            />
+            <Route
+              exact
+              path="/user/:accountId/orders/:orderId"
+              component={UserOneOrder}
+            />
             <Route path="/home" component={Books} />
             <Route path="/admin" component={AdminPage} />
           </Switch>

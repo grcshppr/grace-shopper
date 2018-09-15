@@ -38,7 +38,6 @@ const requestOneOrderFromServer = () => {
     type: REQUEST_ONE_ORDER
   }
 }
-
 /**
  * THUNK CREATORS
  */
@@ -76,7 +75,8 @@ export const fetchOneUserOrderFromServer = (userId, orderId) => {
 const initialState = {
   usersOrders: [],
   oneOrder: [],
-  isFetching: true
+  allOrdersAreFetching: true,
+  oneOrderIsFetching: true
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -85,23 +85,23 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         usersOrders: action.list,
-        isFetching: false
+        allOrdersAreFetching: false
       }
     case REQUEST_USERS_ORDERS:
       return {
         ...state,
-        isFetching: true
+        allOrdersAreFetching: true
       }
     case GOT_ONE_ORDER:
       return {
         ...state,
         oneOrder: action.order,
-        isFetching: false
+        oneOrderIsFetching: false
       }
     case REQUEST_ONE_ORDER:
       return {
         ...state,
-        isFetching: true
+        oneOrderIsFetching: true
       }
     default:
       return state
