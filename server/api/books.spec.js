@@ -113,6 +113,6 @@ describe('Book routes', () => {
       it('should update a new book if user is admin', () => {
         return agent.put('/api/books').expect(201)
       })
-    })
-  }) // end describe('/api/books')
-}) // end describe('User routes')
+    }) // end describe('/api/books')
+  }) // end describe('User routes')
+})
