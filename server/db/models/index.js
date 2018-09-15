@@ -34,10 +34,11 @@ Review.belongsTo(Book)
 Book.belongsToMany(Order, {through: OrderBook})
 Order.belongsToMany(Book, {through: OrderBook})
 
-//Order-Test
+//Eager Loading Join-Table Data Enabled
 Order.hasMany(OrderBook)
 OrderBook.belongsTo(Order)
 
+//Eager Loading Join-Table Data Enabled
 Book.hasMany(OrderBook)
 OrderBook.belongsTo(Book)
 
