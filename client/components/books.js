@@ -63,7 +63,6 @@ class Books extends Component {
         <Divider section />
         <Grid relaxed="very" text-align="left" centered>
           {books.map(book => {
-            console.log(book.imgUrl)
             return (
               <GridColumn width={4} className="container">
                 <Container>
