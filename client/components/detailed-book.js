@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchReviewsForBook} from '../store/reviews.js'
 import Reviews from './reviews'
 import {withRouter} from 'react-router-dom'
-import {Container, Image, Divider} from 'semantic-ui-react'
+import {Container, Image, Divider, Card} from 'semantic-ui-react'
 import WriteReview from './write-review'
 
 export class DetailedBook extends Component {
@@ -26,20 +26,22 @@ export class DetailedBook extends Component {
       <div>
         {selectedBook && (
           <Container textAlign="center">
-            <h2>{selectedBook.name}</h2>
-            <h4>{`by ${selectedBook.author}`}</h4>
-            <Image size="medium" src={`/${selectedBook.imgUrl}`} centered />
-            <h5>
-              {/* Book price is an integer in db, so we need to reformat it as a price */}
-              {`$${selectedBook.price
-                .toString()
-                .slice(0, -2)}.${selectedBook.price.toString().slice(-2)}`}
-            </h5>
-            {!selectedBook.quantity && <h5>Out of stock</h5>}
-            <h6>{`Format: ${selectedBook.editionType}`}</h6>
-            {selectedBook.publisher && (
-              <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
-            )}
+            <Card centered fluid>
+              <h2>{selectedBook.name}</h2>
+              <h4>{`by ${selectedBook.author}`}</h4>
+              <Image size="medium" src={`/${selectedBook.imgUrl}`} centered />
+              <h5>
+                {/* Book price is an integer in db, so we need to reformat it as a price */}
+                {`$${selectedBook.price
+                  .toString()
+                  .slice(0, -2)}.${selectedBook.price.toString().slice(-2)}`}
+              </h5>
+              {!selectedBook.quantity && <h5>Out of stock</h5>}
+              <h6>{`Format: ${selectedBook.editionType}`}</h6>
+              {selectedBook.publisher && (
+                <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
+              )}
+            </Card>
             <Divider hidden />
 
             {reviews && (
