@@ -36,7 +36,6 @@ class Books extends Component {
     const availableBooks = this.props.list.filter(
       book => book.availability === true && book.quantity > 0
     )
-    console.log(availableBooks)
     let books
     if (this.state.selectedGenre === 'all') {
       books = availableBooks
@@ -64,6 +63,7 @@ class Books extends Component {
         <Divider section />
         <Grid relaxed="very" text-align="left" centered>
           {books.map(book => {
+            console.log(book.imgUrl)
             return (
               <GridColumn width={4} className="container">
                 <Container>
