@@ -34,6 +34,7 @@ const requestAllBooksFromServer = () => {
 export const createBook = book => {
   return async dispatch => {
     try {
+      console.log(book.genres)
       book.genres = book.genres.split(' ')
       const {data} = await axios.post('/api/books', book)
       dispatch(addBook(data))

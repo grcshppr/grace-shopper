@@ -33,12 +33,15 @@ class Books extends Component {
   }
 
   render() {
-    const allBooks = this.props.list
+    const availableBooks = this.props.list.filter(
+      book => book.availability === true && book.quantity > 0
+    )
+    console.log(availableBooks)
     let books
     if (this.state.selectedGenre === 'all') {
-      books = allBooks
+      books = availableBooks
     } else {
-      books = allBooks.filter(
+      books = availableBooks.filter(
         book => book.genres.indexOf(this.state.selectedGenre) !== -1
       )
     }
