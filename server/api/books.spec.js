@@ -39,8 +39,12 @@ describe('Book routes', () => {
         availability: true
       }
     ]
-    beforeEach(() => {
-      return Book.bulkCreate(bookData)
+    beforeEach(async () => {
+      try {
+        return await Book.bulkCreate(bookData)
+      } catch (err) {
+        throw err
+      }
     })
     it('GET /api/books', async () => {
       const res = await request(app)
@@ -79,40 +83,36 @@ describe('Book routes', () => {
       )
     })
     //TESTS FOR AUTHENTICATION NEED FIXING
-    describe('AUTHENTICATION /api/books', () => {
+    describe('AUTHENTICATION /api/books', async () => {
       const authenticatedUser = {
         email: 'abby.wigdale@gmail.com',
-        password: 'password',
-        firstName: 'abby',
-        lastName: 'Wiggy',
-        isAdmin: true
+        password: 'password'
       }
-      // const normalUser = {
-      //   email: 'abby@abby.com',
-      //   password: 'password',
-      //   firstName: 'Abby',
-      //   lastName: 'Wiggy',
-      //   isAdmin: false
-      // }
+      const newBook = {
+        name: 'harry potter',
+        genres: 'fiction',
+        author: 'author',
+        price: 5,
+        quantity: 5,
+        description: 'its a good book'
+      }
       const agent = request(app)
       before(() => {
-        agent
+        return agent
           .post('/login')
           .send(authenticatedUser)
           .end()
       })
       it('should create a new book if user is admin', () => {
-        agent.post('/api/books').expect(201)
+        return agent
+          .post('/api/books')
+          .send(newBook)
+          .expect(201)
       })
-      // it('should not allow non-admin users to create book', () => {
-      //   normalUser.post('/api/books').expect(401)
-      // })
+
       it('should update a new book if user is admin', () => {
-        agent.post('/api/books').expect(201)
+        return agent.put('/api/books').expect(201)
       })
-      // it('should not allow non-admin users to update book', () => {
-      //   normalUser.post('/api/books').expect(401)
-      // })
     })
   }) // end describe('/api/books')
 }) // end describe('User routes')

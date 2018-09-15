@@ -15,6 +15,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
           <Icon name="home" />
           Browse
         </Menu.Item>
+        <Menu.Item as={Link} name="search" to="/search">
+          <Icon name="search" />
+          Search
+        </Menu.Item>
         <Menu.Item href="#" onClick={handleClick}>
           Logout
         </Menu.Item>

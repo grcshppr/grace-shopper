@@ -31,3 +31,14 @@ router.get('/book/:bookId', async (req, res, next) => {
     next(err)
   }
 })
+
+//write review
+router.post('/book/:bookId', async (req, res, next) => {
+  try {
+    const bookId = req.params.bookId
+    const newReview = await Review.create(req.body, {where: bookId})
+    res.status(201).json(newReview)
+  } catch (err) {
+    next(err)
+  }
+})
