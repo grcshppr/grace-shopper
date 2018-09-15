@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {fetchAllBooksFromServer} from '../store/books'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {
@@ -10,12 +9,6 @@ import {
   Button,
   Divider
 } from 'semantic-ui-react'
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllBooksFromServer: () => dispatch(fetchAllBooksFromServer())
-  }
-}
 
 const mapStateToProps = state => {
   return {
@@ -31,9 +24,6 @@ class Books extends Component {
     this.state = {
       selectedGenre: 'all'
     }
-  }
-  componentDidMount() {
-    this.props.fetchAllBooksFromServer()
   }
 
   handleFilter = event => {
@@ -75,6 +65,7 @@ class Books extends Component {
               <GridColumn width={4} className="container">
                 <Container>
                   <Link to={`book/${book.id}`}>{book.name}</Link>
+                  <p>by {book.author}</p>
                   {/* Book price is an integer in db, so we need to reformat it as a price */}
                   <p>
                     ${`${book.price
@@ -94,4 +85,4 @@ class Books extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Books)
+export default connect(mapStateToProps)(Books)

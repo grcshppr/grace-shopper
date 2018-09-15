@@ -54,12 +54,24 @@ describe('Review routes', () => {
       const res = await request(app)
         .get('/api/reviews/book/1')
         .expect(200)
-      console.log(res.body)
       expect(res.body).to.be.an('array')
       expect(res.body[0].title).to.be.equal('I loved it')
       expect(res.body[0].bookId).to.be.equal(1)
-      expect(res.body[1].title).to.be.equal('I liked it')
+      expect(res.body[1].title).to.be.equal('I loved it')
       expect(res.body[1].bookId).to.be.equal(1)
+    })
+  })
+  describe('POST `/api/reviews/book/:bookId', () => {
+    it('should create a review', async () => {
+      const response = await request(app)
+        .post('/api/reviews/book/5')
+        .send({
+          title: 'Awesome POST-Created Article',
+          stars: 5,
+          content: 'Can you believe I did this in a test?'
+        })
+        .expect(201)
+      expect(response.body.title).to.equal('Awesome POST-Created Article')
     })
   })
 })

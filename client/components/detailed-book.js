@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchReviewsForBook} from '../store/review.js'
+import {fetchReviewsForBook} from '../store/reviews.js'
 import Reviews from './reviews'
-import {Container} from 'semantic-ui-react'
+import {withRouter} from 'react-router-dom'
+import {Container, Image, Divider} from 'semantic-ui-react'
+import WriteReview from './write-review'
 
 export class DetailedBook extends Component {
   async componentDidMount() {
@@ -20,14 +22,13 @@ export class DetailedBook extends Component {
       )
     }
     const reviews = this.props.reviews
-
     return (
       <div>
         {selectedBook && (
           <Container textAlign="center">
             <h2>{selectedBook.name}</h2>
             <h4>{`by ${selectedBook.author}`}</h4>
-            <img src={selectedBook.imgUrl} />
+            <Image size="medium" src={`/${selectedBook.imgUrl}`} centered />
             <h5>
               {/* Book price is an integer in db, so we need to reformat it as a price */}
               {`$${selectedBook.price
@@ -39,9 +40,12 @@ export class DetailedBook extends Component {
             {selectedBook.publisher && (
               <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
             )}
+            <Divider hidden />
+
             {reviews && (
               <Reviews selectedBook={selectedBook} reviews={reviews} />
             )}
+            <WriteReview selectedBook={selectedBook} />
           </Container>
         )}
       </div>
@@ -62,4 +66,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailedBook)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DetailedBook)
+)

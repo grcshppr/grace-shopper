@@ -3,9 +3,9 @@ const db = require('..')
 const Review = db.model('review')
 
 describe('Review model', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
-  })
+  // beforeEach(() => {
+  //   return db.sync({force: true})
+  // })
 
   describe('attributes definition', () => {
     let harryPotterReview

@@ -54,7 +54,7 @@ async function seed() {
 
   const books = await Promise.all([
     Book.create({
-      name: ' In Search of Lost Time',
+      name: 'In Search of Lost Time',
       genres: ['Novel', 'Modernist'],
       author: 'Marcel Proust',
       price: 1999,
@@ -63,7 +63,7 @@ async function seed() {
       description: `Swann's Way, the first part of A la recherche de temps perdu, Marcel Proust's seven-part cycle, was published in 1913. In it, Proust introduces the themes that run through the entire work. The narrator recalls his childhood, aided by the famous madeleine; and describes M. Swann's passion for Odette. The work is incomparable. Edmund Wilson said "[Proust] has supplied for the first time in literature an equivalent in the full scale for the new theory of modern physics."`
     }),
     Book.create({
-      name: ' In Search of Lost Time',
+      name: 'In Search of Lost Time',
       genres: ['Novel', 'Modernist'],
       author: 'Marcel Proust',
       price: 1406,
