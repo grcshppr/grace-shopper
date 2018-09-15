@@ -48,7 +48,7 @@ class AdminPage extends Component {
               <option placeholder="Book to Update" />
               {books.map(book => (
                 <option key={book.id} value={book.id}>
-                  {book.name}
+                  {book.name} ({book.editionType})
                 </option>
               ))}
             </select>
@@ -92,6 +92,8 @@ class AdminPage extends Component {
             type="number"
             placeholder="Quantity"
           />
+          <h6>Availibility:</h6>
+          <Field name="availability" component="input" type="checkbox" />
 
           <h6>Edition Type:</h6>
           <Field name="editionType" component="select">

@@ -51,7 +51,8 @@ const Book = db.define('book', {
     }
   },
   availability: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 })
 
