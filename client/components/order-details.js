@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Segment, Dimmer, Loader, Image, Item, Header} from 'semantic-ui-react'
 import {fetchOneUserOrderFromServer} from '../store/orders'
-import {prettyDate, prettyDollar} from './users-order-history'
+import {prettyDate, prettyDollar} from '../utils'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -36,7 +36,7 @@ class UserOneOrder extends Component {
             <Loader>Loading</Loader>
           </Dimmer>
 
-          <Image src={'http://www.clker.com/cliparts/R/w/q/4/j/l/book.svg'} />
+          <Image src="/img/book" />
         </Segment>
       )
     }

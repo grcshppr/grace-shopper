@@ -18,6 +18,10 @@ const OrderBook = db.define('order_book', {
   }
 })
 
+/*
+Before individual item is added to OrderBook table Query Book table for price & set price to persist even when products price is changed in the future
+*/
+
 OrderBook.beforeCreate(async (orderBook, options) => {
   let bookId = orderBook.bookId
   const response = await Book.findById(bookId)
@@ -25,18 +29,24 @@ OrderBook.beforeCreate(async (orderBook, options) => {
   orderBook.setDataValue('price', setPrice)
 })
 
+
+
 OrderBook.afterCreate(async (orderBook, options) => {
   let orderId = orderBook.orderId
+  //After Individual Item is Added To Purchase, Find its Order Tuple/Instance
   const order = await Order.findById(orderId)
+  //Find All Items in That Order
   const response = await OrderBook.findAll({
     where: {
       orderId: orderId
     }
   })
+  //Reduce to find the total price of the order
   const total = response.reduce(
     (accumulator, book) => accumulator + book.price * book.quantity,
     0
   )
+  //Use setter method defined in Order Model, on the order instance found above & save
   order.set('totalPrice', total)
   order.save()
 })

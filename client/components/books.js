@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {prettyDollar} from '../utils'
 import {
   Grid,
   GridColumn,
@@ -62,15 +63,13 @@ class Books extends Component {
         <Grid relaxed="very" text-align="left" centered>
           {books.map(book => {
             return (
-              <GridColumn width={4} className="container">
+              <GridColumn width={4} key={book.id} className="container">
                 <Container>
                   <Link to={`book/${book.id}`}>{book.name}</Link>
                   <p>by {book.author}</p>
                   {/* Book price is an integer in db, so we need to reformat it as a price */}
                   <p>
-                    ${`${book.price
-                      .toString()
-                      .slice(0, -2)}.${book.price.toString().slice(-2)}`}
+                    {prettyDollar(book.price)}
                   </p>
                   <Image src={book.imgUrl} />
                   <Button icon="shop" />

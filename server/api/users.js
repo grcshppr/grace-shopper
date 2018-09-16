@@ -15,28 +15,4 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/:userId/orders', async (req, res, next) => {
-  try {
-    const usersOrders = await Order.findAll({
-      where: {
-        userId: req.params.userId
-      },
-      order: [['date', 'DESC']],
-      include: [{model: OrderBook, include: [Book]}]
-    })
-    res.status(200).json(usersOrders)
-  } catch (error) {
-    next(error)
-  }
-})
 
-router.get('/:userId/orders/:orderId', async (req, res, next) => {
-  try {
-    const userOrder = await Order.findById(req.params.orderId, {
-      include: [{model: OrderBook, include: [Book]}]
-    })
-    res.status(200).json(userOrder)
-  } catch (error) {
-    next(error)
-  }
-})
