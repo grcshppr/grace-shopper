@@ -3,13 +3,12 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {prettyDollar} from '../utils'
 import {
-  Grid,
-  GridColumn,
+  Dropdown,
   Image,
   Container,
   Button,
   Divider,
-  Card
+  Item
 } from 'semantic-ui-react'
 
 const mapStateToProps = state => {
@@ -47,6 +46,7 @@ class Books extends Component {
       )
     }
     const genres = this.props.genres
+
     const isFetching = this.props.isFetching
     if (isFetching) {
       return <h1>Loading</h1>
@@ -62,24 +62,30 @@ class Books extends Component {
             </option>
           ))}
         </select>
+
         <Divider section />
-        <Grid relaxed="very" text-align="left" centered>
+
+        <Item.Group divided>
           {books.map(book => {
             return (
-              <GridColumn width={4} key={book.id} className="container">
-                <Container>
-                  <Link to={`book/${book.id}`}>{book.name}</Link>
-                  <p>by {book.author}</p>
+              <Item key={book.id}>
+                <Item.Image src={book.imgUrl} size="small" />
+                <Item.Content>
+                  <Button icon="shop" floated="right" />
+                  <Item.Header as={Link} to={`book/${book.id}`}>
+                    {book.name}
+                  </Item.Header>
+                  <Item.Meta>by {book.author}</Item.Meta>
                   {/* Book price is an integer in db, so we need to reformat it as a price */}
-                  <p>{prettyDollar(book.price)}</p>
-                  <Image src={book.imgUrl} />
-                  <Button icon="shop" />
-                </Container>
-                <Divider hidden />
-              </GridColumn>
+                  <Item.Meta>{prettyDollar(book.price)}</Item.Meta>
+                  <Item.Description>
+                    {book.description.slice(0, 200)}...
+                  </Item.Description>
+                </Item.Content>
+              </Item>
             )
           })}
-        </Grid>
+        </Item.Group>
       </Container>
     )
   }
