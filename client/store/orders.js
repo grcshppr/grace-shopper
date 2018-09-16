@@ -42,11 +42,11 @@ const requestOneOrderFromServer = () => {
  * THUNK CREATORS
  */
 
-export const fetchUsersOrdersFromServer = id => {
+export const fetchUsersOrdersFromServer = userId => {
   return async dispatch => {
     try {
       dispatch(requestUsersOrdersFromServer())
-      const response = await axios.get(`/api/order/${id}/orders`)
+      const response = await axios.get(`/api/orders/${userId}/orders`)
       const usersOrders = response.data
       dispatch(sendUsersOrdersFromServer(usersOrders))
     } catch (error) {
@@ -55,11 +55,11 @@ export const fetchUsersOrdersFromServer = id => {
   }
 }
 
-export const fetchOneUserOrderFromServer = (userId, orderId) => {
+export const fetchOneUserOrderFromServer = (orderId, userId) => {
   return async dispatch => {
     try {
       dispatch(requestOneOrderFromServer())
-      const response = await axios.get(`/api/order/${userId}/orders/${orderId}`)
+      const response = await axios.get(`/api/orders/${orderId}/orders/${userId}`)
       const oneOrder = response.data
       dispatch(sendOneOrderFromServer(oneOrder))
     } catch (error) {

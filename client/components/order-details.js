@@ -7,8 +7,8 @@ import {connect} from 'react-redux'
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchOneUserOrderFromServer: (userId, orderId) =>
-      dispatch(fetchOneUserOrderFromServer(userId, orderId))
+    fetchOneUserOrderFromServer: (orderId, userId) =>
+      dispatch(fetchOneUserOrderFromServer(orderId, userId))
   }
 }
 
@@ -24,7 +24,7 @@ class UserOneOrder extends Component {
   componentDidMount() {
     const accountId = this.props.match.params.accountId
     const orderId = this.props.match.params.orderId
-    this.props.fetchOneUserOrderFromServer(accountId, orderId)
+    this.props.fetchOneUserOrderFromServer(orderId, accountId)
   }
   render() {
     const order = this.props.order

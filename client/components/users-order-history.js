@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUsersOrdersFromServer: id => dispatch(fetchUsersOrdersFromServer(id))
+    fetchUsersOrdersFromServer: userId => dispatch(fetchUsersOrdersFromServer(userId))
   }
 }
 

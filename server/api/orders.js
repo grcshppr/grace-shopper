@@ -30,7 +30,7 @@ router.get('/:userId/orders', async (req, res, next) => {
   }
 })
 
-router.get('/:userId/orders/:orderId', async (req, res, next) => {
+router.get('/:orderId/orders/:userId', async (req, res, next) => {
   try {
     const userOrder = await Order.findById(req.params.orderId, {
       include: [{model: OrderBook, include: [Book]}]
