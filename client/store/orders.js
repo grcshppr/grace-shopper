@@ -8,6 +8,8 @@ export const REQUEST_USERS_ORDERS = 'REQUEST_USERS_ORDERS'
 export const GOT_USERS_ORDERS = 'GOT_USERS_ORDERS'
 export const REQUEST_ONE_ORDER = 'REQUEST_ONE_ORDER'
 export const GOT_ONE_ORDER = 'GOT_ONE_ORDER'
+export const REQUEST_ALL_ORDERS = 'REQUEST_ALL_ORDERS'
+export const GOT_ALL_ORDERS = 'GOT_ALL_ORDERS'
 
 /**
  * ACTION CREATORS
@@ -38,6 +40,15 @@ const requestOneOrderFromServer = () => {
     type: REQUEST_ONE_ORDER
   }
 }
+
+const sendAllOrders = list => ({
+  type: GOT_ALL_ORDERS,
+  list
+})
+
+const requestAllOrders = () => ({
+  type: REQUEST_ALL_ORDERS
+})
 /**
  * THUNK CREATORS
  */
@@ -59,11 +70,25 @@ export const fetchOneUserOrderFromServer = (orderId, userId) => {
   return async dispatch => {
     try {
       dispatch(requestOneOrderFromServer())
-      const response = await axios.get(`/api/orders/${orderId}/orders/${userId}`)
+      const response = await axios.get(
+        `/api/orders/${orderId}/orders/${userId}`
+      )
       const oneOrder = response.data
       dispatch(sendOneOrderFromServer(oneOrder))
     } catch (error) {
       console.error(error)
+    }
+  }
+}
+
+export const fetchAllOrders = () => {
+  return async dispatch => {
+    try {
+      dispatch(requestAllOrders())
+      const {data} = await axios.get('/api/orders')
+      dispatch(sendAllOrders(data))
+    } catch (err) {
+      console.error(err)
     }
   }
 }
@@ -76,7 +101,8 @@ const initialState = {
   usersOrders: [],
   oneOrder: [],
   allOrdersAreFetching: true,
-  oneOrderIsFetching: true
+  oneOrderIsFetching: true,
+  allOrders: []
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -103,6 +129,10 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         oneOrderIsFetching: true
       }
+    case GOT_ALL_ORDERS:
+      return {...state, allOrders: action.list, allOrdersAreFetching: false}
+    case REQUEST_ALL_ORDERS:
+      return {...state, allOrdersAreFetching: true}
     default:
       return state
   }

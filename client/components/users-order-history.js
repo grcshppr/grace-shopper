@@ -7,7 +7,8 @@ import {connect} from 'react-redux'
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUsersOrdersFromServer: userId => dispatch(fetchUsersOrdersFromServer(userId))
+    fetchUsersOrdersFromServer: userId =>
+      dispatch(fetchUsersOrdersFromServer(userId))
   }
 }
 
@@ -45,7 +46,10 @@ class UsersOrders extends Component {
       return (
         <div>
           <Header as="h2" attached="top">
-            Welcome Back {list[0] && list[0].user.firstName ? list[0].user.firstName + '!' : '!'}
+            Welcome Back{' '}
+            {list[0] && list[0].user.firstName
+              ? list[0].user.firstName + '!'
+              : '!'}
           </Header>
           <Item.Group link>
             {list.map(order => {
