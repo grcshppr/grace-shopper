@@ -19,6 +19,9 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
           <Icon name="search" />
           Search
         </Menu.Item>
+        <Menu.Item as={Link} to={`/user/${user.id}/orders`}>
+          Account
+        </Menu.Item>
         <Menu.Item href="#" onClick={handleClick}>
           Logout
         </Menu.Item>
