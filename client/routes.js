@@ -7,6 +7,9 @@ import {
   Signup,
   UserHome,
   AdminPage,
+  AdminHomePage,
+  AdminOrderPage,
+  AdminUserPage,
   Books,
   DetailedBook,
   Search
@@ -36,7 +39,10 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={Books} />
-            <Route path="/admin" component={AdminPage} />
+            <Route exact path="/admin" component={AdminHomePage} />
+            <Route path="/admin/editbooks" component={AdminPage} />
+            <Route path="/admin/orders" component={AdminOrderPage} />
+            <Route path="/admin/users" component={AdminUserPage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

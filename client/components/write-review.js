@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {createReview} from '../store/reviews'
 import {Field, reduxForm} from 'redux-form'
-import {Form, Container, Divider} from 'semantic-ui-react'
+import {Form, Container, Divider, Button} from 'semantic-ui-react'
 
 class WriteReview extends Component {
-  handleSumbit(event) {
+  handleSubmit = event => {
     event.preventDefault()
     const bookId = this.props.selectedBook.id
     const review = this.props.reviewForm.values
@@ -16,7 +16,7 @@ class WriteReview extends Component {
     return (
       <Container textAlign="left" className="formcontainer">
         <h4>Write a review for this book:</h4>
-        <Form onSubmit={() => this.handleSumbit}>
+        <Form onSubmit={this.handleSubmit}>
           <h6>Title:</h6>
           <Field
             name="title"

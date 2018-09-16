@@ -14,12 +14,10 @@ router.post('/', AdminMW, async (req, res, next) => {
 
 router.put('/', AdminMW, async (req, res, next) => {
   try {
-    console.log('this is req.body', req.body)
     const [rowsUpdate, [updatedBook]] = await Book.update(req.body, {
       returning: true,
       where: {id: req.body.id}
     })
-    console.log('this is updatedbook, updatedBook')
     res.status(200).json(updatedBook)
   } catch (err) {
     next(err)
