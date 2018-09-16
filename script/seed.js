@@ -1,9 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
-const {Book} = require('../server/db/models')
-const {Review} = require('../server/db/models')
+const {User, Book, Order, OrderBook, Review} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -585,6 +583,189 @@ async function seed() {
     })
   ])
 
+  const orders = await Promise.all([
+    Order.create({
+      userId: users[0].dataValues.id,
+      paidFor: true,
+      date: new Date(2018, 4, 24, 8, 13, 20, 0),
+      status: 'completed'
+    }),
+    Order.create({
+      userId: users[0].dataValues.id,
+      paidFor: true,
+      date: new Date(2018, 5, 13, 9, 45, 30, 0),
+      status: 'completed'
+    }),
+    Order.create({
+      userId: users[0].dataValues.id,
+      paidFor: false,
+      date: new Date(2018, 2, 11, 39, 15, 28, 0),
+      status: 'processing'
+    }),
+    Order.create({
+      userId: users[0].dataValues.id,
+      paidFor: true,
+      date: Date.now(),
+      status: 'created'
+    }),
+    Order.create({
+      userId: users[1].dataValues.id,
+      paidFor: true,
+      date: new Date(2017, 12, 30, 44, 15, 36, 0),
+      status: 'canceled'
+    }),
+    Order.create({
+      userId: users[1].dataValues.id,
+      paidFor: true,
+      date: new Date(2017, 10, 22, 34, 15, 44, 0),
+      status: 'completed'
+    }),
+    Order.create({
+      userId: users[1].dataValues.id,
+      paidFor: true,
+      date: new Date(2018, 7, 31, 43, 11, 23, 0),
+      status: 'completed'
+    }),
+    Order.create({
+      userId: users[1].dataValues.id,
+      paidFor: true,
+      date: Date.now(),
+      status: 'processing'
+    }),
+    Order.create({
+      userId: users[1].dataValues.id,
+      paidFor: false,
+      date: Date.now(),
+      status: 'created'
+    })
+  ])
+
+  const orderHistory = await Promise.all([
+    OrderBook.create({
+      orderId: orders[0].dataValues.id,
+      bookId: books[0].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[0].dataValues.id,
+      bookId: books[2].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[0].dataValues.id,
+      bookId: books[3].dataValues.id,
+      quantity: 3
+    }),
+    OrderBook.create({
+      orderId: orders[0].dataValues.id,
+      bookId: books[4].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[1].dataValues.id,
+      bookId: books[7].dataValues.id,
+      quantity: 2
+    }),
+    OrderBook.create({
+      orderId: orders[1].dataValues.id,
+      bookId: books[8].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[2].dataValues.id,
+      bookId: books[13].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[2].dataValues.id,
+      bookId: books[20].dataValues.id,
+      quantity: 3
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[4].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[14].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[7].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[11].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[3].dataValues.id,
+      bookId: books[9].dataValues.id,
+      quantity: 2
+    }),
+    OrderBook.create({
+      orderId: orders[4].dataValues.id,
+      bookId: books[6].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[4].dataValues.id,
+      bookId: books[5].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[5].dataValues.id,
+      bookId: books[5].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[5].dataValues.id,
+      bookId: books[10].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[16].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[3].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[12].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[6].dataValues.id,
+      bookId: books[13].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[14].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[18].dataValues.id,
+      quantity: 2
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[13].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[7].dataValues.id,
+      bookId: books[10].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[14].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[11].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[10].dataValues.id
+    }),
+    OrderBook.create({
+      orderId: orders[8].dataValues.id,
+      bookId: books[4].dataValues.id
+    })
+  ])
+
+  // console.log(users[0].dataValues)
+  // console.log(books[0].dataValues)
   const reviews = await Promise.all([
     Review.create({
       title: 'having read it, I see why Proust has the reputation he has ...',
@@ -642,6 +823,12 @@ async function seed() {
   console.log(`Users seeded successfully`)
   console.log(`seeded ${reviews.length} reviews`)
   console.log(`Users seeded successfully`)
+  console.log(`seeded ${orders.length} orders`)
+  console.log(`Orders seeded successfully`)
+  console.log(`seeded ${orderHistory.length} OrderBook entries`)
+  console.log(`OrderHistory seeded successfully`)
+  console.log(`seeded ${reviews.length} reviews`)
+  console.log(`Reviews seeded successfully`)
 }
 
 // We've separated the `seed` function from the `runSeed` function.

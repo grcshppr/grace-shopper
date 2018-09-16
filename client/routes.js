@@ -9,6 +9,9 @@ import {
   AdminPage,
   Books,
   DetailedBook,
+  Orders,
+  UsersOrders,
+  UserOneOrder,
   Search
 } from './components'
 import {me} from './store'
@@ -35,6 +38,16 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route
+              exact
+              path="/user/:accountId/orders/"
+              component={UsersOrders}
+            />
+            <Route
+              exact
+              path="/user/:accountId/orders/:orderId"
+              component={UserOneOrder}
+            />
             <Route path="/home" component={Books} />
             <Route path="/admin" component={AdminPage} />
           </Switch>
