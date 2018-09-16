@@ -34,6 +34,14 @@ Review.belongsTo(Book)
 Book.belongsToMany(Order, {through: OrderBook})
 Order.belongsToMany(Book, {through: OrderBook})
 
+//Eager Loading Join-Table Data Enabled
+Order.hasMany(OrderBook)
+OrderBook.belongsTo(Order)
+
+//Eager Loading Join-Table Data Enabled
+Book.hasMany(OrderBook)
+OrderBook.belongsTo(Book)
+
 module.exports = {
   User,
   Book,

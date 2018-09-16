@@ -7,6 +7,9 @@ export const REQUEST_ALL_BOOKS = 'REQUEST_ALL_BOOKS'
 export const GOT_ALL_BOOKS = 'GOT_ALL_BOOKS'
 export const GOT_ALL_GENRES = 'GOT_ALL_GENRES'
 
+/**
+ * ACTION CREATORS
+ */
 const sendGenreListFromServer = list => {
   return {
     type: GOT_ALL_GENRES,
@@ -56,18 +59,22 @@ export const editBook = book => {
 
 export const fetchAllBooksFromServer = () => {
   return async dispatch => {
-    dispatch(requestAllBooksFromServer())
-    const response = await axios.get('/api/books')
-    const bookGenres = []
-    response.data.forEach(book =>
-      book.genres.forEach(genre => {
-        if (bookGenres.indexOf(genre) === -1) {
-          bookGenres.push(genre)
-        }
-      })
-    )
-    dispatch(gotAllBooksFromServer(response.data))
-    dispatch(sendGenreListFromServer(bookGenres))
+    try {
+      dispatch(requestAllBooksFromServer())
+      const response = await axios.get('/api/books')
+      const bookGenres = []
+      response.data.forEach(book =>
+        book.genres.forEach(genre => {
+          if (bookGenres.indexOf(genre) === -1) {
+            bookGenres.push(genre)
+          }
+        })
+      )
+      dispatch(gotAllBooksFromServer(response.data))
+      dispatch(sendGenreListFromServer(bookGenres))
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
