@@ -24,15 +24,33 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class AdminOrderPage extends Component {
+  constructor() {
+    super()
+    this.state = {
+      selectedStatus: 'all'
+    }
+  }
   componentDidMount() {
     this.props.fetchAllOrders()
   }
 
+  handleFilter = event => {
+    this.setState({
+      selectedStatus: event.target.value
+    })
+  }
+
   render() {
-    const orders = this.props.allOrders
+    let orders = this.props.allOrders
     const isFetching = this.props.isFetching
+
     if (!this.props.user.isAdmin)
       return <h1>sorry can't access this page :( ADMINS ONLY</h1>
+    if (this.state.selectedStatus !== 'all') {
+      orders = orders.filter(
+        order => order.status === this.state.selectedStatus
+      )
+    }
     if (isFetching) {
       return (
         <Segment>
@@ -47,6 +65,14 @@ class AdminOrderPage extends Component {
       return (
         <Container>
           <h1>view all orders here:</h1>
+          <h5>filter order by status:</h5>
+          <select onChange={this.handleFilter}>
+            <option value="all">all</option>
+            <option value="created">created</option>
+            <option value="processing">processing</option>
+            <option value="canceled">canceled</option>
+            <option value="completed">completed</option>
+          </select>
           <Item.Group link>
             {orders.map(order => {
               return (
