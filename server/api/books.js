@@ -16,7 +16,7 @@ router.put('/', AdminMW, async (req, res, next) => {
   try {
     const [rowsUpdate, [updatedBook]] = await Book.update(req.body, {
       returning: true,
-      where: {name: req.body.name}
+      where: {id: req.body.id}
     })
     res.status(200).json(updatedBook)
   } catch (err) {

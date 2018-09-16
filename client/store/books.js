@@ -37,7 +37,7 @@ const requestAllBooksFromServer = () => {
 export const createBook = book => {
   return async dispatch => {
     try {
-      book.genres = book.genres.split(' ')
+      book.genres = book.genres.split(',')
       const {data} = await axios.post('/api/books', book)
       dispatch(addBook(data))
     } catch (err) {
@@ -49,7 +49,6 @@ export const createBook = book => {
 export const editBook = book => {
   return async dispatch => {
     try {
-      book.genres = book.genres.split(' ')
       const {data} = await axios.put('/api/books', book)
       dispatch(updateBook(data))
     } catch (err) {
@@ -92,9 +91,11 @@ export default function(state = initialState, action) {
       return {...state, list: [...state.list, action.book]}
     }
     case UPDATE_BOOK: {
-      const newBookArray = state.list.map(book => {
+      const newBookArray = state.list.slice().map(book => {
         if (book.id === action.book.id) {
-          book = action.book
+          return action.book
+        } else {
+          return book
         }
       })
       return {...state, list: newBookArray}

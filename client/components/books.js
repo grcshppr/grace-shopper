@@ -8,7 +8,8 @@ import {
   Image,
   Container,
   Button,
-  Divider
+  Divider,
+  Card
 } from 'semantic-ui-react'
 
 const mapStateToProps = state => {
@@ -70,9 +71,7 @@ class Books extends Component {
                   <Link to={`book/${book.id}`}>{book.name}</Link>
                   <p>by {book.author}</p>
                   {/* Book price is an integer in db, so we need to reformat it as a price */}
-                  <p>
-                    {prettyDollar(book.price)}
-                  </p>
+                  <p>{prettyDollar(book.price)}</p>
                   <Image src={book.imgUrl} />
                   <Button icon="shop" />
                 </Container>

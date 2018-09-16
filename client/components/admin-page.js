@@ -10,7 +10,7 @@ class AdminPage extends Component {
   }
   handleSubmit(event) {
     event.preventDefault()
-    if (this.props.adminForm.values.selectedBook) {
+    if (this.props.adminForm.values.id) {
       this.props.editBook(this.props.adminForm.values)
     } else {
       this.props.createBook(this.props.adminForm.values)
@@ -34,7 +34,6 @@ class AdminPage extends Component {
       return <h1>sorry can't access this page :( ADMINS ONLY</h1>
     return (
       <Container>
-        <h1>ADMIN PAGE</h1>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <div>
             <h4>Update/Add a book here:</h4>
@@ -60,7 +59,6 @@ class AdminPage extends Component {
             type="text"
             placeholder="Title"
           />
-
           <h6>Genres:</h6>
           <Field
             name="genres"
@@ -68,7 +66,6 @@ class AdminPage extends Component {
             type="text"
             placeholder="Genres"
           />
-
           <h6>Author:</h6>
           <Field
             name="author"
@@ -76,7 +73,6 @@ class AdminPage extends Component {
             type="text"
             placeholder="Author"
           />
-
           <h6>Price:</h6>
           <Field
             name="price"
@@ -84,7 +80,6 @@ class AdminPage extends Component {
             type="number"
             placeholder="Price"
           />
-
           <h6>Quantity:</h6>
           <Field
             name="quantity"
@@ -94,22 +89,19 @@ class AdminPage extends Component {
           />
           <h6>Availibility:</h6>
           <Field name="availability" component="input" type="checkbox" />
-
           <h6>Edition Type:</h6>
           <Field name="editionType" component="select">
             <option />
             <option>hardcover</option>
             <option>paperback</option>
           </Field>
-
           <h6>Description:</h6>
           <Field
             name="description"
-            component="input"
+            component="textarea"
             type="text"
             placeholder="Description"
           />
-
           <button type="submit" label="submit">
             Submit
           </button>
@@ -118,7 +110,6 @@ class AdminPage extends Component {
     )
   }
 }
-
 const mapStateToProps = state => ({
   list: state.books.list,
   adminForm: state.form.adminForm,
@@ -130,7 +121,6 @@ const mapDispatchToProps = dispatch => ({
   editBook: book => dispatch(editBook(book)),
   fetchAllBooksFromServer: () => dispatch(fetchAllBooksFromServer())
 })
-
 export default connect(mapStateToProps, mapDispatchToProps)(
   reduxForm({form: 'adminForm'})(AdminPage)
 )

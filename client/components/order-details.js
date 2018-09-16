@@ -86,9 +86,8 @@ class UserOneOrder extends Component {
           </Header>
         </div>
       )
-    }
-    else {
-      return <h1>Sorry, You Don't Have Access!</h1> 
+    } else {
+      return <h1>Sorry, You Don't Have Access!</h1>
     }
   }
 }
