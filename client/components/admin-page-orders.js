@@ -16,7 +16,8 @@ import {Link} from 'react-router-dom'
 
 const mapStateToProps = state => ({
   allOrders: state.order.allOrders,
-  isFetching: state.order.allOrdersAreFetching
+  isFetching: state.order.allOrdersAreFetching,
+  user: state.user
 })
 const mapDispatchToProps = dispatch => ({
   fetchAllOrders: () => dispatch(fetchAllOrders())
@@ -30,6 +31,8 @@ class AdminOrderPage extends Component {
   render() {
     const orders = this.props.allOrders
     const isFetching = this.props.isFetching
+    if (!this.props.user.isAdmin)
+      return <h1>sorry can't access this page :( ADMINS ONLY</h1>
     if (isFetching) {
       return (
         <Segment>
