@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Menu, Header, Icon} from 'semantic-ui-react'
+import {Menu, Header, Icon, Divider} from 'semantic-ui-react'
 
 const Navbar = ({handleClick, isLoggedIn, user}) => (
-  <Menu color="grey" size="large">
+  <Menu color="grey" size="large" secondary>
     <Header size="huge">GraceShopper</Header>
     {isLoggedIn ? (
       <Menu.Menu position="right">
