@@ -1,14 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-  Header,
-  GridColumn,
-  Image,
-  Item,
-  Container,
-  Button,
-  Divider
-} from 'semantic-ui-react'
+import {Header, Image, Item, Container} from 'semantic-ui-react'
 import {fetchAllUsersFromServer} from '../store/allUsers'
 import {withRouter} from 'react-router-dom'
 
@@ -44,15 +36,20 @@ class AdminUserPage extends Component {
               else return 0
             })
             .map(user => {
+              console.log(user.imgUrl)
               return (
                 <Container>
-                  <Header key={user.id} as="h3" attached="top">
-                    <Image size="tiny" src={user.imgUrl} />
-                    {user.email} {user.isAdmin && ' (ADMIN)'}
-                  </Header>
-                  {/* <Item>
+                  <Item>
                     <Item.Image size="tiny" src={user.imgUrl} />
+                    <Item.Header key={user.id} as="h3" attached="top" />
+                    <Item.Content>Content Content Content</Item.Content>
+                    {/* <Image size="tiny" src={user.imgUrl} /> */}
+                    {user.email} {user.isAdmin && ' (ADMIN)'}
+                    {/* </Header> */}
+                    {/* <Item>
+
                   </Item> */}
+                  </Item>
                 </Container>
                 // <Header.Content>
                 //   <Divider  />
