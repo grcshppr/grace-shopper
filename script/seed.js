@@ -315,7 +315,7 @@ async function seed() {
     Book.create({
       name: '1984',
       genres: ['Novel', 'Science Fiction', 'Modernist'],
-      author: 'J. D. Salinger',
+      author: 'George Orwell',
       price: 1349,
       quantity: 7,
       editionType: 'hardcover',
@@ -559,7 +559,7 @@ async function seed() {
       content:
         'A long slog. But well worth it. Actually one looooong novel spread over 7 books and it would have been longer had Proust lived longer. Beautifully told and nuanced view of fin-de-siecle Paris and France in general and of the mind and spirit of the narrator',
       stars: 5,
-      bookId: 1,
+      bookId: 4,
       userId: 5
     }),
     Review.create({
@@ -567,7 +567,7 @@ async function seed() {
       content:
         'Proust just uses big words needlessly to show off. If I could, I would rate this negative twenty stars. It was that bad',
       stars: 1,
-      bookId: 1,
+      bookId: 4,
       userId: 6
     }),
     Review.create({
@@ -575,7 +575,7 @@ async function seed() {
       content:
         "The book looks good. It comes with a dust cover on it; this cover feels glossy and thick. It's shiny, too. I can see my fingerprints when holding it up to the light. ",
       stars: 4,
-      bookId: 3,
+      bookId: 2,
       userId: 5
     }),
     Review.create({
@@ -583,7 +583,7 @@ async function seed() {
       content:
         "Ulysses is a novel that takes place in a single day, and yet somehow seems to encompass the whole world. It's strange and difficult and sometimes frustrating, and to be honest I wouldn't recommend it to those who don't like their books to be a puzzle or who get frustrated when they don't understand what is going on. But if you do like a challenge, then I think you'll find that every frustration in Ulysses is paid back a thousand times over in beauty and enjoyment. I promise that you won't catch everything on your first read-through; I know I didn't. But that did not take away from my enjoyment of the novel in the slightest. I know I'll come back to it some day, maybe a chapter at a time here or there, and that no matter when or how often I return it will always have something new to offer me.",
       stars: 5,
-      bookId: 6,
+      bookId: 1,
       userId: 6
     }),
     Review.create({
@@ -591,7 +591,7 @@ async function seed() {
       content:
         'Ulusses itself is a five-star novel, but an annotated edition is essential.',
       stars: 3,
-      bookId: 6,
+      bookId: 1,
       userId: 5
     }),
     Review.create({
@@ -599,7 +599,7 @@ async function seed() {
       content:
         " I don't know how I made it through high school without reading this classic, but I'm so glad I get to come back to books like this and read them as an adult. I'm sure I would have learned stuff in high school, but I feel like I'm getting more appreciation out of books like this as I get older.",
       stars: 5,
-      bookId: 7,
+      bookId: 3,
       userId: 6
     })
   ])
