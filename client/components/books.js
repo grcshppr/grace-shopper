@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {prettyDollar} from '../utils'
+import {createNewCartItem, addItemToCart} from '../store/cart'
 import {
   Dropdown,
   Image,
@@ -11,11 +12,17 @@ import {
   Item
 } from 'semantic-ui-react'
 
+const mapDispatchToProps = dispatch => ({
+  createNewCartItem: bookId => dispatch(createNewCartItem(bookId)),
+  addItemToCart: book => dispatch(addItemToCart(book))
+})
+
 const mapStateToProps = state => {
   return {
     list: state.books.list,
     genres: state.books.genres,
-    isFetching: state.books.isFetching
+    isFetching: state.books.isFetching,
+    user: state.user
   }
 }
 
@@ -31,6 +38,16 @@ class Books extends Component {
     this.setState({
       selectedGenre: event.target.value
     })
+  }
+
+  handleCartUser = event => {
+    this.props.createNewCartItem({id: event.target.value})
+  }
+  handleCartGuest = event => {
+    const cartBook = this.props.list.filter(
+      book => book.id == event.target.value
+    )
+    this.props.addItemToCart(cartBook[0])
   }
 
   render() {
@@ -51,6 +68,7 @@ class Books extends Component {
     if (isFetching) {
       return <h1>Loading</h1>
     }
+
     return (
       <Container>
         <h4>Filter:</h4>
@@ -71,7 +89,6 @@ class Books extends Component {
               <Item key={book.id}>
                 <Item.Image src={book.imgUrl} size="small" />
                 <Item.Content>
-                  <Button icon="shop" floated="right" />
                   <Item.Header as={Link} to={`book/${book.id}`}>
                     {book.name}
                   </Item.Header>
@@ -81,6 +98,15 @@ class Books extends Component {
                   <Item.Description>
                     {book.description.slice(0, 200)}...
                   </Item.Description>
+                  {this.props.user.id ? (
+                    <button value={book.id} onClick={this.handleCartUser}>
+                      add to cart
+                    </button>
+                  ) : (
+                    <button value={book.id} onClick={this.handleCartGuest}>
+                      add to cart
+                    </button>
+                  )}
                 </Item.Content>
               </Item>
             )
@@ -91,4 +117,4 @@ class Books extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Books)
+export default connect(mapStateToProps, mapDispatchToProps)(Books)

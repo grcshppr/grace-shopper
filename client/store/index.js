@@ -7,8 +7,16 @@ import books from './books'
 import reviews from './reviews'
 import order from './orders'
 import {reducer as formReducer} from 'redux-form'
+import cart from './cart'
 
-const reducer = combineReducers({user, books, form: formReducer, reviews, order})
+const reducer = combineReducers({
+  user,
+  books,
+  cart,
+  form: formReducer,
+  reviews,
+  order
+})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

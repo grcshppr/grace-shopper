@@ -3,6 +3,7 @@ const Book = require('./books')
 const Review = require('./reviews')
 const Order = require('./orders')
 const OrderBook = require('./orders_books')
+const Cart = require('./cart.js')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -42,10 +43,20 @@ OrderBook.belongsTo(Order)
 Book.hasMany(OrderBook)
 OrderBook.belongsTo(Book)
 
+//Cart-User
+Cart.belongsTo(User)
+User.hasOne(Cart)
+
+//Book-Cart
+Cart.belongsTo(Book)
+
+//Session-Cart
+
 module.exports = {
   User,
   Book,
   Review,
   Order,
-  OrderBook
+  OrderBook,
+  Cart
 }

@@ -19,6 +19,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
           <Icon name="search" />
           Search
         </Menu.Item>
+        <Menu.Item as={Link} name="shoppingcart" to="/cart">
+          <Icon name="shopping cart" />
+          My Cart
+        </Menu.Item>
         <Menu.Item as={Link} to={`/user/${user.id}/orders`}>
           Account
         </Menu.Item>
@@ -47,6 +51,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
         </Menu.Item>
         <Menu.Item as={Link} name="search" to="/search">
           Search
+        </Menu.Item>
+        <Menu.Item as={Link} name="shoppingcart" to="/cart">
+          <Icon name="shopping cart" />
+          My Cart
         </Menu.Item>
       </Menu.Menu>
     )}
