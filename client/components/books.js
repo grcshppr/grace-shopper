@@ -93,7 +93,6 @@ class Books extends Component {
                     {book.name}
                   </Item.Header>
                   <Item.Meta>by {book.author}</Item.Meta>
-                  {/* Book price is an integer in db, so we need to reformat it as a price */}
                   <Item.Meta>{prettyDollar(book.price)}</Item.Meta>
                   <Item.Description>
                     {book.description.slice(0, 200)}...
