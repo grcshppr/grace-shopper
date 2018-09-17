@@ -9,7 +9,8 @@ import {
   AdminPage,
   Books,
   DetailedBook,
-  Search
+  Search,
+  AllUsers
 } from './components'
 import {me} from './store'
 
@@ -37,6 +38,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={Books} />
             <Route path="/admin" component={AdminPage} />
+            <Route path="/users" component={AllUsers} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
