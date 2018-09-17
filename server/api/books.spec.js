@@ -85,7 +85,7 @@ describe('Book routes', () => {
     //TESTS FOR AUTHENTICATION NEED FIXING
     describe('AUTHENTICATION /api/books', async () => {
       const authenticatedUser = {
-        email: 'abby.wigdale@gmail.com',
+        email: 'tomasgnr@gmail.com',
         password: 'password'
       }
       const newBook = {
@@ -99,7 +99,7 @@ describe('Book routes', () => {
       const agent = request(app)
       before(() => {
         return agent
-          .post('/login')
+          .post('/auth/login')
           .send(authenticatedUser)
           .end()
       })

@@ -5,6 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import books from './books'
 import reviews from './reviews'
+import order from './orders'
 import allUsers from './allUsers'
 import {reducer as formReducer} from 'redux-form'
 
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   books,
   form: formReducer,
   reviews,
+  order,
   allUsers
 })
 const middleware = composeWithDevTools(

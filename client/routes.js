@@ -7,10 +7,15 @@ import {
   Signup,
   UserHome,
   AdminPage,
+  AdminHomePage,
+  AdminOrderPage,
+  AdminUserPage,
   Books,
   DetailedBook,
-  Search,
-  AllUsers
+  Orders,
+  UsersOrders,
+  UserOneOrder,
+  Search
 } from './components'
 import {me} from './store'
 
@@ -28,6 +33,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/browse" component={Books} />
@@ -36,9 +42,21 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route
+              exact
+              path="/user/:accountId/orders/"
+              component={UsersOrders}
+            />
+            <Route
+              exact
+              path="/user/:accountId/orders/:orderId"
+              component={UserOneOrder}
+            />
             <Route path="/home" component={Books} />
-            <Route path="/admin" component={AdminPage} />
-            <Route path="/users" component={AllUsers} />
+            <Route exact path="/admin" component={AdminHomePage} />
+            <Route path="/admin/editbooks" component={AdminPage} />
+            <Route path="/admin/orders" component={AdminOrderPage} />
+            <Route path="/admin/users" component={AdminUserPage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

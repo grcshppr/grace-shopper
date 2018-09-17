@@ -8,12 +8,22 @@ const Order = db.define('order', {
   },
   paidFor: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false,
+    defaultValue: false
   },
   status: {
     type: Sequelize.ENUM,
     values: ['created', 'processing', 'canceled', 'completed']
   },
+  totalPrice: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  }
+}, {
+  setterMethods:{
+    totalPrice: function(value) {
+      this.setDataValue('totalPrice', value)
+    }
+  }
 })
 
 module.exports = Order
