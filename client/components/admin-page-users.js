@@ -33,7 +33,7 @@ class AdminUserPage extends Component {
   render() {
     return (
       <Container>
-        <h3>All Users</h3>
+        <h3>Users</h3>
         {this.props.isFetching ? (
           <h1>Fetching</h1>
         ) : (
@@ -50,15 +50,7 @@ class AdminUserPage extends Component {
                     <Image size="tiny" src={user.imgUrl} />
                     {user.email} {user.isAdmin && ' (ADMIN)'}
                   </Header>
-                  {/* <Item>
-                    <Item.Image size="tiny" src={user.imgUrl} />
-                  </Item> */}
                 </Container>
-                // <Header.Content>
-                //   <Divider  />
-                //   Joined on {user.createdAt.slice(0, 10)}
-                // </Header.Content>
-                // {/* {user.isAdmin && Admin} */}
               )
             })
         )}

@@ -25,7 +25,7 @@ class AdminUserPage extends Component {
   render() {
     return (
       <Container>
-        <h3>All Users</h3>
+        <h3>Hello!</h3>
         {this.props.isFetching ? (
           <h1>Fetching</h1>
         ) : (
@@ -36,26 +36,16 @@ class AdminUserPage extends Component {
               else return 0
             })
             .map(user => {
-              console.log(user.imgUrl)
               return (
                 <Container>
                   <Item>
-                    <Item.Image size="tiny" src={user.imgUrl} />
+                    {/* <Item.Image key={user.id} size="tiny" src={user.imgUrl} /> */}
                     <Item.Header key={user.id} as="h3" attached="top" />
-                    <Item.Content>Content Content Content</Item.Content>
-                    {/* <Image size="tiny" src={user.imgUrl} /> */}
-                    {user.email} {user.isAdmin && ' (ADMIN)'}
-                    {/* </Header> */}
-                    {/* <Item>
-
-                  </Item> */}
+                    {user.email}
+                    <Item.Content>{user.isAdmin && '(ADMIN)'}</Item.Content>
                   </Item>
                 </Container>
-                // <Header.Content>
-                //   <Divider  />
                 //   Joined on {user.createdAt.slice(0, 10)}
-                // </Header.Content>
-                // {/* {user.isAdmin && Admin} */}
               )
             })
         )}
