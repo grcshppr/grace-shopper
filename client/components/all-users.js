@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Header, Image, Item, Container} from 'semantic-ui-react'
+import {Header, Image, Container} from 'semantic-ui-react'
 import {fetchAllUsersFromServer} from '../store/allUsers'
 import {withRouter} from 'react-router-dom'
 
@@ -38,14 +38,12 @@ class AdminUserPage extends Component {
             .map(user => {
               return (
                 <Container>
-                  <Item>
-                    {/* <Item.Image key={user.id} size="tiny" src={user.imgUrl} /> */}
-                    <Item.Header key={user.id} as="h3" attached="top" />
+                  <Header key={user.id} as="h3" attached="top">
+                    <Header.Image key={user.id} size="tiny" src={user.imgUrl} />
                     {user.email}
-                    <Item.Content>{user.isAdmin && '(ADMIN)'}</Item.Content>
-                  </Item>
+                    {user.isAdmin && '(ADMIN)'}
+                  </Header>
                 </Container>
-                //   Joined on {user.createdAt.slice(0, 10)}
               )
             })
         )}
