@@ -62,7 +62,7 @@ class UserOneOrder extends Component {
                   <Item.Content>
                     <Item.Header as={Link} to={`/book/${product.book.id}`}>
                       {product.quantity > 1
-                        ? product.quantity + ' of ' + product.book.name
+                        ? product.quantity + 'x' + product.book.name
                         : product.book.name}
                     </Item.Header>
                     <Item.Meta content={prettyDollar(product.price)} />

@@ -1,14 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-  Header,
-  GridColumn,
-  Image,
-  Item,
-  Container,
-  Button,
-  Divider
-} from 'semantic-ui-react'
+import {Header, Image, Container} from 'semantic-ui-react'
 import {fetchAllUsersFromServer} from '../store/allUsers'
 import {withRouter} from 'react-router-dom'
 

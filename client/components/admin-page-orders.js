@@ -5,7 +5,6 @@ import {
   Loader,
   Image,
   Item,
-  Header,
   Container,
   Divider
 } from 'semantic-ui-react'
@@ -57,15 +56,14 @@ class AdminOrderPage extends Component {
           <Dimmer active>
             <Loader>Loading</Loader>
           </Dimmer>
-
           <Image src="/img/book" />
         </Segment>
       )
     } else {
       return (
         <Container>
-          <h1>view all orders here:</h1>
-          <h5>filter order by status:</h5>
+          <h1>View all orders here:</h1>
+          <h5>Filter order by status:</h5>
           <select onChange={this.handleFilter}>
             <option value="all">all</option>
             <option value="created">created</option>
@@ -73,20 +71,21 @@ class AdminOrderPage extends Component {
             <option value="canceled">canceled</option>
             <option value="completed">completed</option>
           </select>
-          <Item.Group link>
+          <Item.Group>
             {orders.map(order => {
               return (
                 <Item key={order.id}>
-                  <Item.Image size="tiny" src={order.imgUrl} />
-                  <Item.Content>
-                    <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
-                    <Item.Meta content={'Placed by: ' + order.user.email} />
-                    <Item.Meta content={'Status: ' + order.status} />
-                    <Item.Description>
-                      Total {prettyDollar(order.totalPrice)}
-                      <Divider />
-                    </Item.Description>
-                  </Item.Content>
+                  <Link to={`/admin/orders/${order.id}`}>
+                    <Item.Content>
+                      <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
+                      <Item.Meta content={'Placed by: ' + order.user.email} />
+                      <Item.Meta content={'Status: ' + order.status} />
+                      <Item.Description>
+                        Total {prettyDollar(order.totalPrice)}
+                        <Divider />
+                      </Item.Description>
+                    </Item.Content>
+                  </Link>
                 </Item>
               )
             })}

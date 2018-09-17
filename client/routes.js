@@ -9,6 +9,7 @@ import {
   AdminPage,
   AdminHomePage,
   AdminOrderPage,
+  AdminOrderDetailsPage,
   AdminUserPage,
   Books,
   DetailedBook,
@@ -55,7 +56,11 @@ class Routes extends Component {
             <Route path="/home" component={Books} />
             <Route exact path="/admin" component={AdminHomePage} />
             <Route path="/admin/editbooks" component={AdminPage} />
-            <Route path="/admin/orders" component={AdminOrderPage} />
+            <Route exact path="/admin/orders" component={AdminOrderPage} />
+            <Route
+              path="/admin/orders/:orderId"
+              component={AdminOrderDetailsPage}
+            />
             <Route path="/admin/users" component={AdminUserPage} />
           </Switch>
         )}

@@ -19,7 +19,8 @@ router.get('/:orderId', async (req, res, next) => {
     const orderContents = await OrderBook.findAll({
       where: {
         orderId: req.params.orderId
-      }
+      },
+      include: [{model: Order, include: [User]}]
     })
     res.status(200).json(orderContents)
   } catch (error) {
@@ -45,7 +46,7 @@ router.get('/:userId/orders', async (req, res, next) => {
 router.get('/:orderId/orders/:userId', async (req, res, next) => {
   try {
     const userOrder = await Order.findById(req.params.orderId, {
-      include: [{model: OrderBook, include: [Book]}]
+      include: [{model: User}, {model: OrderBook, include: [Book]}]
     })
     res.status(200).json(userOrder)
   } catch (error) {
