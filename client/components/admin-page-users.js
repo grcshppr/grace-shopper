@@ -23,8 +23,8 @@ class AdminUserPage extends Component {
   }
 
   render() {
-    const admins = this.props.users.filter(user => !user.isAdmin)
-    const users = this.props.users.filter(user => user.isAdmin)
+    const admins = this.props.users.filter(user => user.isAdmin)
+    const users = this.props.users.filter(user => !user.isAdmin)
 
     return (
       <Container>
@@ -47,7 +47,7 @@ class AdminUserPage extends Component {
               <Container>
                 <Header key={user.id} as="h3" attached="top">
                   <Image size="tiny" src={user.imgUrl} />
-                  {user.email} {user.isAdmin && ' (ADMIN)'}
+                  {user.email} {user.isAdmin}
                 </Header>
               </Container>
             )

@@ -150,7 +150,10 @@ class SplitForm extends Component {
     }
   }
   render() {
-    if (!this.props.orderInformation.fullName) {
+    if (
+      !this.props.orderInformation.fullName ||
+      !this.props.orderInformation.email
+    ) {
       return <h1>Fill Out Order Details Before Checkout!</h1>
     }
     if (this.state.completed && this.state.user) {
