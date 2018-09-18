@@ -88,7 +88,9 @@ class Cart extends Component {
               <Item key={item.id}>
                 <Item.Image src={item.imgUrl} size="small" />
                 <Item.Content>
-                  <Item.Header>{item.name}</Item.Header>
+                  <Item.Header as={Link} to={`book/${item.id}`}>
+                    {item.name}
+                  </Item.Header>
                   <Button
                     key={item.id}
                     onClick={() => this.handleRemove(item.id)}
