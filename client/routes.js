@@ -37,7 +37,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-
+        <Route exact path="/" component={Books} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/browse" component={Books} />
@@ -59,7 +59,9 @@ class Routes extends Component {
               path="/user/:accountId/orders/:orderId"
               component={UserOneOrder}
             />
+            <Route exact path="/" component={Books} />
             <Route path="/home" component={Books} />
+
             <Route exact path="/admin" component={AdminHomePage} />
             <Route path="/admin/editbooks" component={AdminPage} />
             <Route exact path="/admin/orders" component={AdminOrderPage} />
