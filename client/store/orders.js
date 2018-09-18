@@ -10,13 +10,10 @@ export const REQUEST_ONE_ORDER = 'REQUEST_ONE_ORDER'
 export const GOT_ONE_ORDER = 'GOT_ONE_ORDER'
 export const REQUEST_ALL_ORDERS = 'REQUEST_ALL_ORDERS'
 export const GOT_ALL_ORDERS = 'GOT_ALL_ORDERS'
-<<<<<<< HEAD
 export const UPDATED_ORDER = 'UPDATED_ORDER'
 export const REQUEST_UPDATE_ORDER = 'REQUEST_UPDATE_ORDER'
-=======
 export const GOT_ORDER_INFORMATION = 'GOT_ORDER_INFORMATION'
 
->>>>>>> master
 /**
  * ACTION CREATORS
  */
@@ -108,7 +105,6 @@ export const fetchAllOrders = () => {
   }
 }
 
-<<<<<<< HEAD
 export const updateOrder = (orderId, newOrderStatus) => {
   return async dispatch => {
     try {
@@ -120,12 +116,12 @@ export const updateOrder = (orderId, newOrderStatus) => {
     } catch (error) {
       console.error(error)
     }
-=======
+  }
+}
 export const gotOrderInformation = orderInfo => {
   return {
     type: GOT_ORDER_INFORMATION,
     orderInfo
->>>>>>> master
   }
 }
 
