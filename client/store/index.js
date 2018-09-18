@@ -8,10 +8,12 @@ import reviews from './reviews'
 import order from './orders'
 import allUsers from './allUsers'
 import {reducer as formReducer} from 'redux-form'
+import cart from './cart'
 
 const reducer = combineReducers({
   user,
   books,
+  cart,
   form: formReducer,
   reviews,
   order,

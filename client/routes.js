@@ -13,6 +13,7 @@ import {
   AdminUserPage,
   Books,
   DetailedBook,
+  Cart,
   Orders,
   UsersOrders,
   UserOneOrder,
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/browse" component={Books} />
         <Route exact path="/book/:id" component={DetailedBook} />
+        <Route path="/cart" component={Cart} />
         <Route path="/search" component={Search} />
         {isLoggedIn && (
           <Switch>

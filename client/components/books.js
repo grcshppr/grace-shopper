@@ -2,13 +2,27 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {prettyDollar} from '../utils'
-import {Container, Button, Divider, Item} from 'semantic-ui-react'
+import {createNewCartItem, addItemToCart} from '../store/cart'
+import {
+  Dropdown,
+  Image,
+  Container,
+  Button,
+  Divider,
+  Item
+} from 'semantic-ui-react'
+
+const mapDispatchToProps = dispatch => ({
+  createNewCartItem: bookId => dispatch(createNewCartItem(bookId)),
+  addItemToCart: book => dispatch(addItemToCart(book))
+})
 
 const mapStateToProps = state => {
   return {
     list: state.books.list,
     genres: state.books.genres,
-    isFetching: state.books.isFetching
+    isFetching: state.books.isFetching,
+    user: state.user
   }
 }
 
@@ -24,6 +38,17 @@ class Books extends Component {
     this.setState({
       selectedGenre: event.target.value
     })
+  }
+
+  handleCart = event => {
+    if (this.props.user.id) {
+      this.props.createNewCartItem({id: event.target.value})
+    } else {
+      const cartBook = this.props.list.find(
+        book => book.id == event.target.value
+      )
+      this.props.addItemToCart(cartBook)
+    }
   }
 
   render() {
@@ -44,6 +69,7 @@ class Books extends Component {
     if (isFetching) {
       return <h1>Loading</h1>
     }
+
     return (
       <Container>
         <h4>Filter:</h4>
@@ -64,7 +90,6 @@ class Books extends Component {
               <Item key={book.id}>
                 <Item.Image src={book.imgUrl} size="small" />
                 <Item.Content>
-                  <Button icon="shop" floated="right" />
                   <Item.Header as={Link} to={`book/${book.id}`}>
                     {book.name}
                   </Item.Header>
@@ -73,6 +98,9 @@ class Books extends Component {
                   <Item.Description>
                     {book.description.slice(0, 200)}...
                   </Item.Description>
+                  <button value={book.id} onClick={this.handleCart}>
+                    add to cart
+                  </button>
                 </Item.Content>
               </Item>
             )
@@ -83,4 +111,4 @@ class Books extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Books)
+export default connect(mapStateToProps, mapDispatchToProps)(Books)
