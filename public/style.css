@@ -2,7 +2,14 @@
   margin: 20px;
 }
 
-.navbar {
-  background: rgb(138, 137, 137, 0.5);
-  height: 7vh;
+select {
+  width: 50vw;
+  height: 4vh;
+  border: 1px gray;
+  outline: none;
+}
+
+.imgdiv {
+  object-fit: fill;
+  height: 10vh;
 }
