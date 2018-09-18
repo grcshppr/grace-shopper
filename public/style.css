@@ -2,10 +2,12 @@
   background: #dfddd59d;
   width: 95vw !important;
   padding: 30px;
+  margin: 10px;
 }
 
 .container {
-  margin: 10px;
+  margin: 20px;
+  width: 90vw !important;
 }
 
 select {
@@ -14,12 +16,6 @@ select {
   border: 1px gray;
   outline: none;
 }
-
-/* .mainHeader {
-  background: #dfddd59d;
-  width: 100vw;
-  padding: 30px;
-} */
 
 h1 {
   font: 600 1.75em/1 'Raleway', sans-serif !important;

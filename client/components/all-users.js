@@ -39,7 +39,11 @@ class AdminUserPage extends Component {
               return (
                 <Container>
                   <Header key={user.id} as="h3" attached="top">
-                    <Header.Image key={user.id} size="tiny" src={user.imgUrl} />
+                    <Header.Image
+                      key={user.id}
+                      size="tiny"
+                      src={`/${user.imgUrl}`}
+                    />
                     {user.email}
                     {user.isAdmin && '(ADMIN)'}
                   </Header>

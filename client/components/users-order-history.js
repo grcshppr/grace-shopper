@@ -51,6 +51,7 @@ class UsersOrders extends Component {
               ? list[0].user.firstName + '!'
               : '!'}
           </Header>
+          <Header as="h3">Order History:</Header>
           <Item.Group link>
             {list.map(order => {
               return (
@@ -67,7 +68,7 @@ class UsersOrders extends Component {
                     <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
                     <Item.Meta content={'Status: ' + order.status} />
                     <Item.Description>
-                      Total {prettyDollar(order.totalPrice)}
+                      Total: {prettyDollar(order.totalPrice)}
                     </Item.Description>
                   </Item.Content>
                 </Item>
