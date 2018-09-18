@@ -2,14 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Field, reduxForm} from 'redux-form'
 import {createBook, fetchAllBooksFromServer, editBook} from '../store/books'
-import {Form, Container} from 'semantic-ui-react'
+import {Form, Container, Button, Divider} from 'semantic-ui-react'
 
 class AdminPage extends Component {
   componentDidMount() {
     this.props.fetchAllBooksFromServer()
   }
-  handleSubmit(event) {
-    event.preventDefault()
+  handleSubmit() {
     if (this.props.adminForm.values.id) {
       this.props.editBook(this.props.adminForm.values)
     } else {
@@ -28,10 +27,10 @@ class AdminPage extends Component {
     const books = this.props.list
     const isFetching = this.props.isFetching
     if (isFetching) {
-      return <h1>Loading</h1>
+      return <h3>Loading</h3>
     }
     if (!this.props.user.isAdmin)
-      return <h1>sorry can't access this page :( ADMINS ONLY</h1>
+      return <h3>sorry can't access this page :( ADMINS ONLY</h3>
     return (
       <Container>
         <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -52,59 +51,58 @@ class AdminPage extends Component {
               ))}
             </select>
           </div>
-          <h6>Name:</h6>
+          <h5>Name:</h5>
           <Field
             name="name"
             component="input"
             type="text"
             placeholder="Title"
           />
-          <h6>Genres:</h6>
+          <h5>Genres:</h5>
           <Field
             name="genres"
             component="input"
             type="text"
             placeholder="Genres"
           />
-          <h6>Author:</h6>
+          <h5>Author:</h5>
           <Field
             name="author"
             component="input"
             type="text"
             placeholder="Author"
           />
-          <h6>Price:</h6>
+          <h5>Price:</h5>
           <Field
             name="price"
             component="input"
             type="number"
             placeholder="Price"
           />
-          <h6>Quantity:</h6>
+          <h5>Quantity:</h5>
           <Field
             name="quantity"
             component="input"
             type="number"
             placeholder="Quantity"
           />
-          <h6>Availibility:</h6>
+          <h5>Availibility:</h5>
           <Field name="availability" component="input" type="checkbox" />
-          <h6>Edition Type:</h6>
+          <h5>Edition Type:</h5>
           <Field name="editionType" component="select">
             <option />
             <option>hardcover</option>
             <option>paperback</option>
           </Field>
-          <h6>Description:</h6>
+          <h5>Description:</h5>
           <Field
             name="description"
             component="textarea"
             type="text"
             placeholder="Description"
           />
-          <button type="submit" label="submit">
-            Submit
-          </button>
+          <Divider hidden />
+          <Button onClick={() => this.handleSubmit()}>Submit</Button>
         </Form>
       </Container>
     )

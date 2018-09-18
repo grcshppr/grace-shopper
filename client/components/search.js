@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {prettyDollar} from '../utils'
 import {
   Grid,
   GridColumn,
@@ -8,7 +9,8 @@ import {
   Container,
   Divider,
   Button,
-  Form
+  Form,
+  Item
 } from 'semantic-ui-react'
 
 const mapStateToProps = state => {
@@ -60,7 +62,9 @@ class Search extends Component {
           />
           <Divider hidden />
           <span>
-            <Button type="submit">Search</Button>
+            <Button basic type="submit">
+              Search
+            </Button>
           </span>
         </Form>
         {/* If you submit a search, component below renders*/}
@@ -70,28 +74,33 @@ class Search extends Component {
             <Container>
               <p>Results for '{this.state.searchText}':</p>
               {/* I'll make a separate React component for a single book soon */}
-              <Grid relaxed="very" text-align="left" centered>
+              <Item.Group divided>
                 {filteredBooks.map(book => {
                   return (
-                    <GridColumn key={book.id} width={4} className="container">
-                      <Container>
-                        <Link to={`book/${book.id}`}>{book.name}</Link>
-                        <p>by {book.author}</p>
-                        {/* Book price is an integer in db, so we need to reformat it as a price */}
-                        <p>
-                          ${`${book.price
-                            .toString()
-                            .slice(0, -2)}.${book.price.toString().slice(-2)}`}
-                        </p>
-                        <p>{book.editionType}</p>
-                        <Image src={book.imgUrl} />
-                        <Button icon="shop" />
-                      </Container>
-                      <Divider hidden />
-                    </GridColumn>
+                    <Item key={book.id}>
+                      <Item.Image src={book.imgUrl} size="small" />
+                      <Item.Content>
+                        <Item.Header as={Link} to={`book/${book.id}`}>
+                          {book.name}
+                        </Item.Header>
+                        <Button
+                          onClick={() => this.handleCart(book.id)}
+                          icon="add to cart"
+                          floated="right"
+                          size="small"
+                          basic
+                          content="Add to Cart"
+                        />
+                        <Item.Meta>by {book.author}</Item.Meta>
+                        <Item.Meta>{prettyDollar(book.price)}</Item.Meta>
+                        <Item.Description>
+                          {book.description.slice(0, 200)}...
+                        </Item.Description>
+                      </Item.Content>
+                    </Item>
                   )
                 })}
-              </Grid>
+              </Item.Group>
             </Container>
           ) : (
             //If no books to display...

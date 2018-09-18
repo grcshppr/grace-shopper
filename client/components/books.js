@@ -42,11 +42,9 @@ class Books extends Component {
 
   handleCart = event => {
     if (this.props.user.id) {
-      this.props.createNewCartItem({id: event.target.value})
+      this.props.createNewCartItem({id: event})
     } else {
-      const cartBook = this.props.list.find(
-        book => book.id == event.target.value
-      )
+      const cartBook = this.props.list.find(book => book.id == event)
       this.props.addItemToCart(cartBook)
     }
   }
@@ -67,11 +65,14 @@ class Books extends Component {
 
     const isFetching = this.props.isFetching
     if (isFetching) {
-      return <h1>Loading</h1>
+      return <h3>Loading</h3>
     }
 
     return (
       <Container>
+        {/* <div className="imgdiv">
+          <img src="/img/books2.jpg" />
+        </div> */}
         <h4>Filter:</h4>
         <select onChange={this.handleFilter}>
           <option value="all">All</option>
@@ -93,14 +94,19 @@ class Books extends Component {
                   <Item.Header as={Link} to={`book/${book.id}`}>
                     {book.name}
                   </Item.Header>
+                  <Button
+                    onClick={() => this.handleCart(book.id)}
+                    icon="add to cart"
+                    floated="right"
+                    size="small"
+                    basic
+                    content="Add to Cart"
+                  />
                   <Item.Meta>by {book.author}</Item.Meta>
                   <Item.Meta>{prettyDollar(book.price)}</Item.Meta>
                   <Item.Description>
                     {book.description.slice(0, 200)}...
                   </Item.Description>
-                  <button value={book.id} onClick={this.handleCart}>
-                    add to cart
-                  </button>
                 </Item.Content>
               </Item>
             )

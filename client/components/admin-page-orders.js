@@ -5,7 +5,6 @@ import {
   Loader,
   Image,
   Item,
-  Header,
   Container,
   Divider
 } from 'semantic-ui-react'
@@ -45,7 +44,7 @@ class AdminOrderPage extends Component {
     const isFetching = this.props.isFetching
 
     if (!this.props.user.isAdmin)
-      return <h1>sorry can't access this page :( ADMINS ONLY</h1>
+      return <h3>sorry can't access this page :( ADMINS ONLY</h3>
     if (this.state.selectedStatus !== 'all') {
       orders = orders.filter(
         order => order.status === this.state.selectedStatus
@@ -64,8 +63,8 @@ class AdminOrderPage extends Component {
     } else {
       return (
         <Container>
-          <h1>view all orders here:</h1>
-          <h5>filter order by status:</h5>
+          <h1>View all orders here:</h1>
+          <h5>Filter orders by status:</h5>
           <select onChange={this.handleFilter}>
             <option value="all">all</option>
             <option value="created">created</option>
@@ -73,20 +72,21 @@ class AdminOrderPage extends Component {
             <option value="canceled">canceled</option>
             <option value="completed">completed</option>
           </select>
-          <Item.Group link>
+          <Item.Group>
             {orders.map(order => {
               return (
                 <Item key={order.id}>
-                  <Item.Image size="tiny" src={order.imgUrl} />
-                  <Item.Content>
+                  <Link to={`/admin/orders/${order.id}`}>
+                    <Item.Image size="tiny" src={order.imgUrl} />
+
                     <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
-                    <Item.Meta content={'Placed by: ' + order.user.email} />
+                    <Item.Meta content={'By: ' + order.user.email} />
                     <Item.Meta content={'Status: ' + order.status} />
-                    <Item.Description>
-                      Total {prettyDollar(order.totalPrice)}
-                      <Divider />
-                    </Item.Description>
-                  </Item.Content>
+                    <Item.Meta
+                      content={`Total: ${prettyDollar(order.totalPrice)}`}
+                    />
+                    <Divider />
+                  </Link>
                 </Item>
               )
             })}

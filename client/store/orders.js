@@ -10,6 +10,8 @@ export const REQUEST_ONE_ORDER = 'REQUEST_ONE_ORDER'
 export const GOT_ONE_ORDER = 'GOT_ONE_ORDER'
 export const REQUEST_ALL_ORDERS = 'REQUEST_ALL_ORDERS'
 export const GOT_ALL_ORDERS = 'GOT_ALL_ORDERS'
+export const UPDATED_ORDER = 'UPDATED_ORDER'
+export const REQUEST_UPDATE_ORDER = 'REQUEST_UPDATE_ORDER'
 export const GOT_ORDER_INFORMATION = 'GOT_ORDER_INFORMATION'
 
 /**
@@ -49,6 +51,15 @@ const sendAllOrders = list => ({
 
 const requestAllOrders = () => ({
   type: REQUEST_ALL_ORDERS
+})
+
+const requestUpdateOrder = () => ({
+  type: REQUEST_UPDATE_ORDER
+})
+
+const updatedOrder = order => ({
+  type: UPDATED_ORDER,
+  order
 })
 /**
  * THUNK CREATORS
@@ -94,6 +105,19 @@ export const fetchAllOrders = () => {
   }
 }
 
+export const updateOrder = (orderId, newOrderStatus) => {
+  return async dispatch => {
+    try {
+      dispatch(requestUpdateOrder())
+      const response = await axios.put(`/api/orders/update/${orderId}`, {
+        status: newOrderStatus
+      })
+      dispatch(updatedOrder(response.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 export const gotOrderInformation = orderInfo => {
   return {
     type: GOT_ORDER_INFORMATION,
@@ -141,6 +165,10 @@ const orderReducer = (state = initialState, action) => {
     case GOT_ALL_ORDERS:
       return {...state, allOrders: action.list, allOrdersAreFetching: false}
     case REQUEST_ALL_ORDERS:
+      return {...state, allOrdersAreFetching: true}
+    case UPDATED_ORDER:
+      return {...state, oneOrder: action.order, allOrdersAreFetching: false}
+    case REQUEST_UPDATE_ORDER:
       return {...state, allOrdersAreFetching: true}
     case GOT_ORDER_INFORMATION:
       return {...state, orderInformation: action.orderInfo}
