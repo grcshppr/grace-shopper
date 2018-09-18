@@ -1,25 +1,29 @@
-import React, {Component} from 'react';
-import {CardElement, injectStripe} from 'react-stripe-elements';
+import React, {Component} from 'react'
+import {CheckOutForm} from './index'
+import {Elements, StripeProvider} from 'react-stripe-elements'
 
-class CheckoutForm extends Component {
-  constructor(props) {
-    super(props);
-    this.submit = this.submit.bind(this);
-  }
-
-  async submit(ev) {
-    // User clicked submit
-  }
-
-  render() {
-    return (
-      <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
-        <CardElement />
-        <button onClick={this.submit}>Send</button>
-      </div>
-    );
+const cssStyling = {
+  checkout: {
+    margin: '0 auto',
+    maxWidth: '800px',
+    boxSizing: 'border-box',
+    padding: '0 5px'
   }
 }
 
-export default injectStripe(CheckoutForm);
+class CheckOut extends Component {
+  render() {
+    return (
+      <StripeProvider apiKey={process.env.STRIPE_PUBLISHABLE_KEY}>
+        <div styling={cssStyling.checkout} className="example">
+          <h1>Checkout Page</h1>
+          <Elements>
+            <CheckOutForm />
+          </Elements>
+        </div>
+      </StripeProvider>
+    )
+  }
+}
+
+export default CheckOut
