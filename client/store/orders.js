@@ -10,6 +10,7 @@ export const REQUEST_ONE_ORDER = 'REQUEST_ONE_ORDER'
 export const GOT_ONE_ORDER = 'GOT_ONE_ORDER'
 export const REQUEST_ALL_ORDERS = 'REQUEST_ALL_ORDERS'
 export const GOT_ALL_ORDERS = 'GOT_ALL_ORDERS'
+export const GOT_ORDER_INFORMATION = 'GOT_ORDER_INFORMATION'
 
 /**
  * ACTION CREATORS
@@ -93,6 +94,13 @@ export const fetchAllOrders = () => {
   }
 }
 
+export const gotOrderInformation = orderInfo => {
+  return {
+    type: GOT_ORDER_INFORMATION,
+    orderInfo
+  }
+}
+
 /**
  * INITIAL STATE
  */
@@ -102,7 +110,8 @@ const initialState = {
   oneOrder: [],
   allOrdersAreFetching: true,
   oneOrderIsFetching: true,
-  allOrders: []
+  allOrders: [],
+  orderInformation: {}
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -133,6 +142,8 @@ const orderReducer = (state = initialState, action) => {
       return {...state, allOrders: action.list, allOrdersAreFetching: false}
     case REQUEST_ALL_ORDERS:
       return {...state, allOrdersAreFetching: true}
+    case GOT_ORDER_INFORMATION:
+      return {...state, orderInformation: action.orderInfo}
     default:
       return state
   }

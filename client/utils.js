@@ -27,7 +27,7 @@ export const prettyDate = aDate => {
   }
   const startMonth = aDate.slice(5, 7)
   if (startMonth.slice(0, 1) === '0') {
-    monthIndex = Number(startMonth.slice(1))
+    monthIndex = Number(startMonth.slice(1)) - 1
   }
   const year = aDate.slice(0, 4)
 

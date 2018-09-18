@@ -1,15 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import {
-  Grid,
-  GridColumn,
-  Image,
-  Container,
-  Item,
-  Button,
-  Icon
-} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import {Container, Item, Button, Icon} from 'semantic-ui-react'
 import {prettyDollar} from '../utils'
 import {
   fetchCartItems,
@@ -122,7 +114,9 @@ class Cart extends Component {
             )
           })}
         </Item.Group>
-        <Button floated="right">Checkout</Button>
+        <Button basic color="black" floated="right" as={Link} to="/checkout">
+          Checkout
+        </Button>
       </Container>
     )
   }
