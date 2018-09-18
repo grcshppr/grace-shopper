@@ -56,6 +56,7 @@ class AdminOrderPage extends Component {
           <Dimmer active>
             <Loader>Loading</Loader>
           </Dimmer>
+
           <Image src="/img/book" />
         </Segment>
       )
@@ -76,15 +77,15 @@ class AdminOrderPage extends Component {
               return (
                 <Item key={order.id}>
                   <Link to={`/admin/orders/${order.id}`}>
-                    <Item.Content>
-                      <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
-                      <Item.Meta content={'Placed by: ' + order.user.email} />
-                      <Item.Meta content={'Status: ' + order.status} />
-                      <Item.Description>
-                        Total {prettyDollar(order.totalPrice)}
-                        <Divider />
-                      </Item.Description>
-                    </Item.Content>
+                    <Item.Image size="tiny" src={order.imgUrl} />
+
+                    <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
+                    <Item.Meta content={'Placed by: ' + order.user.email} />
+                    <Item.Meta content={'Status: ' + order.status} />
+                    <Item.Meta
+                      content={`Total: ${prettyDollar(order.totalPrice)}`}
+                    />
+                    <Divider />
                   </Link>
                 </Item>
               )
