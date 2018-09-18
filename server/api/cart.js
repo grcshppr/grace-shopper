@@ -57,19 +57,15 @@ router.post('/', async (req, res, next) => {
 //PUT route to decrease the cart quantity
 router.put('/decrease/:bookId', async (req, res, next) => {
   try {
-    if (!req.user) {
-      res.status(200).json(req.params.bookId)
-    } else {
-      const [{dataValues}, value] = await Cart.findAll({
-        where: {userId: req.user.id, bookId: req.params.bookId}
-      })
-      const newCartQuantity = dataValues.cartQuantity - 1
-      await Cart.update(
-        {cartQuantity: newCartQuantity},
-        {where: {id: dataValues.id}}
-      )
-      res.status(200).json(req.params.bookId)
-    }
+    const [{dataValues}, value] = await Cart.findAll({
+      where: {userId: req.user.id, bookId: req.params.bookId}
+    })
+    const newCartQuantity = dataValues.cartQuantity - 1
+    await Cart.update(
+      {cartQuantity: newCartQuantity},
+      {where: {id: dataValues.id}}
+    )
+    res.status(200).json(req.params.bookId)
   } catch (err) {
     next(err)
   }
@@ -78,19 +74,15 @@ router.put('/decrease/:bookId', async (req, res, next) => {
 //PUT route to increase the cart quantity
 router.put('/increase/:bookId', async (req, res, next) => {
   try {
-    if (!req.user) {
-      res.status(200).json(req.params.bookId)
-    } else {
-      const [{dataValues}, value] = await Cart.findAll({
-        where: {userId: req.user.id, bookId: req.params.bookId}
-      })
-      const newCartQuantity = dataValues.cartQuantity + 1
-      await Cart.update(
-        {cartQuantity: newCartQuantity},
-        {where: {id: dataValues.id}}
-      )
-      res.status(200).json(req.params.bookId)
-    }
+    const [{dataValues}, value] = await Cart.findAll({
+      where: {userId: req.user.id, bookId: req.params.bookId}
+    })
+    const newCartQuantity = dataValues.cartQuantity + 1
+    await Cart.update(
+      {cartQuantity: newCartQuantity},
+      {where: {id: dataValues.id}}
+    )
+    res.status(200).json(req.params.bookId)
   } catch (err) {
     next(err)
   }

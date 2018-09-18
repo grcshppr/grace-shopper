@@ -40,14 +40,15 @@ class Books extends Component {
     })
   }
 
-  handleCartUser = event => {
-    this.props.createNewCartItem({id: event.target.value})
-  }
-  handleCartGuest = event => {
-    const cartBook = this.props.list.filter(
-      book => book.id == event.target.value
-    )
-    this.props.addItemToCart(cartBook[0])
+  handleCart = event => {
+    if (this.props.userId) {
+      this.props.createNewCartItem({id: event.target.value})
+    } else {
+      const cartBook = this.props.list.find(
+        book => book.id == event.target.value
+      )
+      this.props.addItemToCart(cartBook)
+    }
   }
 
   render() {
@@ -97,15 +98,9 @@ class Books extends Component {
                   <Item.Description>
                     {book.description.slice(0, 200)}...
                   </Item.Description>
-                  {this.props.user.id ? (
-                    <button value={book.id} onClick={this.handleCartUser}>
-                      add to cart
-                    </button>
-                  ) : (
-                    <button value={book.id} onClick={this.handleCartGuest}>
-                      add to cart
-                    </button>
-                  )}
+                  <button value={book.id} onClick={this.handleCart}>
+                    add to cart
+                  </button>
                 </Item.Content>
               </Item>
             )

@@ -16,7 +16,9 @@ import {
   removeItemFromCart,
   gotCartItems,
   decreaseCartQuantityServer,
-  increaseCartQuantityServer
+  increaseCartQuantityServer,
+  decreaseCartQuantity,
+  increaseCartQuantity
 } from '../store/cart'
 import {me} from '../store/user'
 
@@ -48,12 +50,19 @@ class Cart extends Component {
   }
 
   removeQuantity = event => {
-    this.props.decreaseCartQuantityServer(event.target.value)
+    if (this.props.user.id) {
+      this.props.decreaseCartQuantityServer(event.target.value)
+    } else {
+      this.props.decreaseCartQuantity(event.target.value)
+    }
   }
 
   addQuantity = event => {
-    console.log('am i getting here')
-    this.props.increaseCartQuantityServer(event.target.value)
+    if (this.props.user.id) {
+      this.props.increaseCartQuantityServer(event.target.value)
+    } else {
+      this.props.increaseCartQuantity(event.target.value)
+    }
   }
 
   render() {
@@ -118,7 +127,9 @@ const mapDispatchToProps = dispatch => {
     decreaseCartQuantityServer: bookId =>
       dispatch(decreaseCartQuantityServer(bookId)),
     increaseCartQuantityServer: bookId =>
-      dispatch(increaseCartQuantityServer(bookId))
+      dispatch(increaseCartQuantityServer(bookId)),
+    decreaseCartQuantity: bookId => dispatch(decreaseCartQuantity(bookId)),
+    increaseCartQuantity: bookId => dispatch(increaseCartQuantity(bookId))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
