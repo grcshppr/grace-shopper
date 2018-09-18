@@ -29,9 +29,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
         <Menu.Item href="#" onClick={handleClick}>
           Logout
         </Menu.Item>
-        <Menu.Item as={Link} name="checkout" to="/checkout">
-          Checkout
-        </Menu.Item>
 
         {user.isAdmin && (
           <Menu.Item as={Link} name="admin" to="/admin">

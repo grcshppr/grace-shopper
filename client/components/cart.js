@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {
-  Grid,
-  GridColumn,
-  Image,
   Container,
   Item,
   Button
@@ -112,7 +109,9 @@ class Cart extends Component {
             )
           })}
         </Item.Group>
-        <Button>Checkout</Button>
+        <Button as={Link} to="/checkout">
+          Checkout
+        </Button>
       </Container>
     )
   }

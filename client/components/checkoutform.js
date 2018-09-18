@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {clearCart} from '../store/cart'
+import {Link} from 'react-router-dom'
 import {
   CardNumberElement,
   CardExpiryElement,
@@ -8,6 +10,7 @@ import {
   PostalCodeElement,
   injectStripe
 } from 'react-stripe-elements'
+import {Header, Icon, Button} from 'semantic-ui-react'
 
 const handleBlur = () => {
   console.log('[blur]')
@@ -90,17 +93,31 @@ const cssStyling = {
 }
 
 const mapStateToProps = state => ({
-  orderInformation: state.order.orderInformation
+  orderInformation: state.order.orderInformation,
+  cart: state.cart,
+  user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  clearCart: cart => dispatch(clearCart(cart))
 })
 
 class SplitForm extends Component {
+  constructor() {
+    super()
+    this.state = {
+      completed: false,
+      user: false,
+      orderNumber: 0,
+      email: ''
+    }
+  }
   handleSubmit = async ev => {
     const orderInformation = this.props.orderInformation
     ev.preventDefault()
     let {token} = await this.props.stripe.createToken({
       name: orderInformation.fullName
     })
-    console.log('HERE IS A TOKEN', token)
     let response = await axios.post('/charge', {
       headers: {'Content-Type': 'text/plain'},
       token: token.id,
@@ -109,20 +126,73 @@ class SplitForm extends Component {
       city: orderInformation.city,
       zipcode: orderInformation.zipCode,
       name: orderInformation.fullName,
-      email: orderInformation.email
+      email: orderInformation.email,
+      userId: this.props.user.id,
+      cart: this.props.cart
     })
-    console.log('here is the response', response)
-    if (this.props.stripe) {
-      this.props.stripe
-        .createToken()
-        .then(payload => console.log('[token]', payload))
-    } else {
-      console.log("Stripe.js hasn't loaded yet.")
+    if (response.data.status === 'succeeded') {
+      const clearedCart = []
+      this.props.clearCart(clearedCart)
+      if (this.props.user.id) {
+        this.setState({
+          completed: true,
+          user: true,
+          orderNumber: response.data.newOrderId,
+          email: response.data.email
+        })
+      } else {
+        this.setState({
+          completed: true,
+          orderNumber: response.data.newOrderId,
+          email: response.data.email
+        })
+      }
     }
   }
   render() {
     if (!this.props.orderInformation.fullName) {
       return <h1>Fill Out Order Details Before Checkout!</h1>
+    }
+    if (this.state.completed && this.state.user) {
+      return (
+        <div>
+          <Header as="h2" attached="top" icon>
+            <Icon name="check circle" color="green" />
+            You're All Set!!
+            <Header.Subheader>
+              {' '}
+              Order Number: {this.state.orderNumber}
+            </Header.Subheader>
+            <Header.Subheader>
+              Order details have been sent to {this.state.email}
+            </Header.Subheader>
+          </Header>
+          <Button
+            as={Link}
+            to={`/user/${this.props.user.id}/orders`}
+            attached="bottom"
+            positive
+          >
+            Back to All Orders
+          </Button>
+        </div>
+      )
+    } else if (this.state.completed && !this.state.user) {
+      return (
+        <div>
+          <Header as="h2" attached="top" icon>
+            <Icon name="check circle" color="green" />
+            You're All Set!!
+            <Header.Subheader>
+              {' '}
+              Order Number: {this.state.orderNumber}
+            </Header.Subheader>
+            <Header.Subheader>
+              Order details have been sent to {this.state.email}
+            </Header.Subheader>
+          </Header>
+        </div>
+      )
     }
     return (
       <form onSubmit={this.handleSubmit}>
@@ -178,4 +248,6 @@ class SplitForm extends Component {
   }
 }
 
-export default injectStripe(connect(mapStateToProps, null)(SplitForm))
+export default injectStripe(
+  connect(mapStateToProps, mapDispatchToProps)(SplitForm)
+)

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CheckOutForm} from './index'
 import {Elements, StripeProvider} from 'react-stripe-elements'
+import {Header} from 'semantic-ui-react'
 
 const cssStyling = {
   checkout: {
@@ -16,7 +17,7 @@ class CheckOut extends Component {
     return (
       <StripeProvider apiKey={process.env.STRIPE_PUBLISHABLE_KEY}>
         <div styling={cssStyling.checkout} className="example">
-          <h1>Checkout Page</h1>
+          <Header as='h1' color='grey'>Checkout</Header>
           <Elements>
             <CheckOutForm />
           </Elements>
