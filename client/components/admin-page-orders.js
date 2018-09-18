@@ -45,7 +45,7 @@ class AdminOrderPage extends Component {
     const isFetching = this.props.isFetching
 
     if (!this.props.user.isAdmin)
-      return <h1>sorry can't access this page :( ADMINS ONLY</h1>
+      return <h3>sorry can't access this page :( ADMINS ONLY</h3>
     if (this.state.selectedStatus !== 'all') {
       orders = orders.filter(
         order => order.status === this.state.selectedStatus

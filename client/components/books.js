@@ -65,14 +65,14 @@ class Books extends Component {
 
     const isFetching = this.props.isFetching
     if (isFetching) {
-      return <h1>Loading</h1>
+      return <h3>Loading</h3>
     }
 
     return (
       <Container>
-        <div className="imgdiv">
+        {/* <div className="imgdiv">
           <img src="/img/books2.jpg" />
-        </div>
+        </div> */}
         <h4>Filter:</h4>
         <select onChange={this.handleFilter}>
           <option value="all">All</option>

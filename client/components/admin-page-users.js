@@ -35,7 +35,7 @@ class AdminUserPage extends Component {
       <Container>
         <h3>Users</h3>
         {this.props.isFetching ? (
-          <h1>Fetching</h1>
+          <h3>Fetching</h3>
         ) : (
           this.props.users
             .sort((a, b) => {

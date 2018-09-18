@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Container, Item, Button, Icon} from 'semantic-ui-react'
+import {Container, Item, Button, Icon, Header, Divider} from 'semantic-ui-react'
 import {prettyDollar} from '../utils'
 import {
   fetchCartItems,
@@ -66,11 +66,19 @@ class Cart extends Component {
 
   render() {
     if (!this.props.cart.length) {
-      return <h1>Loading/nothing in cart</h1>
+      return (
+        <Container textAlign="center">
+          <Divider hidden />
+          <Header as="h2" icon>
+            <Icon name="shopping cart" />
+            Cart is currently empty
+          </Header>
+        </Container>
+      )
     }
     return (
       <Container>
-        <h1>My Cart</h1>
+        <h2>My Cart</h2>
         <Container textAlign="left" fluid>
           <h4>Total price: {prettyDollar(this.state.totalPrice)} </h4>
         </Container>
@@ -113,10 +121,10 @@ class Cart extends Component {
               </Item>
             )
           })}
+          <Button basic color="black" as={Link} to="/checkout" fluid>
+            Checkout
+          </Button>
         </Item.Group>
-        <Button basic color="black" floated="right" as={Link} to="/checkout">
-          Checkout
-        </Button>
       </Container>
     )
   }

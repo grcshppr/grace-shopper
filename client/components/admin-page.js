@@ -27,10 +27,10 @@ class AdminPage extends Component {
     const books = this.props.list
     const isFetching = this.props.isFetching
     if (isFetching) {
-      return <h1>Loading</h1>
+      return <h3>Loading</h3>
     }
     if (!this.props.user.isAdmin)
-      return <h1>sorry can't access this page :( ADMINS ONLY</h1>
+      return <h3>sorry can't access this page :( ADMINS ONLY</h3>
     return (
       <Container>
         <Form onSubmit={this.handleSubmit.bind(this)}>

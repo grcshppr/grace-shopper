@@ -1,5 +1,11 @@
+.mainHeader {
+  background: #dfddd59d;
+  width: 95vw !important;
+  padding: 30px;
+}
+
 .container {
-  margin: 20px;
+  margin: 10px;
 }
 
 select {
@@ -9,7 +15,21 @@ select {
   outline: none;
 }
 
-.imgdiv {
-  object-fit: fill;
-  height: 10vh;
+/* .mainHeader {
+  background: #dfddd59d;
+  width: 100vw;
+  padding: 30px;
+} */
+
+h1 {
+  font: 600 1.75em/1 'Raleway', sans-serif !important;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  z-index: 100;
+  text-shadow: 0.04em 0.04em 0 #9cb8b3;
+  top: 25%;
+  width: 100%;
+  padding-left: 5px;
 }
