@@ -44,13 +44,19 @@ class Cart extends Component {
     this.calculateTotalPrice()
   }
 
+  //this event handler takes in a while book rather than an ID so as to check the books quantity
   removeQuantity = async event => {
-    if (this.props.user.id) {
-      await this.props.decreaseCartQuantityServer(event)
-      this.calculateTotalPrice()
+    console.log(event)
+    if (event.cartQuantity > 1) {
+      if (this.props.user.id) {
+        await this.props.decreaseCartQuantityServer(event.id)
+        this.calculateTotalPrice()
+      } else {
+        await this.props.decreaseCartQuantity(event.id)
+        this.calculateTotalPrice()
+      }
     } else {
-      await this.props.decreaseCartQuantity(event)
-      this.calculateTotalPrice()
+      this.handleRemove(event.id)
     }
   }
 
@@ -105,7 +111,7 @@ class Cart extends Component {
                     Quantity: {item.cartQuantity}
                     <Button.Group icon size="mini">
                       <Button
-                        onClick={() => this.removeQuantity(item.id)}
+                        onClick={() => this.removeQuantity(item)}
                         icon="minus circle"
                         basic
                       />
