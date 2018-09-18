@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const {OrderBook, Book, Order, User} = require('../db/models')
+const AdminMW = require('./middleware')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', AdminMW, async (req, res, next) => {
   try {
     const allOrders = await Order.findAll({
       order: [['date', 'DESC']],
@@ -19,7 +20,10 @@ router.get('/:orderId', async (req, res, next) => {
     const orderContents = await OrderBook.findAll({
       where: {
         orderId: req.params.orderId
-      }
+      },
+      include: [
+        {model: Order, include: [{model: User, attributes: ['email', 'id']}]}
+      ]
     })
     res.status(200).json(orderContents)
   } catch (error) {
@@ -34,7 +38,10 @@ router.get('/:userId/orders', async (req, res, next) => {
         userId: req.params.userId
       },
       order: [['date', 'DESC']],
-      include: [{model: User}, {model: OrderBook, include: [Book]}]
+      include: [
+        {model: User, attributes: ['email', 'id', 'firstName']},
+        {model: OrderBook, include: [Book]}
+      ]
     })
     res.status(200).json(usersOrders)
   } catch (error) {
@@ -45,9 +52,33 @@ router.get('/:userId/orders', async (req, res, next) => {
 router.get('/:orderId/orders/:userId', async (req, res, next) => {
   try {
     const userOrder = await Order.findById(req.params.orderId, {
-      include: [{model: OrderBook, include: [Book]}]
+      include: [
+        {model: User, attributes: ['email', 'id']},
+        {model: OrderBook, include: [Book]}
+      ]
     })
     res.status(200).json(userOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/update/:orderId', AdminMW, async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId
+    const status = req.body.status
+    await Order.update(
+      {status},
+      {
+        where: {id: orderId},
+        returning: true,
+        plain: true
+      }
+    )
+    const updatedOrder = await Order.findById(orderId, {
+      include: [{model: User}, {model: OrderBook, include: [Book]}]
+    })
+    res.status(200).json(updatedOrder)
   } catch (error) {
     next(error)
   }
