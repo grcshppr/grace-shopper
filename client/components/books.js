@@ -41,7 +41,7 @@ class Books extends Component {
   }
 
   handleCart = event => {
-    if (this.props.userId) {
+    if (this.props.user.id) {
       this.props.createNewCartItem({id: event.target.value})
     } else {
       const cartBook = this.props.list.find(

@@ -30,7 +30,8 @@ class Cart extends Component {
   calculateTotalPrice() {
     let tempPrice = 0
     this.props.cart.map(item => {
-      tempPrice += item.price
+      const itemPrice = item.price * item.cartQuantity
+      tempPrice += itemPrice
     })
     this.setState({totalPrice: tempPrice})
   }
@@ -45,23 +46,28 @@ class Cart extends Component {
     this.calculateTotalPrice()
   }
 
-  handleRemove = event => {
-    this.props.destroyItemFromCart(event.target.value)
+  handleRemove = async event => {
+    await this.props.destroyItemFromCart(event.target.value)
+    this.calculateTotalPrice()
   }
 
-  removeQuantity = event => {
+  removeQuantity = async event => {
     if (this.props.user.id) {
-      this.props.decreaseCartQuantityServer(event.target.value)
+      await this.props.decreaseCartQuantityServer(event.target.value)
+      this.calculateTotalPrice()
     } else {
-      this.props.decreaseCartQuantity(event.target.value)
+      await this.props.decreaseCartQuantity(event.target.value)
+      this.calculateTotalPrice()
     }
   }
 
-  addQuantity = event => {
+  addQuantity = async event => {
     if (this.props.user.id) {
-      this.props.increaseCartQuantityServer(event.target.value)
+      await this.props.increaseCartQuantityServer(event.target.value)
+      this.calculateTotalPrice()
     } else {
-      this.props.increaseCartQuantity(event.target.value)
+      await this.props.increaseCartQuantity(event.target.value)
+      this.calculateTotalPrice()
     }
   }
 
