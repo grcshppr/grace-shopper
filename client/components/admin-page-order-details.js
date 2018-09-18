@@ -6,10 +6,9 @@ import {
   Dimmer,
   Container,
   Loader,
-  Divider,
-  Rail
+  Divider
 } from 'semantic-ui-react'
-import {fetchOneUserOrderFromServer} from '../store/orders'
+import {fetchOneUserOrderFromServer, updateOrder} from '../store/orders'
 import {prettyDate, prettyDollar} from '../utils'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -17,7 +16,8 @@ import {Link} from 'react-router-dom'
 const mapDispatchToProps = dispatch => {
   return {
     fetchOneOrderFromServer: orderId =>
-      dispatch(fetchOneUserOrderFromServer(orderId))
+      dispatch(fetchOneUserOrderFromServer(orderId)),
+    updateOrder: (orderId, status) => dispatch(updateOrder(orderId, status))
   }
 }
 
@@ -36,23 +36,28 @@ class AdminOrderDetailsPage extends Component {
 
   handleSumbit = event => {
     event.preventDefault()
-    console.log('hello world')
+    console.log('Submit')
+    const orderId = this.props.match.params.orderId
+    this.props.updateOrder(orderId, this.state.selected)
   }
   handleChange = event => {
-    console.log(event.target.value)
     this.setState({
       selected: event.target.value
     })
   }
 
   componentDidMount() {
+    console.log('component did mount')
     const orderId = this.props.match.params.orderId
-    this.props.fetchOneOrderFromServer(orderId, null)
+    this.props.fetchOneOrderFromServer(orderId)
+    console.log('hi')
   }
   render() {
+    console.log('render')
     const isFetching = this.props.isFetching
     const order = this.props.order
-    console.log('order', order)
+    console.log('props', this.props)
+
     if (isFetching) {
       return (
         <Segment>
@@ -64,7 +69,6 @@ class AdminOrderDetailsPage extends Component {
     }
     return (
       <div>
-        {' '}
         <Header as="h3" attached="top">
           Order Placed on {prettyDate(order.date)} by {order.user.email}
           <Header.Subheader>
@@ -75,6 +79,7 @@ class AdminOrderDetailsPage extends Component {
         <Header as="h5" attached>
           Update Order Status:
           <Divider hidden fitted />
+          <div />
           <form onSubmit={this.handleSumbit}>
             <select onChange={this.handleChange}>
               <option value="" selected disabled hidden>

@@ -53,3 +53,24 @@ router.get('/:orderId/orders/:userId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/update/:orderId', async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId
+    const status = req.body.status
+    await Order.update(
+      {status},
+      {
+        where: {id: orderId},
+        returning: true,
+        plain: true
+      }
+    )
+    const updatedOrder = await Order.findById(orderId, {
+      include: [{model: User}, {model: OrderBook, include: [Book]}]
+    })
+    res.status(200).json(updatedOrder)
+  } catch (error) {
+    next(error)
+  }
+})
