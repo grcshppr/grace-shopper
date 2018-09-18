@@ -64,7 +64,7 @@ class AdminOrderPage extends Component {
       return (
         <Container>
           <h1>View all orders here:</h1>
-          <h5>Filter order by status:</h5>
+          <h5>Filter orders by status:</h5>
           <select onChange={this.handleFilter}>
             <option value="all">all</option>
             <option value="created">created</option>
@@ -80,7 +80,7 @@ class AdminOrderPage extends Component {
                     <Item.Image size="tiny" src={order.imgUrl} />
 
                     <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
-                    <Item.Meta content={'Placed by: ' + order.user.email} />
+                    <Item.Meta content={'By: ' + order.user.email} />
                     <Item.Meta content={'Status: ' + order.status} />
                     <Item.Meta
                       content={`Total: ${prettyDollar(order.totalPrice)}`}

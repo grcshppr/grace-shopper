@@ -51,6 +51,7 @@ class UsersOrders extends Component {
               ? list[0].user.firstName + '!'
               : '!'}
           </Header>
+          <Header as="h3">Order History:</Header>
           <Item.Group link>
             {list.map(order => {
               return (

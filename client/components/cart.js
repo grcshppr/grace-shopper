@@ -1,13 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-  Grid,
-  GridColumn,
-  Image,
-  Container,
-  Item,
-  Button
-} from 'semantic-ui-react'
+import {Container, Item, Button} from 'semantic-ui-react'
 import {prettyDollar} from '../utils'
 import {
   fetchCartItems,
