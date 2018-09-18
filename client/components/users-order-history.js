@@ -68,7 +68,7 @@ class UsersOrders extends Component {
                     <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
                     <Item.Meta content={'Status: ' + order.status} />
                     <Item.Description>
-                      Total {prettyDollar(order.totalPrice)}
+                      Total: {prettyDollar(order.totalPrice)}
                     </Item.Description>
                   </Item.Content>
                 </Item>

@@ -102,7 +102,16 @@ class AdminOrderDetailsPage extends Component {
                         ? product.quantity + 'x ' + product.book.name
                         : product.book.name}
                     </Item.Header>
-                    <Item.Meta content={prettyDollar(product.price)} />
+                    <Item.Meta content={`by ${product.book.author}`} />
+                    {product.quantity > 1 ? (
+                      <Item.Meta
+                        content={`${product.quantity}x ${prettyDollar(
+                          product.price
+                        )}`}
+                      />
+                    ) : (
+                      <Item.Meta content={prettyDollar(product.price)} />
+                    )}
                     <Item.Meta
                       content={'Edition:  ' + product.book.editionType}
                     />
