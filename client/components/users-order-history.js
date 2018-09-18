@@ -1,5 +1,13 @@
 import React, {Component} from 'react'
-import {Segment, Dimmer, Loader, Image, Item, Header} from 'semantic-ui-react'
+import {
+  Segment,
+  Dimmer,
+  Loader,
+  Image,
+  Item,
+  Header,
+  Container
+} from 'semantic-ui-react'
 import {fetchUsersOrdersFromServer} from '../store/orders'
 import {prettyDate, prettyDollar} from '../utils'
 import {Link} from 'react-router-dom'
@@ -44,7 +52,7 @@ class UsersOrders extends Component {
       this.props.user.isAdmin
     ) {
       return (
-        <div>
+        <Container>
           <Header as="h2" attached="top">
             Welcome Back{' '}
             {list[0] && list[0].user.firstName
@@ -75,7 +83,7 @@ class UsersOrders extends Component {
               )
             })}
           </Item.Group>
-        </div>
+        </Container>
       )
     } else {
       return <h1>Sorry, You Don't Have Access!</h1>
