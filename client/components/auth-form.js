@@ -27,7 +27,9 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </Container>
         <Divider hidden />
-        <Button type="submit">{displayName}</Button>
+        <Button basic type="submit">
+          {displayName}
+        </Button>
         {error && error.response && <div> {error.response.data} </div>}
       </Form>
       <Divider hidden />

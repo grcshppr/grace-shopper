@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Container, Item, Button} from 'semantic-ui-react'
+import {Container, Item, Button, Icon, Header, Divider} from 'semantic-ui-react'
 import {prettyDollar} from '../utils'
 import {
   fetchCartItems,
@@ -40,37 +40,45 @@ class Cart extends Component {
   }
 
   handleRemove = async event => {
-    await this.props.destroyItemFromCart(event.target.value)
+    await this.props.destroyItemFromCart(event)
     this.calculateTotalPrice()
   }
 
   removeQuantity = async event => {
     if (this.props.user.id) {
-      await this.props.decreaseCartQuantityServer(event.target.value)
+      await this.props.decreaseCartQuantityServer(event)
       this.calculateTotalPrice()
     } else {
-      await this.props.decreaseCartQuantity(event.target.value)
+      await this.props.decreaseCartQuantity(event)
       this.calculateTotalPrice()
     }
   }
 
   addQuantity = async event => {
     if (this.props.user.id) {
-      await this.props.increaseCartQuantityServer(event.target.value)
+      await this.props.increaseCartQuantityServer(event)
       this.calculateTotalPrice()
     } else {
-      await this.props.increaseCartQuantity(event.target.value)
+      await this.props.increaseCartQuantity(event)
       this.calculateTotalPrice()
     }
   }
 
   render() {
     if (!this.props.cart.length) {
-      return <h1>Loading/nothing in cart</h1>
+      return (
+        <Container textAlign="center">
+          <Divider hidden />
+          <Header as="h2" icon>
+            <Icon name="shopping cart" />
+            Cart is currently empty
+          </Header>
+        </Container>
+      )
     }
     return (
       <Container>
-        <h1>My Cart</h1>
+        <h2>My Cart</h2>
         <Container textAlign="left" fluid>
           <h4>Total price: {prettyDollar(this.state.totalPrice)} </h4>
         </Container>
@@ -81,33 +89,42 @@ class Cart extends Component {
                 <Item.Image src={item.imgUrl} size="small" />
                 <Item.Content>
                   <Item.Header>{item.name}</Item.Header>
+                  <Button
+                    key={item.id}
+                    onClick={() => this.handleRemove(item.id)}
+                    basic
+                    content="Remove"
+                    floated="right"
+                    size="small"
+                  />
                   <Item.Meta>by {item.author}</Item.Meta>
                   <Item.Meta>{prettyDollar(item.price)}</Item.Meta>
-                  <Item.Meta>Quantity: {item.cartQuantity}</Item.Meta>
+                  <Item.Meta>
+                    Quantity: {item.cartQuantity}
+                    <Button.Group icon size="mini">
+                      <Button
+                        onClick={() => this.removeQuantity(item.id)}
+                        icon="minus circle"
+                        basic
+                      />
+                      <Button
+                        onClick={() => this.addQuantity(item.id)}
+                        icon="add circle"
+                        basic
+                      />
+                    </Button.Group>
+                  </Item.Meta>
                   <Item.Description>
                     {item.description.slice(0, 200)}...
                   </Item.Description>
-                  <button
-                    key={item.id}
-                    value={item.id}
-                    onClick={this.handleRemove}
-                  >
-                    remove all
-                  </button>
-                  <button value={item.id} onClick={this.removeQuantity}>
-                    -
-                  </button>
-                  <button value={item.id} onClick={this.addQuantity}>
-                    +
-                  </button>
                 </Item.Content>
               </Item>
             )
           })}
+          <Button basic color="black" as={Link} to="/checkout" fluid>
+            Checkout
+          </Button>
         </Item.Group>
-        <Button as={Link} to="/checkout">
-          Checkout
-        </Button>
       </Container>
     )
   }

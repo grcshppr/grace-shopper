@@ -1,25 +1,29 @@
 import React from 'react'
-import {Container, Divider, Card} from 'semantic-ui-react'
+import {Container, Divider, Card, Item} from 'semantic-ui-react'
 
 export default function Reviews(props) {
   const reviews = props.reviews
   return (
     <Container textAlign="left">
-      <h2>Reviews</h2>
+      <h3>Reviews</h3>
       <Divider />
       {!reviews.length ? (
-        <Card fluid>
-          <h5>no reviews at this time</h5>
-        </Card>
+        <Item.Meta>no reviews at this time</Item.Meta>
       ) : (
-        reviews.map(review => (
-          <Card key={review.id} fluid>
-            <h5>{review.title}</h5>
-            {/* "Stars" isn't required in the review model, so rendered conditionally */}
-            {review.stars && <h5>{`Rating: ${review.stars}/5`}</h5>}
-            <p>{review.content}</p>
-          </Card>
-        ))
+        <Item.Group divided>
+          {reviews.map(review => (
+            <Item key={review.id}>
+              <Item.Content>
+                <Item.Header>{review.title}</Item.Header>
+                {/* "Stars" isn't required in the review model, so rendered conditionally */}
+                {review.stars && (
+                  <Item.Meta>{`Rating: ${review.stars}/5`}</Item.Meta>
+                )}
+                <Item.Description>{review.content}</Item.Description>
+              </Item.Content>
+            </Item>
+          ))}
+        </Item.Group>
       )}
     </Container>
   )

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchReviewsForBook} from '../store/reviews.js'
 import Reviews from './reviews'
 import {withRouter} from 'react-router-dom'
-import {Container, Image, Divider} from 'semantic-ui-react'
+import {Container, Image, Divider, Item} from 'semantic-ui-react'
 import {prettyDollar} from '../utils'
 import WriteReview from './write-review'
 
@@ -24,28 +24,24 @@ export class DetailedBook extends Component {
     }
     const reviews = this.props.reviews
     return (
-      <div>
+      <Container>
         {selectedBook && (
-          <Container textAlign="center">
-            <h2>{selectedBook.name}</h2>
-            <h4>{`by ${selectedBook.author}`}</h4>
-            <Image size="small" src={`/${selectedBook.imgUrl}`} centered />
-            <h5>{prettyDollar(selectedBook.price)}</h5>
-            {!selectedBook.quantity && <h5>Out of stock</h5>}
-            <h5>{`Format: ${selectedBook.editionType}`}</h5>
-            {selectedBook.publisher && (
-              <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
-            )}
-            <p>{selectedBook.description}</p>
-            <Divider hidden />
-
-            {reviews && (
-              <Reviews selectedBook={selectedBook} reviews={reviews} />
-            )}
-            <WriteReview selectedBook={selectedBook} />
-          </Container>
+          <Item.Group>
+            <Item>
+              <Item.Image src={`/${selectedBook.imgUrl}`} />
+              <Item.Content>
+                <Item.Header>{selectedBook.name}</Item.Header>
+                <Item.Meta>by {selectedBook.author}</Item.Meta>
+                <Item.Meta>{prettyDollar(selectedBook.price)}</Item.Meta>
+                <Item.Meta>Format: {selectedBook.editionType}</Item.Meta>
+                <Item.Description>{selectedBook.description}</Item.Description>
+              </Item.Content>
+            </Item>
+          </Item.Group>
         )}
-      </div>
+        {reviews && <Reviews selectedBook={selectedBook} reviews={reviews} />}
+        <WriteReview selectedBook={selectedBook} />
+      </Container>
     )
   }
 }
