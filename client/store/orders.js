@@ -166,15 +166,12 @@ const orderReducer = (state = initialState, action) => {
       return {...state, allOrders: action.list, allOrdersAreFetching: false}
     case REQUEST_ALL_ORDERS:
       return {...state, allOrdersAreFetching: true}
-<<<<<<< HEAD
     case UPDATED_ORDER:
       return {...state, oneOrder: action.order, allOrdersAreFetching: false}
     case REQUEST_UPDATE_ORDER:
       return {...state, allOrdersAreFetching: true}
-=======
     case GOT_ORDER_INFORMATION:
       return {...state, orderInformation: action.orderInfo}
->>>>>>> master
     default:
       return state
   }
