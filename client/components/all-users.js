@@ -1,14 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-  Header,
-  GridColumn,
-  Image,
-  Item,
-  Container,
-  Button,
-  Divider
-} from 'semantic-ui-react'
+import {Header, Image, Container} from 'semantic-ui-react'
 import {fetchAllUsersFromServer} from '../store/allUsers'
 import {withRouter} from 'react-router-dom'
 
@@ -33,7 +25,7 @@ class AdminUserPage extends Component {
   render() {
     return (
       <Container>
-        <h3>Users</h3>
+        <h3>Hello!</h3>
         {this.props.isFetching ? (
           <h1>Fetching</h1>
         ) : (
@@ -47,8 +39,9 @@ class AdminUserPage extends Component {
               return (
                 <Container>
                   <Header key={user.id} as="h3" attached="top">
-                    <Image size="tiny" src={user.imgUrl} />
-                    {user.email} {user.isAdmin && ' (ADMIN)'}
+                    <Header.Image key={user.id} size="tiny" src={user.imgUrl} />
+                    {user.email}
+                    {user.isAdmin && '(ADMIN)'}
                   </Header>
                 </Container>
               )

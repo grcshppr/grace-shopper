@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {createReview} from '../store/reviews'
 import {Field, reduxForm} from 'redux-form'
-import {Form, Container, Divider, Button} from 'semantic-ui-react'
+import {Form, Container, Divider} from 'semantic-ui-react'
 
 class WriteReview extends Component {
   handleSumbit = event => {

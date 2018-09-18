@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const AdminHomePage = () => {
   return (
     <Container>
-      <h1>admin home page</h1>
+      <h1>Admin home page</h1>
       <Card
         as={Link}
         to="/admin/editbooks"
@@ -15,13 +15,13 @@ const AdminHomePage = () => {
       <Card
         as={Link}
         to="/admin/orders"
-        header="view all orders"
+        header="View all orders"
         description="Click here to view all the orders made on the site"
       />
       <Card
         as={Link}
         to="/admin/users"
-        header="view all users"
+        header="View all users"
         description="Click here to view all the users who belong to this site"
       />
     </Container>

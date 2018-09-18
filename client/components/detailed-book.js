@@ -29,16 +29,14 @@ export class DetailedBook extends Component {
           <Container textAlign="center">
             <h2>{selectedBook.name}</h2>
             <h4>{`by ${selectedBook.author}`}</h4>
-            <Image size="medium" src={`/${selectedBook.imgUrl}`} centered />
-            <h5>
-              {/* Book price is an integer in db, so we need to reformat it as a price */}
-              {prettyDollar(selectedBook.price)}
-            </h5>
+            <Image size="small" src={`/${selectedBook.imgUrl}`} centered />
+            <h5>{prettyDollar(selectedBook.price)}</h5>
             {!selectedBook.quantity && <h5>Out of stock</h5>}
-            <h6>{`Format: ${selectedBook.editionType}`}</h6>
+            <h5>{`Format: ${selectedBook.editionType}`}</h5>
             {selectedBook.publisher && (
               <h6>{`Publisher: ${selectedBook.publisher}`}</h6>
             )}
+            <p>{selectedBook.description}</p>
             <Divider hidden />
 
             {reviews && (

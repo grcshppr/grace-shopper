@@ -2,21 +2,27 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {prettyDollar} from '../utils'
+import {createNewCartItem, addItemToCart} from '../store/cart'
 import {
-  Grid,
-  GridColumn,
+  Dropdown,
   Image,
   Container,
   Button,
   Divider,
-  Card
+  Item
 } from 'semantic-ui-react'
+
+const mapDispatchToProps = dispatch => ({
+  createNewCartItem: bookId => dispatch(createNewCartItem(bookId)),
+  addItemToCart: book => dispatch(addItemToCart(book))
+})
 
 const mapStateToProps = state => {
   return {
     list: state.books.list,
     genres: state.books.genres,
-    isFetching: state.books.isFetching
+    isFetching: state.books.isFetching,
+    user: state.user
   }
 }
 
@@ -34,6 +40,17 @@ class Books extends Component {
     })
   }
 
+  handleCart = event => {
+    if (this.props.user.id) {
+      this.props.createNewCartItem({id: event.target.value})
+    } else {
+      const cartBook = this.props.list.find(
+        book => book.id == event.target.value
+      )
+      this.props.addItemToCart(cartBook)
+    }
+  }
+
   render() {
     const availableBooks = this.props.list.filter(
       book => book.availability === true && book.quantity > 0
@@ -47,10 +64,12 @@ class Books extends Component {
       )
     }
     const genres = this.props.genres
+
     const isFetching = this.props.isFetching
     if (isFetching) {
       return <h1>Loading</h1>
     }
+
     return (
       <Container>
         <h4>Filter:</h4>
@@ -62,27 +81,34 @@ class Books extends Component {
             </option>
           ))}
         </select>
+
         <Divider section />
-        <Grid relaxed="very" text-align="left" centered>
+
+        <Item.Group divided>
           {books.map(book => {
             return (
-              <GridColumn width={4} key={book.id} className="container">
-                <Container>
-                  <Link to={`book/${book.id}`}>{book.name}</Link>
-                  <p>by {book.author}</p>
-                  {/* Book price is an integer in db, so we need to reformat it as a price */}
-                  <p>{prettyDollar(book.price)}</p>
-                  <Image src={book.imgUrl} />
-                  <Button icon="shop" />
-                </Container>
-                <Divider hidden />
-              </GridColumn>
+              <Item key={book.id}>
+                <Item.Image src={book.imgUrl} size="small" />
+                <Item.Content>
+                  <Item.Header as={Link} to={`book/${book.id}`}>
+                    {book.name}
+                  </Item.Header>
+                  <Item.Meta>by {book.author}</Item.Meta>
+                  <Item.Meta>{prettyDollar(book.price)}</Item.Meta>
+                  <Item.Description>
+                    {book.description.slice(0, 200)}...
+                  </Item.Description>
+                  <button value={book.id} onClick={this.handleCart}>
+                    add to cart
+                  </button>
+                </Item.Content>
+              </Item>
             )
           })}
-        </Grid>
+        </Item.Group>
       </Container>
     )
   }
 }
 
-export default connect(mapStateToProps)(Books)
+export default connect(mapStateToProps, mapDispatchToProps)(Books)
