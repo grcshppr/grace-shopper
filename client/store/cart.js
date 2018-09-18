@@ -6,6 +6,7 @@ export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 export const DECREASE_CART_QUANTITY = 'DECREASE_CART_QUANTITY'
 export const INCREASE_CART_QUANTITY = 'INCREASE_CART_QUANTITY'
+export const CLEAR_CART_AFTER_PURCHASE = 'CLEAR_CART_AFTER_PURCHASE'
 
 //Action creators
 export const gotCartItems = books => ({
@@ -32,6 +33,13 @@ export const increaseCartQuantity = bookId => ({
   type: INCREASE_CART_QUANTITY,
   bookId
 })
+
+export const clearCart = cart => {
+  return {
+    type: CLEAR_CART_AFTER_PURCHASE,
+    cart
+  }
+}
 
 //Thunk Creators
 
@@ -139,9 +147,15 @@ export default function(cart = [], action) {
       })
       return newCart
     }
-    case REMOVE_ITEM_FROM_CART:
+    case REMOVE_ITEM_FROM_CART: {
       const newCartArray = cart.filter(book => book.id != action.bookId)
       return newCartArray
+    }
+    case CLEAR_CART_AFTER_PURCHASE: {
+      return {
+        cart: action.cart
+      }
+    }
     default:
       return cart
   }

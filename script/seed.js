@@ -375,55 +375,66 @@ async function seed() {
       userId: users[0].dataValues.id,
       paidFor: true,
       date: new Date(2018, 4, 24, 8, 13, 20, 0),
-      status: 'completed'
+      status: 'completed',
+      stripeToken: 'tok_1DBkcWJopqwPdSjrQUsB9PBi'
     }),
     Order.create({
       userId: users[0].dataValues.id,
       paidFor: true,
       date: new Date(2018, 5, 13, 9, 45, 30, 0),
-      status: 'completed'
+      status: 'completed',
+      stripeToken: 'tok_1DBkcWJopqwPdSjrQUsB1PBi'
     }),
     Order.create({
       userId: users[0].dataValues.id,
       paidFor: false,
       date: new Date(2018, 2, 11, 39, 15, 28, 0),
-      status: 'processing'
+      status: 'processing',
+      stripeToken: 'tok_1DBkcWJopqwPdSjrQUsB3PBi'
     }),
     Order.create({
       userId: users[0].dataValues.id,
       paidFor: true,
       date: Date.now(),
-      status: 'created'
+      status: 'created',
+      stripeToken: 'tok_1DBkcWJopqwPdTjrQUsB9PBi'
     }),
     Order.create({
       userId: users[1].dataValues.id,
       paidFor: true,
       date: new Date(2017, 12, 30, 44, 15, 36, 0),
-      status: 'canceled'
+      status: 'canceled',
+      stripeToken: 'tok_1DBkbUJopqwPdSjrBg6s0KYx'
     }),
     Order.create({
       userId: users[1].dataValues.id,
       paidFor: true,
       date: new Date(2017, 10, 22, 34, 15, 44, 0),
-      status: 'completed'
+      status: 'completed',
+      stripeToken: 'tok_1DBkbUJopqwPdSjrBg6s4KYx'
     }),
     Order.create({
       userId: users[1].dataValues.id,
       paidFor: true,
       date: new Date(2018, 7, 31, 43, 11, 23, 0),
-      status: 'completed'
+      status: 'completed',
+      stripeToken: 'tok_1DBkbUJopqwPdSjrBg6s5KYx'
+
     }),
     Order.create({
       userId: users[1].dataValues.id,
       paidFor: true,
       date: Date.now(),
-      status: 'processing'
+      status: 'processing',
+      stripeToken: 'tok_1DBkbUJopqwPdSjrBg6s6KYx'
+
     }),
     Order.create({
       userId: users[1].dataValues.id,
       paidFor: false,
       date: Date.now(),
-      status: 'created'
+      status: 'created',
+      stripeToken: 'tok_1DBkbUJopqwPdSjrBg6s2KYx'
     })
   ])
 

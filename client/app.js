@@ -4,6 +4,7 @@ import Routes from './routes'
 import {fetchAllBooksFromServer} from './store/books'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import '../secrets'
 
 const mapDispatchToProps = dispatch => {
   return {
