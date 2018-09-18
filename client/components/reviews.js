@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Divider, Card, Item} from 'semantic-ui-react'
+import {Container, Divider, Item} from 'semantic-ui-react'
 
 export default function Reviews(props) {
   const reviews = props.reviews
