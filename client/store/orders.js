@@ -10,8 +10,13 @@ export const REQUEST_ONE_ORDER = 'REQUEST_ONE_ORDER'
 export const GOT_ONE_ORDER = 'GOT_ONE_ORDER'
 export const REQUEST_ALL_ORDERS = 'REQUEST_ALL_ORDERS'
 export const GOT_ALL_ORDERS = 'GOT_ALL_ORDERS'
+<<<<<<< HEAD
 export const UPDATED_ORDER = 'UPDATED_ORDER'
 export const REQUEST_UPDATE_ORDER = 'REQUEST_UPDATE_ORDER'
+=======
+export const GOT_ORDER_INFORMATION = 'GOT_ORDER_INFORMATION'
+
+>>>>>>> master
 /**
  * ACTION CREATORS
  */
@@ -103,6 +108,7 @@ export const fetchAllOrders = () => {
   }
 }
 
+<<<<<<< HEAD
 export const updateOrder = (orderId, newOrderStatus) => {
   return async dispatch => {
     try {
@@ -114,6 +120,12 @@ export const updateOrder = (orderId, newOrderStatus) => {
     } catch (error) {
       console.error(error)
     }
+=======
+export const gotOrderInformation = orderInfo => {
+  return {
+    type: GOT_ORDER_INFORMATION,
+    orderInfo
+>>>>>>> master
   }
 }
 
@@ -126,7 +138,8 @@ const initialState = {
   oneOrder: [],
   allOrdersAreFetching: true,
   oneOrderIsFetching: true,
-  allOrders: []
+  allOrders: [],
+  orderInformation: {}
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -157,10 +170,15 @@ const orderReducer = (state = initialState, action) => {
       return {...state, allOrders: action.list, allOrdersAreFetching: false}
     case REQUEST_ALL_ORDERS:
       return {...state, allOrdersAreFetching: true}
+<<<<<<< HEAD
     case UPDATED_ORDER:
       return {...state, oneOrder: action.order, allOrdersAreFetching: false}
     case REQUEST_UPDATE_ORDER:
       return {...state, allOrdersAreFetching: true}
+=======
+    case GOT_ORDER_INFORMATION:
+      return {...state, orderInformation: action.orderInfo}
+>>>>>>> master
     default:
       return state
   }

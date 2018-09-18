@@ -1,6 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+<<<<<<< HEAD
 import {Container, Item, Button} from 'semantic-ui-react'
+=======
+import {Link} from 'react-router-dom'
+import {
+  Container,
+  Item,
+  Button
+} from 'semantic-ui-react'
+>>>>>>> master
 import {prettyDollar} from '../utils'
 import {
   fetchCartItems,
@@ -104,7 +113,9 @@ class Cart extends Component {
             )
           })}
         </Item.Group>
-        <Button>Checkout</Button>
+        <Button as={Link} to="/checkout">
+          Checkout
+        </Button>
       </Container>
     )
   }

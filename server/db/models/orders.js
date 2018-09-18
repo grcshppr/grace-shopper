@@ -17,11 +17,21 @@ const Order = db.define('order', {
   totalPrice: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
+  },
+  stripeToken: {
+    type: Sequelize.STRING,
+    allowNull: false,
   }
 }, {
   setterMethods:{
     totalPrice: function(value) {
       this.setDataValue('totalPrice', value)
+    },
+    status: function(value) {
+      this.setDataValue('status', value)
+    },
+    paidFor: function(value) {
+      this.setDataValue('paidFor', value)
     }
   }
 })

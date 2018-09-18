@@ -39,7 +39,7 @@ class WriteReview extends Component {
             placeholder="content"
           />
           <Divider hidden />
-          <button type="submit" label="submit">
+          <button type="submit">
             Submit
           </button>
         </Form>

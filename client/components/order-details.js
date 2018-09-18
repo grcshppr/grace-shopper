@@ -53,6 +53,7 @@ class UserOneOrder extends Component {
               Total {prettyDollar(order.totalPrice)}
             </Header.Subheader>
             <Header.Subheader>Status: {order.status}</Header.Subheader>
+            <Header.Subheader>Order ID: {order.id}</Header.Subheader>
           </Header>
           <Item.Group>
             {order.order_books.map(product => {
