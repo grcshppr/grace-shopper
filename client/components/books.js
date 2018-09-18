@@ -3,14 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {prettyDollar} from '../utils'
 import {createNewCartItem, addItemToCart} from '../store/cart'
-import {
-  Dropdown,
-  Image,
-  Container,
-  Button,
-  Divider,
-  Item
-} from 'semantic-ui-react'
+import {Container, Button, Divider, Item} from 'semantic-ui-react'
 
 const mapDispatchToProps = dispatch => ({
   createNewCartItem: bookId => dispatch(createNewCartItem(bookId)),

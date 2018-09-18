@@ -2,16 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {prettyDollar} from '../utils'
-import {
-  Grid,
-  GridColumn,
-  Image,
-  Container,
-  Divider,
-  Button,
-  Form,
-  Item
-} from 'semantic-ui-react'
+import {Container, Divider, Button, Form, Item} from 'semantic-ui-react'
 
 const mapStateToProps = state => {
   return {books: state.books.list}
