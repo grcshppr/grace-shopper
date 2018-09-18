@@ -36,7 +36,6 @@ class AdminOrderDetailsPage extends Component {
 
   handleSumbit = event => {
     event.preventDefault()
-    console.log('Submit')
     const orderId = this.props.match.params.orderId
     this.props.updateOrder(orderId, this.state.selected)
   }
@@ -47,16 +46,12 @@ class AdminOrderDetailsPage extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount')
     const orderId = this.props.match.params.orderId
     this.props.fetchOneOrderFromServer(orderId)
-    console.log('hi')
   }
   render() {
-    console.log('render')
     const isFetching = this.props.isFetching
     const order = this.props.order
-    console.log('props', this.props)
 
     if (isFetching) {
       return (
