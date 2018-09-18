@@ -1,15 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-<<<<<<< HEAD
-import {Container, Item, Button} from 'semantic-ui-react'
-=======
 import {Link} from 'react-router-dom'
-import {
-  Container,
-  Item,
-  Button
-} from 'semantic-ui-react'
->>>>>>> master
+import {Container, Item, Button} from 'semantic-ui-react'
 import {prettyDollar} from '../utils'
 import {
   fetchCartItems,
