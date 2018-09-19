@@ -80,7 +80,9 @@ class AdminOrderPage extends Component {
                     <Item.Image size="tiny" src={order.imgUrl} />
 
                     <Item.Header>Placed {prettyDate(order.date)}</Item.Header>
-                    <Item.Meta content={'By: ' + order.user.email} />
+                    {order.user && (
+                      <Item.Meta content={'By: ' + order.user.email} />
+                    )}
                     <Item.Meta content={'Status: ' + order.status} />
                     <Item.Meta
                       content={`Total: ${prettyDollar(order.totalPrice)}`}
