@@ -65,7 +65,8 @@ class AdminOrderDetailsPage extends Component {
     return (
       <div>
         <Header as="h3" attached="top">
-          Order Placed on {prettyDate(order.date)} by {order.user.email}
+          Order Placed on {prettyDate(order.date)}
+          {order.user && `by ${order.user.email}`}
           <Header.Subheader>
             Total {prettyDollar(order.totalPrice)}
           </Header.Subheader>
