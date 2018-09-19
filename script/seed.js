@@ -567,14 +567,11 @@ async function seed() {
   console.log(`Books seeded successfully`)
   console.log(`seeded ${users.length} users`)
   console.log(`Users seeded successfully`)
-  console.log(`seeded ${reviews.length} reviews`)
   console.log(`Users seeded successfully`)
   console.log(`seeded ${orders.length} orders`)
   console.log(`Orders seeded successfully`)
   console.log(`seeded ${orderHistory.length} OrderBook entries`)
   console.log(`OrderHistory seeded successfully`)
-  console.log(`seeded ${reviews.length} reviews`)
-  console.log(`Reviews seeded successfully`)
 }
 
 // We've separated the `seed` function from the `runSeed` function.
