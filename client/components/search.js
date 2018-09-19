@@ -30,10 +30,10 @@ class Search extends Component {
     const filterFunc = book => {
       let normalizedSearchText = this.state.searchText
         .split(' ')
-        .map(word => word.toUpperCase())
+        .map(word => word.replace(':', '').toUpperCase())
       let normalizedBookName = book.name
         .split(' ')
-        .map(word => word.toUpperCase())
+        .map(word => word.replace(':', '').toUpperCase())
       //Allows for partial matches
       return normalizedSearchText.every(word =>
         normalizedBookName.includes(word)
